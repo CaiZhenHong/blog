@@ -1,0 +1,57 @@
+/*
+* @desc:   应用常用样式
+* @author czh996.top
+* @Date: 2021年4月2日
+*/
+
+/*
+	* 传入参数说明：
+	*		rvc：水平轴为主轴时垂直居中
+	* 	vrc：垂直轴为主轴时水平居中
+	*/
+@mixin _flex($value: rvc) {
+	display: flex;
+	@if ($value == rvc) {
+		flex-direction: row;
+		align-items: center;
+	}
+	@if ($value == vrc) {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+// 常用盒子
+@mixin _box($background: #fff, $border_radius: 3px, $bdc: #e8e8e8, $color: #333) {
+	background: $background;
+	border: 1px solid $bdc;
+	border-radius: $border_radius;
+	color: $color;
+}
+
+/* 分割线 */
+@mixin line {
+	height: 1px;
+	background: $bdc;
+	width: 100%;
+	border: none;
+}
+
+@mixin _hover($color: none, $background: none, $time: 0.15s) {
+	cursor: pointer;
+	transition: all $time cubic-bezier(0.645, 0.045, 0.355, 1);
+
+	&:hover {
+		color: ($color);
+		background: $background;
+	}
+}
+
+@mixin _ellipsis {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-all;
+}

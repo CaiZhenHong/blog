@@ -1,0 +1,29 @@
+html {
+	font: 10px/1.15 'SF Pro SC', 'HanHei SC', 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons',
+		'PingFang SC', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+body,
+html {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	font-size: 1.2rem;
+	color: #333;
+}
+
+input {
+	padding: 0;
+	margin: 0;
+	outline: none;
+	box-sizing: border-box;
+}
+
+div {
+	box-sizing: border-box;
+}
+
+a {
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+}

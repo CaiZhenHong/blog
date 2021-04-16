@@ -1,32 +1,34 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="top-bar-warp">
+      <top-bar class="top-bar"></top-bar>
     </div>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 
+<script>
+import TopBar from '@/modules/topBar/components/TopBar';
+
+export default {
+  components: {
+    TopBar,
+  },
+};
+</script>
+
 <style lang="scss">
+@import '@theme';
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  height: 100%;
+  background: $bg;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+.top-bar-warp {
+  border-bottom: 1px solid $bdc;
+  background: $topBarG;
+  .top-bar {
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }
 </style>
