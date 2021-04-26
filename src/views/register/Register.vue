@@ -11,11 +11,11 @@
     </div>
     <!-- Logo End -->
 
-    <!-- 注册信息输入框组件 Start -->
-    <div class="register-input">
-      <register-input></register-input>
+    <!-- 注册表单组件 Start -->
+    <div class="register-form">
+      <register-form></register-form>
     </div>
-    <!-- 注册信息输入框组件 End -->
+    <!-- 注册表单组件 End -->
 
     <!-- 注册帮助组件 Start -->
     <div class="register-help">
@@ -27,12 +27,12 @@
 
 <script>
 import Logo from '@/components/Logo/Logo';
-import { RegisterInput, RegisterHelp } from '@/modules/register';
+import { RegisterForm, RegisterHelp } from '@/modules/register';
 
 export default {
   components: {
     Logo,
-    RegisterInput,
+    RegisterForm,
     RegisterHelp,
   },
 };
@@ -54,7 +54,7 @@ export default {
   margin-top: 100px;
 }
 
-.register-input {
+.register-form {
   margin-top: 100px;
 }
 

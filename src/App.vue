@@ -7,12 +7,22 @@
 <script>
 import { GET_EMAIL } from '@/store/type';
 export default {
-  // 应用开启时就发起获取用户信息的请求
+  methods: {
+    // 获取用户信息
+    getUser() {
+      let path = window.location.pathname.replace('/', '');
+      let regular = /^[\w]+@+[a-z0-9]+.+[a-z]+$/g;
+      if (regular.test(path)) {
+        this.$store.commit(GET_EMAIL, path);
+      } else {
+        this.$store.commit(GET_EMAIL, '1229542068@qq.com');
+      }
+      this.$store.dispatch('getuser');
+    },
+  },
+
   created() {
-    // 通过 url 获取邮箱号码传给 mutation
-    let email = window.location.pathname.replace('/', '');
-    this.$store.commit(GET_EMAIL, email);
-    this.$store.dispatch('getuser');
+    this.getUser();
   },
 };
 </script>

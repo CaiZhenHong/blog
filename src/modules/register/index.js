@@ -1,7 +1,7 @@
 import RegisterHelp from './components/RegisterHelp.vue'
-import RegisterInput from './components/RegisterInput.vue'
+import RegisterForm from './components/RegisterForm.vue'
 
 export {
   RegisterHelp,
-  RegisterInput
+  RegisterForm
 }

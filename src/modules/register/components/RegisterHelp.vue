@@ -1,10 +1,9 @@
  <!--
- * @desc: 用户帮助
+ * @desc: 帮助组件
  * @author czh996.top
  * @Date: 2021年4月7日
- * @props: [String] to - 跳转链接
  * @example
- *  <article-item-comment-button :actions="actions" :shareBtnShow="shareBtnShow"></article-item-comment-button>
+ *        <register-help></register-help>
  -->
 <template>
   <div class="help">
