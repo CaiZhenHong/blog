@@ -1,25 +1,27 @@
  <!--
- * @desc: 文章操作及信息
+ * @desc: 注册页面
  * @author czh996.top
  * @Date: 2021年4月16日
- * @props: [Obejct] ations - 用于渲染操作列表的数据
- * @props: [Boolean] shareBtnShow - 控制分享按钮隐藏显示
- * @example
- *  <article-item-comment-button :actions="actions" :shareBtnShow="shareBtnShow"></article-item-comment-button>
  -->
 <template>
   <div class="register">
+    <!-- Logo Start -->
     <div class="register-logo">
       <logo></logo>
     </div>
+    <!-- Logo End -->
 
+    <!-- 注册信息输入框组件 Start -->
     <div class="register-input">
       <register-input></register-input>
     </div>
+    <!-- 注册信息输入框组件 End -->
 
+    <!-- 注册帮助组件 Start -->
     <div class="register-help">
       <register-help></register-help>
     </div>
+    <!-- 注册帮助组件 End -->
   </div>
 </template>
 
