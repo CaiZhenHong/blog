@@ -5,7 +5,7 @@
  -->
 
 <template>
-  <div>
+  <div :style="`width:${size.split(',')[0]}px;height:${size.split(',')[1]}px`">
     <router-link
       :class="['el-button', type]"
       :to="to"
@@ -30,6 +30,10 @@ export default {
       type: String,
       default: 'theme',
     },
+    size: {
+      type: String,
+      default: '80,35',
+    },
   },
 };
 </script>
@@ -43,9 +47,8 @@ export default {
   @include _box($bdc: #d9d9d9);
   justify-content: center;
   box-sizing: border-box;
-  width: 80px;
-  height: 35px;
   font-size: 15px;
+  height: 100%;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
@@ -54,6 +57,7 @@ export default {
   background: $themec;
   &:hover {
     background: #fdac33;
+    border-color: #fdac33;
   }
 }
 .grey {

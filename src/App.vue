@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <div class="top-bar-warp">
-      <top-bar class="top-bar"></top-bar>
-    </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import TopBar from '@/modules/topBar/components/TopBar';
-
+import { GET_EMAIL } from '@/store/type';
 export default {
-  components: {
-    TopBar,
+  // 应用开启时就发起获取用户信息的请求
+  created() {
+    // 通过 url 获取邮箱号码传给 mutation
+    let email = window.location.pathname.replace('/', '');
+    this.$store.commit(GET_EMAIL, email);
+    this.$store.dispatch('getuser');
   },
 };
 </script>
@@ -20,15 +20,8 @@ export default {
 <style lang="scss">
 @import '@theme';
 #app {
+  border-top: 1px solid #00000000;
   height: 100%;
   background: $bg;
-}
-.top-bar-warp {
-  border-bottom: 1px solid $bdc;
-  background: $topBarG;
-  .top-bar {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
 }
 </style>

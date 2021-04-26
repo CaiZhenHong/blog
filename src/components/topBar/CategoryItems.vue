@@ -13,7 +13,7 @@
     <div class="category-items-name"><slot></slot></div>
 
     <!-- 气泡弹出框 Start -->
-    <transition name="fade">
+    <transition name="slide">
       <popover
         class="category-items-content"
         v-show="showHandle"
@@ -67,19 +67,29 @@ export default {
 .category-items-name {
   color: #777;
   cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
   &:hover {
     color: #000;
   }
 }
-.category-items-content {
-  transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+.slide-enter-active {
+  animation: slide-in-top 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+.slide-leave-active {
+  animation: slide-in-top 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

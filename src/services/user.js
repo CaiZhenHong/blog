@@ -1,5 +1,10 @@
-import { post } from "./Api";
+import server from '@/plugins/axios'
 
-export function sendEmail(data) {
-    return post('/post/email', data);
+
+export function getUser(params) {
+    return server({
+        method: 'GET',
+        url: '/get/user',
+        params
+    })
 }

@@ -19,15 +19,10 @@
     <!-- 链接 End -->
 
     <!-- 气泡弹窗 Start -->
-    <transition name="fade">
+    <transition name="slide">
       <popover class="profile-popover" v-show="showHandle">
         <div>{{ item.name }}</div>
-        <img
-          v-if="iSwechat"
-          src="@/assets/img/wechat.jpg"
-          class="popover-img"
-          alt=""
-        />
+        <img v-if="iSwechat" :src="item.link" class="popover-img" alt="" />
       </popover>
     </transition>
     <!-- 气泡弹窗 End -->
@@ -96,11 +91,22 @@ export default {
 .popover-img {
   height: 200px;
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+.slide-enter-active {
+  animation: slide-in-top 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+
+.slide-leave-active {
+  animation: slide-in-top 0.05s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

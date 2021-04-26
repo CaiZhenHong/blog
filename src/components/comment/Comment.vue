@@ -2,10 +2,9 @@
      @desc 评论组件
      @author CZH996.TOP
      @date 2021年4月9日
-     @event [scroll]  - 监听滑动事件，返回 Boolean 值
      @props { Number } [count]    - 一篇文章的评论数
      @example 
-      <comment :comment="comment" @scroll="scrollHadnle" :count="Commentcount"></comment>
+      <comment  :count="Commentcount"></comment>
  -->
 <template>
   <div>
@@ -17,6 +16,7 @@
       <!-- 加载提示 Start -->
       <div v-if="!comments" class="comment-loader">
         <loader>评论加载中 ...</loader>
+        <div>{{ comments }}</div>
       </div>
       <!-- 加载提示 End -->
 
@@ -58,7 +58,6 @@
 import CommentItem from './CommentItem';
 import CommentInput from './CommentInput';
 import Loader from '@/components/loader/Loader';
-import { getArticleComment } from '@/services/article';
 import throttle from '@/utils/throttle';
 
 export default {
@@ -66,13 +65,13 @@ export default {
 
   data() {
     return {
-      comments: null,
       tipshow: false,
     };
   },
 
   props: {
     count: {},
+    comments: {},
   },
 
   methods: {
@@ -86,14 +85,6 @@ export default {
     close() {
       this.$emit('close');
     },
-  },
-
-  created() {
-    this.$nextTick(() => {
-      getArticleComment().then((data) => {
-        this.comments = data.data;
-      });
-    });
   },
 
   mounted() {

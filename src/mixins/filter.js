@@ -4,7 +4,7 @@ const filter = {
       let pubDate = new Date(`${data.split(" ")[0]} 00:00:00`).getTime(); // 将发布时间处理至 凌晨00：00：0，返回毫秒级的时间
 
       let dayDiff = nowDate() - pubDate; // 时间差，毫秒级
-      let pubTime = data.split(" ")[1].split(":")[0] + " : " + data.split(" ")[1].split(":")[0]; // 拼接发布时间 时+分
+      let pubTime = data.split(" ")[1].split(":")[0] + ":" + data.split(" ")[1].split(":")[0]; // 拼接发布时间 时+分
 
       switch (dayDiff / 86400000) {
         case 0: return `今天 ${pubTime}`;

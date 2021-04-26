@@ -2,7 +2,8 @@
 export default {
   namespaced: true,
   state: {
-    commentShow: false
+    articles: null,
+    comments: null
   },
   mutations: {
   },

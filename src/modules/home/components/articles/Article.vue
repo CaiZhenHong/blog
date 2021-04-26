@@ -9,7 +9,7 @@
       <articles></articles>
  -->
 <template>
-  <div>
+  <div v-if="articleList">
     <div
       class="article"
       v-for="(articleItem, index) in articleList"
@@ -22,8 +22,7 @@
 
 <script>
 import ArticleItem from './ArticleItem';
-import { getArticleInfo } from '@/services/article';
-
+import { getAriticles } from '@/services/article';
 export default {
   components: { ArticleItem },
 
@@ -33,12 +32,16 @@ export default {
     };
   },
 
-  created() {
-    this.$nextTick(() => {
-      getArticleInfo().then((d) => {
-        this.articleList = d.data;
-      });
+  mounted() {
+    getAriticles({ email: this.email }).then((data) => {
+      this.articleList = data.data;
     });
+  },
+
+  computed: {
+    email() {
+      return this.$store.state.email;
+    },
   },
 };
 </script>

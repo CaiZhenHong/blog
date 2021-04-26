@@ -1,7 +1,9 @@
  <!--
- * @desc: 输入框封装
+ * @desc: 登录信息输入
  * @author czh996.top
  * @Date: 2021年4月3日
+ * @example
+ *  <article-item-comment-button :actions="actions" :shareBtnShow="shareBtnShow"></article-item-comment-button>
  -->
 
 <template>
@@ -22,6 +24,7 @@
 
     <input
       class="input"
+      :value="value"
       :type="type"
       :placeholder="placeholder"
       @input="inputHandle"
@@ -47,8 +50,8 @@ export default {
   },
 
   methods: {
-    inputHandle(e) {
-      this.$emit('input', e.data);
+    inputHandle(event) {
+      this.$emit('input', event.target.value);
     },
   },
 
@@ -62,6 +65,7 @@ export default {
       type: String,
       default: '300,32',
     },
+    value: String,
   },
 };
 </script>
@@ -70,6 +74,7 @@ export default {
 @import '@app';
 @import '@theme';
 .el-input {
+  position: relative;
   @include _box($bdc: #b4b2b2);
   @include _flex();
   box-sizing: border-box;
@@ -90,17 +95,17 @@ export default {
   border-radius: 4px;
   letter-spacing: 1px;
   &::placeholder {
-    font-size: 13px;
+    font-size: 12px;
     color: #808080;
     letter-spacing: 1px;
   }
 }
 
 .el-input__prefix {
+  @include _flex();
+  justify-content: center;
   width: 35px;
   height: 100%;
-  line-height: 32px;
-  text-align: center;
   color: #808080;
 }
 .el-input__prefix-focus {

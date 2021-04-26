@@ -9,7 +9,7 @@
       <div class="left">
         <!-- 控制评论开关的按钮 Start -->
         <article-item-comment-button
-          :count="this.articleItem.count"
+          :count="this.articleItem.comment_count"
           @click="commentClickHandle"
           :commentShow="commentShow"
         ></article-item-comment-button>
@@ -46,7 +46,11 @@
 
     <!-- 文章评论 Start -->
     <div class="comment" v-if="commentShow">
-      <comment :count="this.articleItem.count" @close="closeComment"></comment>
+      <comment
+        :count="this.articleItem.comment_count"
+        :comments="comments"
+        @close="closeComment"
+      ></comment>
     </div>
     <!-- 文章评论 End -->
   </div>
@@ -56,6 +60,7 @@
 import ArticleItemCommentButton from './ArticleItemCommentButton';
 import ArticleItemActions from './ArticleitemActions';
 import Comment from '@/components/comment/Comment';
+import { getComments } from '@/services/article';
 
 export default {
   name: '',
@@ -76,6 +81,7 @@ export default {
     return {
       shareBtnShow: false,
       commentShow: false,
+      comments: null,
     };
   },
 
@@ -84,7 +90,17 @@ export default {
       this.shareBtnShow = e.type === 'mouseenter' ? true : false;
     },
     commentClickHandle() {
-      this.commentShow = !this.commentShow;
+      if (!this.commentShow) {
+        getComments({
+          email: this.$store.state.email,
+          _id: this.articleItem._id,
+        }).then((data) => {
+          this.comments = data.data;
+          this.commentShow = !this.commentShow;
+        });
+      } else {
+        this.commentShow = !this.commentShow;
+      }
     },
     closeComment() {
       this.commentShow = false;

@@ -5,13 +5,12 @@
  -->
 
 <template>
-  <div class="top-bar-logo">
+  <div>
     <router-link to="/" custom v-slot="{ navigate }">
-      <div @click="navigate">
+      <div @click="navigate" class="logo">
         <div class="left">
           <slot name="left">My</slot>
         </div>
-
         <div class="right">
           <slot name="right">BLOG</slot>
         </div>
@@ -28,15 +27,19 @@ export default {
 
 <style scoped lang='scss'>
 @import '@theme';
-.top-bar-logo {
+@import '@app';
+
+.logo {
   cursor: pointer;
+  height: 38px;
+  @include _flex();
   .left,
   .right {
-    float: left;
     border-radius: 4px;
     padding: 4px;
     font: 700 18px 'Microsoft YaHei';
   }
+
   .right {
     background: $themec;
     color: #fff;

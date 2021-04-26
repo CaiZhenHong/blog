@@ -19,7 +19,11 @@ const routes = [
   {
     path: '/register',
     component: Register
-  }
+  },
+  {
+    path: '/:email',
+    component: Home
+  },
 ];
 
 export default new VueRouter({

@@ -4,20 +4,23 @@
  * @Date: 2021年4月3日
  -->
 <template>
-  <div class="top-bar">
+  <div class="top-bar" v-if="user">
     <div class="left">
       <!-- 标志 Start -->
-      <logo></logo>
+      <logo>
+        <template #left>{{ user.logo.left }}</template>
+        <template #right>{{ user.logo.right }}</template>
+      </logo>
       <!-- 标志 End -->
 
       <!-- 文章类别 Start -->
       <div class="category">
         <category-items
-          v-for="(category, key) in categoryList"
+          v-for="(article, key) in user.articles"
           :key="key"
-          :items="category.items"
+          :items="article.classII"
         >
-          {{ category.name }}
+          {{ article.classI }}
         </category-items>
       </div>
       <!-- 文章类别 End -->
@@ -49,7 +52,7 @@
 import Logo from '@components/Logo/Logo';
 import CategoryItems from './CategoryItems';
 import { ElInput, ElButton } from '@components/element';
-import { getColumn } from '@/services/column';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -62,15 +65,11 @@ export default {
   data() {
     return {
       searchContent: '', // 搜索框输入的内容
-      categoryList: [], // 文章类别
     };
   },
 
-  created() {
-    // 获取文章列表
-    getColumn().then((data) => {
-      this.categoryList = data;
-    });
+  computed: {
+    ...mapState(['user']),
   },
 };
 </script>

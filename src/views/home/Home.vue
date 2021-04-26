@@ -4,26 +4,30 @@
  * @Date: 2021年4月6日
  -->
 <template>
-  <div class="home">
-    <div class="left">
-      <home-profile></home-profile>
+  <div>
+    <div class="top-bar-warp">
+      <top-bar class="top-bar"></top-bar>
     </div>
-    <div class="middle">
-      <home-article></home-article>
-    </div>
-    <div class="right">
-      <home-profile></home-profile>
+
+    <div class="home">
+      <div class="left">
+        <home-profile></home-profile>
+      </div>
+      <div class="middle">
+        <home-article></home-article>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { HomeProfile, HomeArticle } from '@/modules/home';
-
+import TopBar from '@/components/topBar/TopBar';
 export default {
   components: {
     HomeProfile,
     HomeArticle,
+    TopBar,
   },
 };
 </script>
@@ -31,7 +35,14 @@ export default {
 <style scoped lang='scss'>
 @import '@app';
 @import '@theme';
-
+.top-bar-warp {
+  border-bottom: 1px solid $bdc;
+  background: $topBarG;
+  .top-bar {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
 .home {
   display: flex;
   max-width: 1400px;

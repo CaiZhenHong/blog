@@ -1,17 +1,17 @@
 import service from '@/plugins/axios';
 
-export function getArticleComment(params) {
+export function getAriticles(params) {
   return service({
-    method: 'get',
-    url: '/get/article/comment',
+    method: 'GET',
+    url: '/get/article',
     params
   })
 }
 
-export function getArticleInfo(params) {
+export function getComments(params) {
   return service({
-    method: 'get',
-    url: '/get/article/info',
+    method: 'GET',
+    url: '/get/comments',
     params
   })
 }
