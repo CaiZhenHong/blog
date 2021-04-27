@@ -5,7 +5,7 @@
 
      @date 2021年4月9日
 
-     @param {Object} [item]    - 渲染单条评论
+     @param {Object} [item]    - 渲染单条评论/回复
 
      @example 
           <comment-item :item="item"></comment-item>
@@ -46,7 +46,7 @@
 
 <script>
 import filter from '@/mixins/filter';
-import CommentInput from './CommentInput';
+import CommentInput from '../CommentInput';
 
 export default {
   components: {

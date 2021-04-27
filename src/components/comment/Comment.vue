@@ -2,7 +2,7 @@
      @desc 评论组件
      @author CZH996.TOP
      @date 2021年4月9日
-     @props { Number } [count]    - 一篇文章的评论数
+     @props { Number } [count]    - 评论数
      @example 
       <comment  :count="Commentcount"></comment>
  -->
@@ -13,55 +13,35 @@
       <div class="count">{{ count }} 条评论</div>
       <!-- 文章评论数量 End -->
 
-      <!-- 加载提示 Start -->
-      <div v-if="!comments" class="comment-loader">
-        <loader>评论加载中 ...</loader>
-        <div>{{ comments }}</div>
-      </div>
-      <!-- 加载提示 End -->
+      <!-- 文章评论列表 Start -->
+      <comment-list :comments="comments"></comment-list>
+      <!-- 文章评论列表 End -->
 
-      <div v-else>
+      <div>
         <!-- 文章收起按钮 Start -->
         <div class="comment-btn iconfont" @click="close" v-show="tipshow">
           <div>&#xe891; 收起评论</div>
         </div>
         <!-- 文章收起按钮 End -->
 
-        <!-- 一级评论 Start -->
-        <comment-item
-          class="item-1th"
-          v-for="(comment, key) in comments"
-          :key="key"
-          :item="comment"
-        >
-          <!-- 二级评论 Start -->
-          <comment-item
-            class="item-2th"
-            v-for="(reply, key) in comment.replys"
-            :key="key"
-            :item="reply"
-          >
-          </comment-item>
-          <!-- 二级评论 End -->
-        </comment-item>
-        <!-- 一级评论 End -->
-
+        <!-- 评论输入框 Start -->
         <div class="input">
           <comment-input class="inputs"></comment-input>
         </div>
+        <!-- 评论输入框 End -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import CommentItem from './CommentItem';
 import CommentInput from './CommentInput';
-import Loader from '@/components/loader/Loader';
+import CommentList from './CommentList/CommentList';
+
 import throttle from '@/utils/throttle';
 
 export default {
-  components: { CommentItem, CommentInput, Loader },
+  components: { CommentInput, CommentList },
 
   data() {
     return {
@@ -109,16 +89,6 @@ export default {
   padding-left: 20px;
 }
 
-.item-1th {
-  padding: 0 24px;
-  border-top: 1px solid $bdc;
-}
-
-.item-2th {
-  border-top: 1px solid $bdc;
-  margin-left: 38px;
-}
-
 .inputs {
   padding: 15px 20px;
   border-top: 1px solid $bdc;
@@ -136,11 +106,5 @@ export default {
   text-align: center;
   font-size: 12px;
   @include _hover($background: #f5f5f5);
-}
-
-.comment-loader {
-  text-align: center;
-  border-top: 1px solid $bdc;
-  padding: 30px 0;
 }
 </style>
