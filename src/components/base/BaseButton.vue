@@ -5,7 +5,7 @@
  * @prop: to - 要跳转的链接
  * @prop: type - 按钮样式选择：theme 和 grey
  * @prop: size - 按钮大小：长，宽
- * @example <el-button to="home" type="grey" size="200,50">登录</el-button>
+ * @example <base-button to="home" type="grey" size="200,50">登录</base-button>
  *    
  -->
 
@@ -14,7 +14,7 @@
     <base-link
       :style="`width:${size.split(',')[0]}px;height:${size.split(',')[1]}px`"
       :to="to"
-      :class="['el-button', type]"
+      :class="['base-button', type]"
     >
       <slot></slot>
     </base-link>
@@ -48,7 +48,7 @@ export default {
 @import '@app';
 @import '@theme';
 
-.el-button {
+.base-button {
   @include _flex();
   @include _box($bdc: #d9d9d9);
   justify-content: center;

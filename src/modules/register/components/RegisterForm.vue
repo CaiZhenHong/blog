@@ -10,14 +10,14 @@
     <form>
       <!-- 邮箱输入框 Start -->
       <div>
-        <el-input
+        <base-input
           class="email-input"
           size="310,38"
           placeholder="邮箱"
           v-model="email"
         >
           <template #pre>&#xe648;</template>
-        </el-input>
+        </base-input>
       </div>
       <!-- 邮箱输入框 End -->
 
@@ -28,7 +28,7 @@
       <!-- 邮箱错误提示 End -->
 
       <!-- 密码输入框 Start -->
-      <el-input
+      <base-input
         class="password-input"
         size="310,38"
         placeholder="密码"
@@ -36,7 +36,7 @@
         v-model="pwd"
       >
         <template #pre>&#xe644;</template>
-      </el-input>
+      </base-input>
       <!-- 密码输入框 End -->
 
       <!-- 密码错误提示框 Start -->
@@ -47,8 +47,8 @@
 
       <!-- 登录按钮 Start -->
       <div class="login-btn">
-        <el-shade v-if="shade"></el-shade>
-        <el-button to="/register/loading" size="310,38">注册</el-button>
+        <base-shade v-if="shade"></base-shade>
+        <base-button to="/register/loading" size="310,38">注册</base-button>
       </div>
       <!-- 登录按钮 End -->
     </form>
@@ -56,13 +56,13 @@
 </template>
  
 <script>
-import { ElInput, ElButton, ElShade } from '@/components/base';
+import { BaseInput, BaseButton, BaseShade } from '@/components/base';
 
 export default {
   components: {
-    ElInput,
-    ElButton,
-    ElShade,
+    BaseInput,
+    BaseButton,
+    BaseShade,
   },
 
   data() {

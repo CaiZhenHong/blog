@@ -1,22 +1,27 @@
  <!--
- * @desc: 登录信息输入
+ * @desc: 输入框组件
  * @author czh996.top
  * @Date: 2021年4月3日
+ * @prop: { Strting } type -输入框类型，只支持文本的输入
+ * @prop: { Strting } placeholder -提示
+ * @prop: { Strting } value - 输入框的值
  * @example
- *  <article-item-comment-button :actions="actions" :shareBtnShow="shareBtnShow"></article-item-comment-button>
+ *  <base-input type='password' placehodle='请输入密码' v-model='pwd'>
+      <template #pre>1</template>
+    </base-input>
  -->
 
 <template>
   <div
-    :class="['el-input', { 'el-input-focus': focusHandle }]"
+    :class="['base-input', { 'base-input-focus': focusHandle }]"
     :style="`width:${size.split(',')[0]}px;height:${size.split(',')[1]}px`"
   >
     <!-- 前置盒子 -->
     <div
       :class="[
-        'el-input__prefix',
+        'base-input__prefix',
         'iconfont',
-        { 'el-input__prefix-focus': focusHandle },
+        { 'base-input__prefix-focus': focusHandle },
       ]"
     >
       <slot name="pre"></slot>
@@ -33,7 +38,7 @@
     />
 
     <!-- 后置盒子 -->
-    <div class="el-input__suffix">
+    <div class="base-input__suffix">
       <slot name="right"></slot>
     </div>
   </div>
@@ -73,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 @import '@app';
 @import '@theme';
-.el-input {
+.base-input {
   position: relative;
   @include _box($bdc: #b4b2b2);
   @include _flex();
@@ -83,7 +88,7 @@ export default {
     border-color: $themec;
   }
 }
-.el-input-focus {
+.base-input-focus {
   border-color: $themec;
   box-shadow: 0 0 3px 0 $themec;
 }
@@ -101,18 +106,18 @@ export default {
   }
 }
 
-.el-input__prefix {
+.base-input__prefix {
   @include _flex();
   justify-content: center;
   width: 35px;
   height: 100%;
   color: #808080;
 }
-.el-input__prefix-focus {
+.base-input__prefix-focus {
   font-weight: 700;
 }
 
-.el-input__suffix {
+.base-input__suffix {
   height: 100%;
 }
 </style>
