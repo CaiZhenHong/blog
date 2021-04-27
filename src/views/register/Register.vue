@@ -1,40 +1,17 @@
  <!--
- * @desc: 注册页面
+ * @desc: 注册页面容器
  * @author czh996.top
- * @Date: 2021年4月16日
+ * @Date: 2021年4月7日
  -->
 <template>
-  <div class="register">
-    <!-- Logo Start -->
-    <div class="register-logo">
-      <logo></logo>
-    </div>
-    <!-- Logo End -->
-
-    <!-- 注册表单组件 Start -->
-    <div class="register-form">
-      <register-form></register-form>
-    </div>
-    <!-- 注册表单组件 End -->
-
-    <!-- 注册帮助组件 Start -->
-    <div class="register-help">
-      <register-help></register-help>
-    </div>
-    <!-- 注册帮助组件 End -->
+  <div class="container">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Logo from '@/components/Logo/Logo';
-import { RegisterForm, RegisterHelp } from '@/modules/register';
-
 export default {
-  components: {
-    Logo,
-    RegisterForm,
-    RegisterHelp,
-  },
+  name: '',
 };
 </script>
 
@@ -42,23 +19,8 @@ export default {
 @import '@app';
 @import '@theme';
 
-.register {
-  @include _box();
-  width: 400px;
-  height: 600px;
-  margin: 100px auto;
-}
-
-.register-logo {
-  @include _flex(vrc);
-  margin-top: 100px;
-}
-
-.register-form {
-  margin-top: 100px;
-}
-
-.register-help {
-  margin-top: 100px;
+.container {
+  width: 100%;
+  height: 100%;
 }
 </style>

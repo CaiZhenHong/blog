@@ -14,22 +14,22 @@
 
     <!-- 气泡弹出框 Start -->
     <transition name="slide">
-      <popover
+      <base-popover
         class="category-items-content"
         v-show="showHandle"
         :list="items"
-      ></popover>
+      ></base-popover>
     </transition>
     <!-- 气泡弹出框 End -->
   </div>
 </template>
 
 <script>
-import Popover from '@/components/popover/Popover';
+import { BasePopover } from '@/components/base';
 
 export default {
   components: {
-    Popover,
+    BasePopover,
   },
 
   props: {

@@ -20,20 +20,20 @@
 
     <!-- 气泡弹窗 Start -->
     <transition name="slide">
-      <popover class="profile-popover" v-show="showHandle">
+      <base-popover class="profile-popover" v-show="showHandle">
         <div>{{ item.name }}</div>
         <img v-if="iSwechat" :src="item.link" class="popover-img" alt="" />
-      </popover>
+      </base-popover>
     </transition>
     <!-- 气泡弹窗 End -->
   </div>
 </template>
 
 <script>
-import Popover from '@/components/popover/Popover.vue';
+import { BasePopover } from '@/components/base';
 
 export default {
-  components: { Popover },
+  components: { BasePopover },
 
   data() {
     return {

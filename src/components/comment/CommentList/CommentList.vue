@@ -10,7 +10,7 @@
   <div>
     <!-- 加载提示，请求时数据时显示 Start -->
     <div v-if="!comments" class="comment-loader">
-      <loader>评论加载中 ...</loader>
+      <base-loader>评论加载中 ...</base-loader>
       <div>{{ comments }}</div>
     </div>
     <!-- 加载提示，请求时数据时显示 End -->
@@ -42,10 +42,10 @@
 
 <script>
 import CommentListItem from './CommentListItem';
-import Loader from '@/components/loader/Loader';
+import { BaseLoader } from '@/components/base';
 
 export default {
-  components: { CommentListItem, Loader },
+  components: { CommentListItem, BaseLoader },
   props: ['comments'],
 };
 </script>

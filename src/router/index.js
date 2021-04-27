@@ -6,7 +6,10 @@ Vue.use(VueRouter);
 
 const Home = () => import('@/views/home/Home.vue');
 const Login = () => import('@/views/login/Login.vue')
-const Register = () => import('@/views/register/Register.vue')
+
+const RegisterContainer = () => import('@/views/register/Register.vue')
+const RegisterView = () => import('@/views/register/register/Register.vue')
+const RegisterLoading = () => import("@/views/register/loading/Loading.vue")
 const routes = [
   {
     path: '/',
@@ -17,8 +20,18 @@ const routes = [
     component: Login
   },
   {
-    path: '/register',
-    component: Register
+    path: "/register",
+    component: RegisterContainer,
+    children: [
+      {
+        path: '/',
+        component: RegisterView
+      },
+      {
+        path: "/register/loading",
+        component: RegisterLoading
+      }
+    ]
   },
   {
     path: '/:email',

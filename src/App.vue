@@ -12,6 +12,7 @@ export default {
     getUser() {
       let path = window.location.pathname.replace('/', '');
       let regular = /^[\w]+@+[a-z0-9]+.+[a-z]+$/g;
+
       if (regular.test(path)) {
         this.$store.commit(GET_EMAIL, path);
       } else {

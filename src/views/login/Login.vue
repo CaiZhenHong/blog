@@ -10,7 +10,7 @@
 <template>
   <div class="login">
     <div class="login-logo">
-      <logo></logo>
+      <base-logo></base-logo>
     </div>
 
     <div class="login-input">
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import Logo from '@/components/Logo/Logo';
+import { BaseLogo } from '@/components/base';
 import { loginInput, loginHelp } from '@/modules/login';
 
 export default {
   components: {
-    Logo,
+    BaseLogo,
     loginInput,
     loginHelp,
   },

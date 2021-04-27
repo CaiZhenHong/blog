@@ -11,23 +11,21 @@
 
 <template>
   <div>
-    <el-link
+    <base-link
       :style="`width:${size.split(',')[0]}px;height:${size.split(',')[1]}px`"
       :to="to"
       :class="['el-button', type]"
     >
       <slot></slot>
-    </el-link>
+    </base-link>
   </div>
 </template>
 
 <script>
-import { ElLink } from './index';
+import { BaseLink } from './index.js';
 
 export default {
-  name: 'ElButton',
-
-  components: { ElLink },
+  components: { BaseLink },
 
   props: {
     to: {

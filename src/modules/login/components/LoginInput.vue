@@ -22,7 +22,7 @@
 </template>
  
 <script>
-import { ElInput, ElButton } from '@/components/element';
+import { ElInput, ElButton } from '@/components/base';
 
 export default {
   components: {

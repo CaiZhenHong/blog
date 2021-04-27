@@ -56,7 +56,7 @@
 </template>
  
 <script>
-import { ElInput, ElButton, ElShade } from '@/components/element';
+import { ElInput, ElButton, ElShade } from '@/components/base';
 
 export default {
   components: {
@@ -67,8 +67,8 @@ export default {
 
   data() {
     return {
-      email: '', // 邮箱
-      pwd: '', // 密码
+      email: '123132@q.c', // 邮箱
+      pwd: '12312312312', // 密码
       errors: [], // 错误数组，[0]为邮箱错误信息，[1]为密码错误信息
       shade: true, // 遮罩是否显示
     };

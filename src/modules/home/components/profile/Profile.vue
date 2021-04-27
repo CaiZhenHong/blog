@@ -16,15 +16,15 @@
 
       <!-- 文章、留言数量链接 START -->
       <div class="info">
-        <el-link to="/article" class="item">
+        <base-link to="/article" class="item">
           <div>0</div>
           <div class="content">文章</div>
-        </el-link>
+        </base-link>
 
-        <el-link to="/comment" class="item">
+        <base-link to="/comment" class="item">
           <div>0</div>
           <div class="content">留言</div>
-        </el-link>
+        </base-link>
       </div>
       <!-- 文章、留言数量链接 END  -->
 
@@ -42,14 +42,14 @@
 
 <script>
 import ProfileLink from './ProfileLink';
-import { ElLink } from '@/components/element';
+import { BaseLink } from '@/components/base';
 import { mapState } from 'vuex';
 export default {
   name: '',
 
   components: {
     ProfileLink,
-    ElLink,
+    BaseLink,
   },
 
   computed: {

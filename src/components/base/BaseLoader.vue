@@ -3,7 +3,7 @@
  * @author czh996.top
  * @Date: 2021年4月23日
  * @example
- *  <article-item-comment-button :actions="actions" :shareBtnShow="shareBtnShow"></article-item-comment-button>
+ *  <base-shade></base-shade>
  -->
 <template>
   <div class="shade"></div>

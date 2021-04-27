@@ -7,10 +7,10 @@
   <div class="top-bar" v-if="user">
     <div class="left">
       <!-- 标志 Start -->
-      <logo>
+      <base-logo>
         <template #left>{{ user.logo.left }}</template>
         <template #right>{{ user.logo.right }}</template>
-      </logo>
+      </base-logo>
       <!-- 标志 End -->
 
       <!-- 文章类别 Start -->
@@ -28,38 +28,37 @@
 
     <div class="right">
       <!-- 搜索框 Start -->
-      <el-input
+      <base-input
         class="top-bar-input"
         size="250,35"
         v-model="searchContent"
         placeholder="搜索"
       >
         <template #pre>&#xe609;</template>
-      </el-input>
+      </base-input>
       <!-- 搜索框 End -->
 
       <!-- 登录按钮 -->
-      <el-button class="login-btn" to="/login" type="grey">登录</el-button>
+      <base-button class="login-btn" to="/login" type="grey">登录</base-button>
       <!-- 注册按钮 -->
-      <el-button class="register-login" to="/register" type="theme">
+      <base-button class="register-login" to="/register" type="theme">
         注册
-      </el-button>
+      </base-button>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '@components/Logo/Logo';
 import CategoryItems from './CategoryItems';
-import { ElInput, ElButton } from '@components/element';
+import { BaseInput, BaseButton, BaseLogo } from '@components/base';
 import { mapState } from 'vuex';
 
 export default {
   components: {
-    Logo,
+    BaseLogo,
     CategoryItems,
-    ElInput,
-    ElButton,
+    BaseInput,
+    BaseButton,
   },
 
   data() {
