@@ -4,7 +4,7 @@
      @date 2021年4月9日
      @props { Number } [count]    - 评论数
      @example 
-      <comment  :count="Commentcount"></comment>
+      <comment  :count="count"></comment>
  -->
 <template>
   <div>
