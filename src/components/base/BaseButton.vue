@@ -2,43 +2,41 @@
  * @desc: 按钮元素
  * @author czh996.top
  * @Date: 2021年4月2日
- * @prop: to - 要跳转的链接
  * @prop: type - 按钮样式选择：theme 和 grey
- * @prop: size - 按钮大小：长，宽
- * @example <base-button to="home" type="grey" size="200,50">登录</base-button>
+ * @example <button @clicli="clickHandle" type="grey" :shade='false'>登录</button>
  *    
  -->
 
 <template>
-  <div>
-    <base-link
-      :style="`width:${size.split(',')[0]}px;height:${size.split(',')[1]}px`"
-      :to="to"
-      :class="['base-button', type]"
-    >
+  <div class="base-button">
+    <div :class="['button', type]" @click="clickHandle">
       <slot></slot>
-    </base-link>
+    </div>
+    <base-shade v-show="false"></base-shade>
   </div>
 </template>
 
 <script>
-import { BaseLink } from './index.js';
+import { BaseShade } from './index';
 
 export default {
-  components: { BaseLink },
+  components: { BaseShade },
 
   props: {
-    to: {
-      type: String,
-      require: true,
-    },
     type: {
       type: String,
       default: 'theme',
     },
-    size: {
-      type: String,
-      default: '80,35',
+
+    shade: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  methods: {
+    clickHandle: function () {
+      this.$emit('click');
     },
   },
 };
@@ -47,10 +45,17 @@ export default {
 <style lang="scss" scoped>
 @import '@app';
 @import '@theme';
-
 .base-button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.button {
   @include _flex();
   @include _box($bdc: #d9d9d9);
+  position: relative;
+  width: 100%;
+  height: 100%;
   justify-content: center;
   box-sizing: border-box;
   font-size: 15px;
