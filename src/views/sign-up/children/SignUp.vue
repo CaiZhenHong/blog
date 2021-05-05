@@ -16,9 +16,11 @@
       <base-input class="email-input" placeholder="邮箱" v-model="email">
         <template #pre>&#xe648;</template>
       </base-input>
+
       <div class="error iconfont">
         <div v-show="emailError && email">&#xe635; {{ emailError }}</div>
       </div>
+
       <!-- 邮箱 End -->
 
       <!-- 密码 Start -->
