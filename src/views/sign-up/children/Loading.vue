@@ -42,11 +42,11 @@ export default {
   // 从路由中获取值
   props: ['email', 'password'],
 
-  /*   // 组件路由守卫，检查是否来自于注册页面，否则将跳往注册页面
+  // 组件路由守卫，检查是否来自于注册页面，否则将跳往注册页面
   beforeRouteEnter: function (to, from, next) {
     to;
     from.path === '/sign-up' ? next() : next('/sign-up');
-  }, */
+  },
 
   created: function () {
     this.login();

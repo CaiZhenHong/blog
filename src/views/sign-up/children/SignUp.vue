@@ -4,7 +4,7 @@
  * @Date: 2021年4月7日
  -->
 <template>
-  <div class="sign-up">
+  <div class="sign-up" @keyup.enter="signUpHandle">
     <!-- Logo Start -->
     <div class="sign-up-logo">
       <base-logo></base-logo>
@@ -18,9 +18,10 @@
       </base-input>
 
       <div class="error iconfont">
-        <div v-show="emailError && email">&#xe635; {{ emailError }}</div>
+        <transition :name="isAnimation ? 'error' : 'false'">
+          <div v-show="emailError && email">&#xe635; {{ emailError }}</div>
+        </transition>
       </div>
-
       <!-- 邮箱 End -->
 
       <!-- 密码 Start -->
@@ -32,33 +33,41 @@
       >
         <template #pre>&#xe644;</template>
       </base-input>
+
       <div class="error iconfont">
-        <div v-show="passwordError && password">
-          &#xe635; {{ passwordError }}
-        </div>
+        <transition :name="isAnimation ? 'error' : 'false'">
+          <div v-show="passwordError && password">
+            &#xe635; {{ passwordError }}
+          </div>
+        </transition>
       </div>
       <!-- 密码 End -->
 
-      <base-button
-        class="sign-up-button"
-        :to="{ name: 'sign-up-loading', params: { email, password } }"
-        :shade="shade"
-      >
-        注册
+      <!-- 登录按钮 Start -->
+      <base-button class="sign-up-button" @click="signUpHandle" :shade="shade">
+        <span v-if="!loader">注册</span>
+        <base-loader v-else color="#fff"></base-loader>
       </base-button>
+      <!-- 登录按钮 End -->
     </form>
 
     <!-- 其他选项 Start -->
     <div class="sign-up-help">
-      <base-link class="to-login" to="/login">快速登录</base-link>
-      <base-link class="to-forget" to="/login">忘记密码</base-link>
+      <base-link class="to-login" to="/login">立即登录</base-link>
+      <base-link class="to-forget" to="/forget">忘记密码</base-link>
     </div>
     <!-- 其他选项 End -->
   </div>
 </template>
 
 <script>
-import { BaseLogo, BaseInput, BaseButton, BaseLink } from '@/components/base';
+import {
+  BaseLogo,
+  BaseInput,
+  BaseButton,
+  BaseLink,
+  BaseLoader,
+} from '@/components/base';
 import { post_send_email } from '@/services/user';
 import md5 from 'md5';
 
@@ -68,70 +77,75 @@ export default {
     BaseInput,
     BaseButton,
     BaseLink,
+    BaseLoader,
   },
 
   data: function () {
     return {
-      email: '',
-      password: '',
+      email: '', // 邮箱
+      password: '', // 密码
+      emailError: '', // 邮箱错误提示
+      passwordError: '', // 密码错误提示
+      loader: false, // 控制加载提示显示隐藏
     };
   },
 
   computed: {
-    // @return 邮箱格式错误提示
-    emailError: function () {
-      return this.checkEmail(this.email);
-    },
-
-    // @return 密码格式错误提示
-    passwordError: function () {
-      return this.checkPassword(this.password);
-    },
-
     // @return 遮罩层是否显示
     shade: function () {
-      return Boolean(this.emailError + this.passwordError);
+      return this.email
+        ? Boolean(this.emailError + this.passwordError) || this.loader
+        : true;
+    },
+
+    // 错误提示动画是否显示
+    isAnimation: function () {
+      return this.emailError === '账户已经存在' ? true : false;
     },
   },
 
   methods: {
-    /** 表单验证 - 邮箱
-     * @method  checkEmail
-     * @param {string} email - 邮箱
-     * @return {boolean} 是否通过验证
-     */
-    checkEmail: function (email) {
-      return /^[\w]+@+[a-z0-9]+.+[a-z]+$/g.test(email)
-        ? ''
-        : '请输入正确的邮箱';
-    },
-
-    /** 表单验证 - 密码
-     * @method  checkPassword
-     * @param {string} password - 密码
-     * @return {boolean} 是否通过验证
-     */
-    checkPassword: function (password) {
-      return /\s/g.test(password)
-        ? '密码不能出现空白字符'
-        : password.length < 6
-        ? '密码需为 6 位以上的字符'
-        : password.length > 25
-        ? '密码长度限制 25 个字符'
-        : '';
+    // 注册助手
+    signUpHandle: function () {
+      // 没有遮罩时（允许登录）
+      if (!this.shade) {
+        this.loader = true; // 打开加载提示
+        post_send_email(this.email, md5(this.password)) // 发送登录请求
+          .then(() => {
+            this.$router.push('/sign-up/loading'); // 跳转到注册等待页面
+          })
+          .catch((msg) => {
+            this.emailError = msg;
+          })
+          .then(() => {
+            // 关闭加载提示
+            this.loader = false;
+          });
+      }
     },
   },
 
-  // 组件路由守卫，监听注册按钮,成功则跳转到等待注册页面
-  beforeRouteLeave: function (to, from, next) {
-    from;
-    if (to.path === '/sign-up/loading') {
-      post_send_email(this.email, md5(this.password)).then((data) => {
-        data.code === 200 ? next() : next(false);
-      });
-    } else {
-      next();
-    }
+  watch: {
+    // 检测邮箱格式
+    email: function (value) {
+      let emailReg = /^[\w]+@+[a-z0-9]+\.+[a-z]+$/g.test(value);
+      this.emailError = emailReg ? '' : '请输入正确的邮箱';
+    },
+
+    // 检查密码格式
+    password: function (value) {
+      let noSpace = /\s/g.test(value);
+      let minLength = /^\S{0,5}$/g.test(value);
+      let maxLength = /^\S{25,}$/g.test(value);
+
+      this.passwordError = noSpace
+        ? '密码不能出现空白字符'
+        : minLength
+        ? '密码需为 6 位以上的字符'
+        : maxLength
+        ? '密码不超过 25 个字符'
+        : '';
+    },
   },
 };
 </script>
@@ -193,6 +207,28 @@ export default {
     margin-left: 10px;
     padding-left: 10px;
     border-left: 1px solid #0000ff;
+  }
+}
+
+.error-enter-active {
+  animation: shake-horizontal 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-8px);
+  }
+  40%,
+  80% {
+    transform: translateX(8px);
+  }
+  90% {
+    transform: translateX(-6px);
   }
 }
 </style>
