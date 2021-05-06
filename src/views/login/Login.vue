@@ -1,17 +1,17 @@
  <!--
- * @desc: 注册页面
+ * @desc: 登录页面
  * @author czh996.top
  * @Date: 2021年4月7日
  -->
 <template>
-  <div class="sign-up" @keyup.enter="loginHandle">
+  <div class="login" @keyup.enter="loginHandle">
     <!-- Logo Start -->
-    <div class="sign-up-logo">
+    <div class="login-logo">
       <base-logo></base-logo>
     </div>
     <!-- Logo End -->
 
-    <form class="sign-up-form">
+    <form class="login-form">
       <!-- 邮箱 Start -->
       <base-input class="email-input" placeholder="邮箱" v-model="email">
         <template #pre>&#xe648;</template>
@@ -44,7 +44,7 @@
       <!-- 密码 End -->
 
       <!-- 登录按钮 Start -->
-      <base-button class="sign-up-button" @click="loginHandle" :shade="shade">
+      <base-button class="login-button" @click="loginHandle" :shade="shade">
         <span v-if="!loader">登录</span>
         <base-loader v-else color="#fff"></base-loader>
       </base-button>
@@ -52,8 +52,8 @@
     </form>
 
     <!-- 其他选项 Start -->
-    <div class="sign-up-help">
-      <base-link class="to-login" to="/sign-up">快速注册</base-link>
+    <div class="login-help">
+      <base-link class="to-sign-up" to="/sign-up">快速注册</base-link>
       <base-link class="to-forget" to="/login">忘记密码</base-link>
     </div>
     <!-- 其他选项 End -->
@@ -82,11 +82,11 @@ export default {
 
   data: function () {
     return {
-      email: '1229542068@qq.com', // 邮箱
-      password: '123321', // 密码
+      email: '', // 邮箱
+      password: '', // 密码
       emailError: '', // 邮箱错误提示
       passwordError: '', // 密码错误提示
-      loader: false, // 控制加载显示隐藏
+      loader: false, // 控制加载提示显示隐藏
     };
   },
 
@@ -151,9 +151,9 @@ export default {
       this.passwordError = noSpace
         ? '密码不能出现空白字符'
         : minLength
-        ? '密码需为 6 位以上的字符'
+        ? '密码为 6 位以上的字符'
         : maxLength
-        ? '密码长度限制 25 个字符'
+        ? '密码不超过 25 个字符'
         : '';
     },
   },
@@ -164,7 +164,7 @@ export default {
 @import '@app';
 @import '@theme';
 
-.sign-up {
+.login {
   @include _box();
   @include _flex(vrc);
   width: 400px;
@@ -172,11 +172,11 @@ export default {
   margin: 100px auto;
 }
 
-.sign-up-logo {
+.login-logo {
   margin-top: 100px;
 }
 
-.sign-up-form {
+.login-form {
   margin-top: 100px;
   .email-input {
     width: 310px;
@@ -185,9 +185,9 @@ export default {
   .password-input {
     @extend .email-input;
   }
-  .sign-up-button {
+  .login-button {
     @extend .email-input;
-    .sign-up-link {
+    .login-link {
       width: 100%;
       height: 100%;
     }
@@ -203,17 +203,17 @@ export default {
   color: red;
 }
 
-.sign-up-help {
+.login-help {
   display: flex;
   justify-content: center;
   margin-top: 130px;
-  .to-login {
+  .to-sign-up {
     color: #0000ff;
     font-size: 12px;
     cursor: pointer;
   }
   .to-forget {
-    @extend .to-login;
+    @extend .to-sign-up;
     margin-left: 10px;
     padding-left: 10px;
     border-left: 1px solid #0000ff;
