@@ -138,7 +138,7 @@ export default {
   watch: {
     // 检测邮箱格式
     email: function (value) {
-      let emailReg = /^[\w]+@+[a-z0-9]+\.+[a-z]+$/g.test(value);
+      let emailReg = /^[\w/.]+@+[a-z0-9]+\.+[a-z]+$/g.test(value);
       this.emailError = emailReg ? '' : '请输入正确的邮箱';
     },
 
