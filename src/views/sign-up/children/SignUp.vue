@@ -68,7 +68,7 @@ import {
   BaseLink,
   BaseLoader,
 } from '@/components/base';
-import { post_send_email } from '@/services/user';
+import { post_email_signUp } from '@/services/user';
 import md5 from 'md5';
 
 export default {
@@ -110,9 +110,12 @@ export default {
       // 没有遮罩时（允许登录）
       if (!this.shade) {
         this.loader = true; // 打开加载提示
-        post_send_email(this.email, md5(this.password)) // 发送登录请求
+        post_email_signUp(this.email, md5(this.password)) // 发送登录请求
           .then(() => {
-            this.$router.push('/sign-up/loading'); // 跳转到注册等待页面
+            this.$router.push({
+              name: 'sign-up-loading',
+              params: { email: this.email, password: md5(this.password) },
+            }); // 跳转到注册等待页面
           })
           .catch((msg) => {
             this.emailError = msg;

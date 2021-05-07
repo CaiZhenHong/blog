@@ -57,27 +57,31 @@ export default {
      * 注册成功自动登录
      */
     login: function () {
-      let { email, password, $router, toast } = this;
-      let ws = new WSocket(`wss://api.czh996.top/send-email?1229542068@qq.com`);
-      toast;
+      let { email, password, $router } = this;
+      let ws = new WSocket(`wss://api.czh996.top/send-email?${email}`);
+
+      let __this = this;
 
       ws.onmessage((data) => {
         // 打开吐司
-        toast = true;
+        __this.toast = true;
         if (data === 'create user succeed') {
+          console.log(email, password);
           // 检测到 websocket 发来注册成功信息，发起登录请求
-          post_user_login({ email, password })
+
+          post_user_login(email, password)
             .then(() => {
-              // 登录成功关闭吐司并跳往个人信息页面
+              // 登录成功跳往个人信息页面
               ws.close();
-              toast = false;
-              $router.replace('/');
+              $router.replace('/user/profile');
             })
             .catch(() => {
               // 登录失败跳往登录页面手动登录
               ws.close();
-              toast = false;
               $router.replace('/login');
+            })
+            .then(() => {
+              __this.toast = false;
             });
         }
       });
