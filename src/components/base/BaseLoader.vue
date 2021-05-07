@@ -1,28 +1,46 @@
  <!--
- * @desc: 按钮遮罩
- * @author czh996.top
- * @Date: 2021年4月23日
+ * @description: 加载动画
+ * @Author: 蔡sir
+ * @Date: 2021年3月5日
+ * @props:{Boolean} [text=true] - 控制文字显示与隐藏
  * @example
- *  <base-shade></base-shade>
+ *    <base-loader>加载中</base-loader>
  -->
 <template>
-  <div class="shade"></div>
+  <div>
+    <div class="icon iconfont icon-show">&#xe6cd;</div>
+    <div class="loader-text" v-if="text"><slot></slot></div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'Loader',
+
+  props: {
+    text: {
+      type: Boolean,
+      default: true,
+    },
+  },
 };
 </script>
 
 <style scoped lang='scss'>
-@import '@app';
-@import '@theme';
-
-.shade {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.411);
+.icon {
+  animation: loader 1.5s infinite linear;
+  display: inline-block;
+}
+.loader-text {
+  display: inline-block;
+  margin-left: 15px;
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

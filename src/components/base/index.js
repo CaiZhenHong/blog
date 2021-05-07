@@ -1,13 +1,14 @@
+import BaseShade from './BaseShade.vue';
 import BaseLink from './BaseLink.vue';
-import BaseButton from './BaseButton.vue';
 import BaseInput from './BaseInput.vue';
 import BaseLoader from './BaseLoader.vue';
 import BaseLogo from './BaseLogo.vue';
+import BaseButton from './BaseButton.vue';
 import BasePopover from './BasePopover.vue';
-import BaseShade from './BaseShade.vue';
+import BaseToast from './BaseToast.vue'
 
 
 export {
-  BaseButton, BaseInput, BaseLink, BaseLoader, BaseLogo, BasePopover, BaseShade
+  BaseButton, BaseInput, BaseLink, BaseLoader, BaseLogo, BasePopover, BaseShade, BaseToast
 }
 
