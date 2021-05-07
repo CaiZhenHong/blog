@@ -1,26 +1,32 @@
  <!--
- * @desc: 按钮元素
+ * @desc: 按钮组件
  * @author czh996.top
  * @Date: 2021年4月2日
- * @prop: type - 按钮样式选择：theme 和 grey
- * @example <button @clicli="clickHandle" type="grey" :shade='false'>登录</button>
+ * @prop: {String} [type='theme'] - 按钮样式选择：theme 和 grey
+ * @prop: {Boolean} [shade=false] - 控制遮罩层显示与隐藏
+ * @prop: {String|Object} [to=''] - 控制路由跳转
+ * @Event: {@click}  - 监听 base-button 的点击事件
+ * @example
+ *      <base-button :shade='isShow' @clich='loginHandle' >登录</base-button>
  *    
  -->
 
 <template>
   <div class="base-button">
     <div :class="['button', type]" @click="clickHandle">
-      <slot></slot>
+      <slot v-if="!to"></slot>
+
+      <base-link class="button-link" v-else :to="to"><slot></slot></base-link>
     </div>
-    <base-shade v-show="false"></base-shade>
+    <base-shade v-show="shade"></base-shade>
   </div>
 </template>
 
 <script>
-import { BaseShade } from './index';
+import { BaseShade, BaseLink } from './index';
 
 export default {
-  components: { BaseShade },
+  components: { BaseShade, BaseLink },
 
   props: {
     type: {
@@ -31,6 +37,10 @@ export default {
     shade: {
       type: Boolean,
       default: false,
+    },
+
+    to: {
+      default: '',
     },
   },
 
@@ -50,6 +60,7 @@ export default {
   width: 100%;
   height: 100%;
 }
+
 .button {
   @include _flex();
   @include _box($bdc: #d9d9d9);
@@ -62,6 +73,10 @@ export default {
   height: 100%;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.button-link {
+  width: 100%;
+  height: 100%;
 }
 .theme {
   color: #fff;
