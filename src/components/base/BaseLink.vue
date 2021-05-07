@@ -34,7 +34,5 @@ export default {
 .el-link {
   width: 100%;
   height: 100%;
-  @include _flex();
-  justify-content: center;
 }
 </style>
