@@ -38,32 +38,32 @@ WSocket.prototype = {
   ping: function () {
     let __this = this;
 
-    __this.ws.addEventListener('open', () => {
 
-      let pingTime = setTimeout(() => {
-        // 间隔 10m 发一次ping
-        __this.ws.send('ping');
 
-        // 监听消息，并将数据赋值给 pong
-        __this.onmessage((data => {
-          __this.pong = data;
-        }))
+    let pingTime = setTimeout(() => {
+      // 间隔 10m 发一次ping
+      __this.ws.send('ping');
 
-        // 过 3s 后检测 pong 的值是否为 ‘pong’
-        let pongTime = setTimeout(() => {
-          if (__this.pong === 'pong') {
-            // 值为 'pong' 则删除定时器，把 pong 重新赋值为空字符串,重新发起 ping 方法 
-            clearTimeout(pingTime);
-            clearTimeout(pongTime);
-            __this.pong = '';
-            __this.ping();
-          } else {
-            // 如果出现错误，重新进行连接
-            __this.connect();
-          }
-        }, 3 * 1000);
-      }, 10 * 1000);
-    })
+      // 监听消息，并将数据赋值给 pong
+      __this.onmessage((data => {
+        __this.pong = data;
+      }))
+
+      // 过 3s 后检测 pong 的值是否为 ‘pong’
+      let pongTime = setTimeout(() => {
+        if (__this.pong === 'pong') {
+          // 值为 'pong' 则删除定时器，把 pong 重新赋值为空字符串,重新发起 ping 方法 
+          clearTimeout(pingTime);
+          clearTimeout(pongTime);
+          __this.pong = '';
+          __this.ping();
+        } else {
+          // 如果出现错误，重新进行连接
+          __this.connect();
+        }
+      }, 3 * 1000);
+    }, 10 * 1000);
+
 
   },
 
