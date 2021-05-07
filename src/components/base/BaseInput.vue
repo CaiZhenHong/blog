@@ -2,20 +2,18 @@
  * @desc: 输入框组件
  * @author czh996.top
  * @Date: 2021年4月3日
- * @prop: { Strting } type -输入框类型，只支持文本的输入
+ * @prop: { Strting } [type="text"] -输入框类型
  * @prop: { Strting } placeholder -提示
  * @prop: { Strting } value - 输入框的值
  * @example
  *  <base-input type='password' placehodle='请输入密码' v-model='pwd'>
-      <template #pre>1</template>
+      <template #pre>前置文字/图标</template>
+      <template #suf>后置文字/图标</template>
     </base-input>
  -->
 
 <template>
-  <div
-    :class="['base-input', { 'base-input-focus': focusHandle }]"
-    :style="`width:${size.split(',')[0]}px;height:${size.split(',')[1]}px`"
-  >
+  <div :class="['base-input', { 'base-input-focus': focusHandle }]">
     <!-- 前置盒子 -->
     <div
       :class="[
@@ -39,7 +37,7 @@
 
     <!-- 后置盒子 -->
     <div class="base-input__suffix">
-      <slot name="right"></slot>
+      <slot name="suf"></slot>
     </div>
   </div>
 </template>
@@ -65,11 +63,7 @@ export default {
       type: String,
       default: 'text',
     },
-    placeholder: {},
-    size: {
-      type: String,
-      default: '300,32',
-    },
+    placeholder: String,
     value: String,
   },
 };
@@ -82,6 +76,8 @@ export default {
   position: relative;
   @include _box($bdc: #b4b2b2);
   @include _flex();
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
   letter-spacing: 1px;
   &:hover {
