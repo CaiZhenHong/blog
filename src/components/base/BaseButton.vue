@@ -63,7 +63,7 @@ export default {
 
 .button {
   @include _flex();
-  @include _box($bdc: #d9d9d9);
+  @include _box($bdc: #eeeeee);
   position: relative;
   width: 100%;
   height: 100%;

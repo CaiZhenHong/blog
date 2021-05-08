@@ -32,8 +32,8 @@
 /* 分割线 */
 @mixin line {
 	height: 1px;
-	background: $bdc;
-	width: 100%;
+	background: rgb(231, 229, 229);
+	width: 80%;
 	border: none;
 }
 

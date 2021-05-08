@@ -16,12 +16,14 @@
       <div class="middle">
         <home-article></home-article>
       </div>
+      <div class="right"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { HomeProfile, HomeArticle } from '@/modules/home';
+import { HomeArticle } from '@/modules/home';
+import HomeProfile from './profile/HomeProfile';
 import TopBar from '@/components/topBar/TopBar';
 export default {
   components: {

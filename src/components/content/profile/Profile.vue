@@ -15,7 +15,7 @@
       <!-- 昵称 END -->
 
       <!-- 外链 Start -->
-      <div class="link-list">
+      <div class="link-list" v-if="links.length !== 0">
         <div
           class="link-item"
           v-for="({ icon, name }, key) in links"

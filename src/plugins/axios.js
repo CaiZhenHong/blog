@@ -27,12 +27,16 @@ service.interceptors.response.use(response => {
     return response.data;
 },
     error => {
-        switch (error.response) {
+
+        switch (error.response.status) {
             case 502:
                 error.message = '请检查网络连接';
                 break;
+            case 400:
+                error = error.response.data.msg
+                break
         }
-        return Promise.reject(error.message)
+        return Promise.reject(error)
     }
 )
 

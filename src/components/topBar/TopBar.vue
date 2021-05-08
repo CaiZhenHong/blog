@@ -41,7 +41,7 @@
       <!-- 登录按钮 -->
       <base-button class="login-btn" to="/login" type="grey">登录</base-button>
       <!-- 注册按钮 -->
-      <base-button class="register-login" to="/register" type="theme">
+      <base-button class="register-login" to="/sign-up" type="theme">
         注册
       </base-button>
     </div>
