@@ -4,15 +4,15 @@
  * @Date: 2021年4月2日
  -->
 <template>
-  <div class="popover">
-    <div class="popover-arrow"></div>
-    <div class="popover-inner">
-      <div class="popover-item" v-for="(item, key) in list" :key="key">
-        <slot>
-          {{ item }}
-        </slot>
+  <div>
+    <transition name="popover">
+      <div class="popover" v-show="show">
+        <div class="popover-arrow"></div>
+        <div class="popover-inner">
+          <slot></slot>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template> 
 
@@ -21,11 +21,7 @@ export default {
   name: 'Popover',
 
   props: {
-    list: {
-      default() {
-        return 1;
-      },
-    },
+    show: { type: Boolean, default: false },
   },
 };
 </script>
@@ -42,7 +38,7 @@ export default {
 .popover-arrow {
   z-index: 2;
   position: relative;
-  bottom: -9px;
+  bottom: -11px;
   left: 10px;
   width: 0;
   height: 0;
@@ -59,16 +55,19 @@ export default {
   background: #fff;
   box-shadow: 2px 2px 10px rgba(133, 132, 132, 0.473);
 }
-.popover-item {
-  padding: 5px 15px;
-  line-height: 1.5;
-  word-break: keep-all;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
-  &:hover {
-    background: $themec;
-    color: #fff;
-  }
+
+.popover-enter,
+.popover-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+.popover-enter-to,
+.popover-leave {
+  transform: translateY(0);
+  opacity: 1;
+}
+.popover-enter-active,
+.popover-leave-active {
+  transition: all 0.2s;
 }
 </style>

@@ -24,7 +24,7 @@
 <script>
 import { HomeArticle } from '@/modules/home';
 import HomeProfile from './profile/HomeProfile';
-import TopBar from '@/components/topBar/TopBar';
+import TopBar from '@/components/content/topBar/TopBar';
 export default {
   components: {
     HomeProfile,

@@ -1,15 +1,17 @@
 /* 节流函数 */
 
-export default function throttle(fn, wait) {
-  let timer = null;
+export default function throttle(fn, delay) {
+  let valid = true
   return function () {
-    let context = this;
-    let args = arguments;
-    if (!timer) {
-      timer = setTimeout(function () {
-        fn.apply(context, args);
-        timer = null;
-      }, wait)
+    if (!valid) {
+      //休息时间 暂不接客
+      return false
     }
+    // 工作时间，执行函数并且在间隔期内把状态位设为无效
+    valid = false
+    setTimeout(() => {
+      fn()
+      valid = true;
+    }, delay)
   }
 }

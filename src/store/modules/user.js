@@ -8,18 +8,24 @@ export default {
     links: null,
     info: null,
     name: '',
-    photo: ''
+    photo: '',
+    logo: "",
+    articles: []
   },
 
   mutations: {
     [UPDATE_USER](state, data) {
-      let { links, info, name, photo } = data;
+      let { links, info, name, photo, logo, articles } = data;
       state.links = links;
       state.info = info;
       state.name = name;
       state.photo = photo;
+      state.logo = logo;
+      state.articles = articles;
     }
   },
+
+
 
   actions: {
     getUser({ commit }) {
