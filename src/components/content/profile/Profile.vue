@@ -15,13 +15,17 @@
       <!-- 昵称 END -->
 
       <!-- 外链 Start -->
-      <div class="link-list" v-if="links.length !== 0">
+      <div class="link-list" v-if="links !== 0">
         <div
           class="link-item"
-          v-for="({ icon, name }, key) in links"
+          v-for="({ icon, name, color }, key) in links"
           :key="key"
         >
-          <div class="link-icon iconfont" v-html="icon"></div>
+          <div
+            class="link-icon iconfont"
+            v-html="icon"
+            :style="{ color: color }"
+          ></div>
           <div class="link-name">{{ name }}</div>
         </div>
       </div>
@@ -102,14 +106,14 @@ export default {
 }
 
 .link-list {
-  width: 80%;
+  width: 100%;
   margin-bottom: 40px;
   @include _flex();
   justify-content: space-around;
   .link-item {
     text-align: center;
-    margin-right: 20px;
     color: #464646;
+
     @include _hover($themec);
     .link-icon {
       font-size: 24px;
