@@ -2,14 +2,17 @@
  * @desc: 气泡弹出框
  * @author czh996.top
  * @Date: 2021年4月2日
+ * @slot: head 鼠标划入的监听对象
+ * @slot: body 鼠标移出划入的监听对象
  -->
 <template>
-  <div>
+  <div @mouseleave="mouseHandle" @mouseenter="mouseHandle">
+    <div><slot name="head"></slot></div>
     <transition name="popover">
       <div class="popover" v-show="show">
         <div class="popover-arrow"></div>
         <div class="popover-inner">
-          <slot></slot>
+          <slot name="body"></slot>
         </div>
       </div>
     </transition>
@@ -17,11 +20,35 @@
 </template> 
 
 <script>
+import debounce from '@/utils/debounce';
+
 export default {
   name: 'Popover',
 
-  props: {
-    show: { type: Boolean, default: false },
+  data() {
+    return {
+      show: false,
+      falg: false,
+    };
+  },
+
+  methods: {
+    mouseHandle: function (e) {
+      let self = this;
+      debounce(function () {
+        if (e.type === 'mouseenter' && !self.flag) {
+          self.show = true;
+        }
+        self.flag = false;
+      }, 300)();
+
+      debounce(function () {
+        if (e.type !== 'mouseenter') {
+          self.show = false;
+          self.flag = true;
+        }
+      }, 100)();
+    },
   },
 };
 </script>
