@@ -12,19 +12,24 @@
         <template #right>{{ logo.right }}</template>
       </base-logo>
       <!-- 标志 End -->
-      <div
-        class="articles"
-        v-for="({ classI, classII }, key) in articles"
-        :key="key"
-        @mouseleave="mouseHandle"
-        @mouseenter="mouseHandle"
-      >
-        <div class="classI">{{ classI }}</div>
-        <base-popover :show="show">
-          <div class="classII" v-for="(item, key) in classII" :key="key">
-            {{ item }}
-          </div>
-        </base-popover>
+      <div class="articles">
+        <div
+          class="article"
+          v-for="({ classI, classII }, key) in articles"
+          :key="key"
+        >
+          <base-popover>
+            <div class="classI" slot="head">{{ classI }}</div>
+            <div
+              class="classII"
+              slot="body"
+              v-for="(item, key) in classII"
+              :key="key"
+            >
+              {{ item }}
+            </div>
+          </base-popover>
+        </div>
       </div>
     </div>
 
@@ -52,7 +57,7 @@
 
 <script>
 import { BaseInput, BaseButton, BaseLogo, BasePopover } from '@components/base';
-import debounce from '@/utils/debounce';
+
 import { createNamespacedHelpers } from 'vuex';
 const { mapState } = createNamespacedHelpers('user');
 
@@ -67,24 +72,7 @@ export default {
   data() {
     return {
       searchContent: '', // 搜索框输入的内容
-      show: false,
     };
-  },
-
-  methods: {
-    mouseHandle: function (e) {
-      let self = this;
-      debounce(function () {
-        if (e.type === 'mouseenter') {
-          self.show = true;
-        }
-      }, 100)();
-      debounce(function () {
-        if (e.type !== 'mouseenter') {
-          self.show = false;
-        }
-      }, 200)();
-    },
   },
 
   computed: {
@@ -115,6 +103,10 @@ export default {
 .articles {
   margin-left: 200px;
   letter-spacing: 2px;
+  display: flex;
+}
+.article {
+  margin-right: 40px;
 }
 .classI {
   color: #424242;
