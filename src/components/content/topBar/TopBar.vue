@@ -106,7 +106,7 @@ export default {
   display: flex;
 }
 .article {
-  margin-right: 40px;
+  margin-right: 60px;
 }
 .classI {
   color: #424242;
