@@ -40,7 +40,7 @@ export default {
           self.show = true;
         }
         self.flag = false;
-      }, 300)();
+      }, 200)();
 
       debounce(function () {
         if (e.type !== 'mouseenter') {
