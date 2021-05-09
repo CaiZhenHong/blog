@@ -98,7 +98,7 @@ export default {
 @import '@app';
 
 .top-bar {
-  height: 60px;
+  height: 67px;
   background: $topBarG;
   .left {
     @include _flex();
