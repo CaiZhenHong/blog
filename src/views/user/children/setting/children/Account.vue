@@ -8,10 +8,7 @@
  *  <article-item-comment-button :actions="actions" :shareBtnShow="shareBtnShow"></article-item-comment-button>
  -->
 <template>
-  <div class="user">
-    <div class="top-bar"></div>
-    <router-view class="card"></router-view>
-  </div>
+  <div>账号与密码</div>
 </template>
 
 <script>
@@ -23,23 +20,4 @@ export default {
 <style scoped lang='scss'>
 @import '@app';
 @import '@theme';
-
-.user {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.top-bar {
-  height: 67px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid $bdc;
-  background: $topBarG;
-}
-.card {
-  flex: 1;
-  max-width: 1400px;
-  margin: 10px auto;
-  margin-bottom: 100px;
-}
 </style>

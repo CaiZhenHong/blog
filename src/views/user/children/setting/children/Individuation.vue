@@ -8,7 +8,7 @@
  *  <article-item-comment-button :actions="actions" :shareBtnShow="shareBtnShow"></article-item-comment-button>
  -->
 <template>
-  <div>个人信息</div>
+  <div>个性化设置</div>
 </template>
 
 <script>

@@ -6,7 +6,7 @@
  *  <article-item-comment-button :actions="actions" :shareBtnShow="shareBtnShow"></article-item-comment-button>
  -->
 <template>
-  <div class="shade"></div>
+  <div class="shade"><slot></slot></div>
 </template>
 
 <script>

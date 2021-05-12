@@ -105,8 +105,8 @@ export default {
 .base-input__prefix {
   @include _flex();
   justify-content: center;
-  width: 35px;
   height: 100%;
+  padding: 0 8px;
   color: #808080;
 }
 .base-input__prefix-focus {

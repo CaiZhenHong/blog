@@ -11,9 +11,12 @@ html {
 	color: #333;
 }
 
-input {
+* {
 	padding: 0;
 	margin: 0;
+}
+
+input {
 	outline: none;
 	box-sizing: border-box;
 }
@@ -23,7 +26,10 @@ div {
 }
 
 a {
-	padding: 0;
-	margin: 0;
 	text-decoration: none;
+}
+
+li,
+ul {
+	list-style: none;
 }

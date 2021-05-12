@@ -12,8 +12,12 @@ const SignUpView = () => import('@/views/sign-up/children/SignUp.vue')
 const SignUpLoading = () => import("@/views/sign-up/children/Loading.vue")
 
 const User = () => import('@/views/user/User.vue')
-const UserProfile = () => import('@/views/user/children/profile/Profile.vue')
-const UserCatalog = () => import("@/views/user/children/catalog/Catalog.vue")
+const UserCatlog = () => import("@/views/user/children/catalog/Catalog.vue")
+const UserSetting = () => import("@/views/user/children/setting/Setting.vue")
+const UserSettingBasicInfo = () => import("@/views/user/children/setting/children/BasicInfo.vue");
+const UserSettingIndividuation = () => import("@/views/user/children/setting/children/Individuation.vue");
+const UserSettingAccount = () => import("@/views/user/children/setting/children/Account.vue");
+
 const routes = [
   {
     name: 'home',
@@ -45,19 +49,34 @@ const routes = [
 
   {
     path: '/user',
-    name: "user",
     component: User,
     children: [
       {
-        path: '/user/profile',
-        name: "user_profile",
-        component: UserProfile
+        path: '',
+        component: UserCatlog
       },
       {
-        path: "/user/catalog",
-        name: "user_catalog",
-        component: UserCatalog
-      }
+        path: '',
+        component: UserSetting,
+        children: [
+          {
+            path: '',
+            name: "user-setting-basic-info",
+            component: UserSettingBasicInfo
+          },
+          {
+            path: "",
+            name: "user-setting-individuation",
+            component: UserSettingIndividuation
+          },
+          {
+            path: "",
+            name: "user-setting-account",
+            component: UserSettingAccount
+          }
+        ]
+      },
+
     ]
   },
 
