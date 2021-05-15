@@ -4,7 +4,7 @@
  * @Date: 2021年4月3日
  -->
 <template>
-  <div class="top-bar" v-if="logo">
+  <div class="top-bar iconfont" v-if="logo">
     <div class="left">
       <!-- 标志 Start -->
       <base-logo>
@@ -12,31 +12,10 @@
         <template #right>{{ logo.right }}</template>
       </base-logo>
       <!-- 标志 End -->
-      <div class="articles">
-        <div
-          class="article"
-          v-for="({ classI, classII }, key) in articles"
-          :key="key"
-        >
-          <base-popover>
-            <div class="classI" slot="head">{{ classI }}</div>
-            <div
-              class="classII"
-              slot="body"
-              v-for="(item, key) in classII"
-              :key="key"
-            >
-              {{ item }}
-            </div>
-          </base-popover>
-        </div>
-      </div>
-    </div>
 
-    <div class="right">
       <!-- 搜索框 Start -->
       <base-input
-        class="top-bar-input"
+        class="left__input"
         size="250,35"
         v-model="searchContent"
         placeholder="搜索"
@@ -44,13 +23,40 @@
         <template #pre>&#xe609;</template>
       </base-input>
       <!-- 搜索框 End -->
+    </div>
 
+    <div class="right">
       <!-- 登录按钮 -->
-      <base-button class="login-btn" to="/login" type="grey">登录</base-button>
+      <base-button
+        v-if="!login"
+        class="right__login-button"
+        to="/login"
+        type="grey"
+        >登录</base-button
+      >
       <!-- 注册按钮 -->
-      <base-button class="register-login" to="/sign-up" type="theme">
+      <base-button
+        v-if="!login"
+        class="right__sign-up-button"
+        to="/sign-up"
+        type="theme"
+      >
         注册
       </base-button>
+      <base-button v-if="login" class="right__write">写文章</base-button>
+
+      <div class="iconfont right__inform" v-if="login">&#xe603;</div>
+
+      <base-popover>
+        <template #head>
+          <img class="right__profile" v-if="login" :src="photo" alt="" />
+        </template>
+        <template #body>
+          <div class="right__profile-item icon__profile">个人主页</div>
+          <div class="right__profile-item icon__setting">账户设置</div>
+          <div class="right__profile-item icon__exit">退出登录</div>
+        </template>
+      </base-popover>
     </div>
   </div>
 </template>
@@ -76,7 +82,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['logo', 'articles']),
+    ...mapState(['logo', 'articles', 'login', 'photo']),
   },
 };
 </script>
@@ -100,31 +106,43 @@ export default {
   }
 }
 
-.articles {
-  margin-left: 200px;
-  letter-spacing: 2px;
-  display: flex;
+.left__input {
+  width: 300px;
+  height: 35px;
+  margin-left: 60px;
 }
-.article {
-  margin-right: 60px;
+.right__inform {
+  font-size: 20px;
+  cursor: pointer;
+  color: $themec;
+  margin: 0 30px;
+  &:hover {
+    color: #fdac33;
+    font-weight: 900;
+  }
 }
-.classI {
-  color: #424242;
-  font-size: 16px;
-  @include _hover(#000);
+.right__profile {
+  vertical-align: middle;
+  cursor: pointer;
+  width: 35px;
+  border: 1px solid $bdc;
+  border-radius: 50%;
 }
-.classII {
-  margin: 15px 15px;
-  @include _hover($themec);
+.right__profile-item {
+  color: #808080;
+  padding: 15px 30px;
+  @include _hover($background: #dbdada79, $time: 0s);
 }
-
-.top-bar-input {
-  width: 240px;
-  height: 32px;
-  margin-right: 60px;
+.icon__profile:before {
+  content: '\e663';
+  margin-right: 8px;
 }
-.login-btn,
-.register-login {
+.right__write {
+  height: 35px;
+  width: 80px;
+}
+.right__login-button,
+.right__sign-up-button {
   text-align: center;
   line-height: 35px;
   width: 80px;
