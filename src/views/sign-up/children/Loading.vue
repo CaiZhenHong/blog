@@ -63,9 +63,10 @@ export default {
       let __this = this;
 
       ws.onmessage((data) => {
-        // 打开吐司
-        __this.toast = true;
         if (data === 'create user succeed') {
+          // 打开吐司
+          __this.toast = true;
+
           console.log(email, password);
           // 检测到 websocket 发来注册成功信息，发起登录请求
 

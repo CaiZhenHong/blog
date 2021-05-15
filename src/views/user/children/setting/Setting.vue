@@ -64,7 +64,6 @@ export default {
 @import '@theme';
 .setup {
   width: 100%;
-  height: 100%;
   display: flex;
 }
 
@@ -74,8 +73,8 @@ export default {
   @include _box();
   display: flex;
   .tab {
+    width: 315px;
     box-sizing: border-box;
-    height: 100%;
     border-right: 1px solid $bdc;
   }
   .tab-item {
@@ -91,7 +90,9 @@ export default {
     background: #f3f3f3;
   }
   .view {
-    flex: 1;
+    width: 100%;
+    overflow: auto;
+    height: 100%;
     padding: 40px;
   }
 }

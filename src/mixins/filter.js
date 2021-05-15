@@ -19,6 +19,15 @@ const filter = {
       } else {
         return count;
       }
+    },
+
+    iconFilter(type) {
+      switch (type) {
+        case "bio": {
+          return 'icon__bio';
+        }
+        default: return;
+      }
     }
   }
 }

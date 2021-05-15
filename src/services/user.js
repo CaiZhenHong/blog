@@ -24,10 +24,21 @@ export function post_user_login(email, password) {
 }
 
 // 获取用户信息
-export function get_user(id) {
+export function get_user_info(id) {
     return server({
         method: 'GET',
-        url: '/get/user',
+        url: '/get/user/info',
         params: { id }
+    })
+}
+
+// 更新用户基本信息
+export function put_user_basic(info, photo, name) {
+    return server({
+        method: "PUT",
+        url: "put/user/basic",
+        data: {
+            info, photo, name
+        }
     })
 }

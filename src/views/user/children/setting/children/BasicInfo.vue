@@ -12,91 +12,82 @@
     <div class="left">
       <div
         class="profile-item"
-        v-for="({ name, icon, color }, key) in profileList"
+        v-for="({ name, icon }, key) in profile"
         :key="key"
       >
         <div class="profile-name">{{ name }}</div>
-        <base-input class="profile-input" v-model="profileInput[key]">
+        <base-input class="profile-input" v-model="value[key]">
           <template #pre>
-            <div v-if="!color" v-html="icon"></div>
-            <base-select
-              class="link-select"
-              :color="color"
-              v-else
-            ></base-select>
+            <div :class="icon"></div>
           </template>
         </base-input>
       </div>
 
       <div>
-        <base-button class="profile-button">更新资料</base-button>
+        <base-button class="profile-button" @click="updateBasicInfo">
+          更新资料
+        </base-button>
       </div>
     </div>
 
     <div class="right">
       <div class="photo-shade">
-        <img
-          class="photo"
-          src="http://resource.czh996.top/default/photo.png"
-          alt=""
-        />
+        <img class="photo" :src="photo" alt="" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { BaseInput, BaseButton, BaseSelect } from '@/components/base';
+import { BaseInput, BaseButton } from '@/components/base';
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapMutations } = createNamespacedHelpers('user');
+import { UPDATE_USER } from '@/store/type';
 
 export default {
   components: {
     BaseInput,
     BaseButton,
-    BaseSelect,
   },
 
   data: function () {
     return {
-      profileInput: ['', '', '', '', '', '', ''],
-      profileList: [
+      profile: [
         {
           name: '昵称',
-          icon: '&#xe60a;',
+          icon: 'icon__name',
         },
         {
-          name: '性别',
-          icon: '&#xe63e;',
-        },
-        {
-          name: '一句话描述你自己',
-          icon: '&#xe6df;',
+          name: '简介',
+          icon: 'icon__bio',
         },
         {
           name: ' 当前职业',
-          icon: '&#xe661;',
+          icon: 'icon__occupation',
         },
         {
           name: '居住的城市',
-          icon: '&#xe610;',
+          icon: 'icon__address',
         },
         {
           name: '教育背景',
-          icon: '&#xe61e;',
-        },
-        {
-          name: '外链',
-          icon: '&#xe600;',
-          select: true,
-          color: '#181617',
+          icon: 'icon__school',
         },
       ],
     };
   },
 
-  watch: {
-    profileInput: function (v) {
-      console.log(v);
+  computed: {
+    ...mapState(['name', 'info', 'photo']),
+
+    value: function () {
+      let { bio, occupation, city, edc } = this.info;
+      return [this.name, bio, occupation, city, edc, this.photo];
     },
+  },
+
+  methods: {
+    ...mapMutations([UPDATE_USER]),
   },
 };
 </script>
@@ -114,29 +105,21 @@ export default {
   flex: 1;
   letter-spacing: 1px;
   .profile-item {
-    margin-bottom: 25px;
+    margin-bottom: 45px;
   }
   .profile-name {
     padding-left: 2px;
     letter-spacing: 2px;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
   .profile-input {
     height: 35px;
   }
   .profile-button {
-    margin-top: 160px;
+    margin-top: 100px;
     height: 35px;
     width: 80px;
-  }
-
-  .link-select {
-    padding-right: 5px;
-    height: 100%;
-    line-height: 35px;
-    font-size: 12px;
-    border-right: 1px solid $bdc;
   }
 }
 

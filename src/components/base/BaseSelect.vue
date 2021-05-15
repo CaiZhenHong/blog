@@ -10,19 +10,20 @@
 <template>
   <div class="base-select">
     <div class="select" @click="selectHandle">
-      <div class="content" :style="{ color: color }">&#xe600; github</div>
-      <div class="arrow iconfont">&#xe627;</div>
+      <div class="content" :style="{ color: color }"><slot></slot></div>
+      <div class="arrow iconfont icon__down"></div>
     </div>
-    <div class="option">123</div>
+    <div class="option" v-show="optionShow">
+      <slot name="option"></slot>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  components: {},
   data: function () {
     return {
-      value: '123',
+      optionShow: false,
     };
   },
 
@@ -33,7 +34,9 @@ export default {
   },
 
   methods: {
-    selectHandle: function () {},
+    selectHandle: function () {
+      this.optionShow = !this.optionShow;
+    },
   },
 };
 </script>
@@ -45,15 +48,21 @@ export default {
 .select {
   display: flex;
 }
+.base-select {
+  position: relative;
+}
 .content {
   width: 100%;
   height: 100%;
 }
 .arrow {
   margin-left: 10px;
+  font-size: 16px;
 
   @include _hover($themec, $time: 0s);
 }
 .option {
+  width: 100%;
+  position: absolute;
 }
 </style>

@@ -71,13 +71,11 @@
 </template>
 
 <script>
-import Profile from '@/components/content/profile/Profile';
 import { BaseButton } from '@/components/base';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState } = createNamespacedHelpers('user');
 export default {
   components: {
-    Profile,
     BaseButton,
   },
 

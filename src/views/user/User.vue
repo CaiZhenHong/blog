@@ -37,7 +37,7 @@ export default {
   background: $topBarG;
 }
 .card {
-  flex: 1;
+  height: 750px;
   max-width: 1400px;
   margin: 10px auto;
   margin-bottom: 100px;

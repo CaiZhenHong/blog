@@ -74,12 +74,14 @@ export default {
 @import '@theme';
 .base-input {
   position: relative;
-  @include _box($bdc: #b4b2b2);
+  @include _box($bdc: #d9d9d9);
   @include _flex();
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   letter-spacing: 1px;
+  background: #ffffff;
+  color: #6b6b6b;
   &:hover {
     border-color: $themec;
   }
@@ -87,6 +89,8 @@ export default {
 .base-input-focus {
   border-color: $themec;
   box-shadow: 0 0 3px 0 $themec;
+  color: #333;
+  background: #fff;
 }
 
 .input {
@@ -95,6 +99,8 @@ export default {
   border: none;
   border-radius: 4px;
   letter-spacing: 1px;
+  background: inherit;
+  color: inherit;
   &::placeholder {
     font-size: 12px;
     color: #808080;

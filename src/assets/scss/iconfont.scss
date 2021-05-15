@@ -1,10 +1,9 @@
 @font-face {
 	font-family: 'iconfont'; /* Project id 2332256 */
-	src: url('//at.alicdn.com/t/font_2332256_k2731muihg.woff2?t=1620824591533') format('woff2'),
-		url('//at.alicdn.com/t/font_2332256_k2731muihg.woff?t=1620824591533') format('woff'),
-		url('//at.alicdn.com/t/font_2332256_k2731muihg.ttf?t=1620824591533') format('truetype');
+	src: url('//at.alicdn.com/t/font_2332256_2smxqrjv3s8.woff2?t=1621047445892') format('woff2'),
+		url('//at.alicdn.com/t/font_2332256_2smxqrjv3s8.woff?t=1621047445892') format('woff'),
+		url('//at.alicdn.com/t/font_2332256_2smxqrjv3s8.ttf?t=1621047445892') format('truetype');
 }
-
 .iconfont {
 	font-family: 'iconfont' !important;
 	font-size: 16px;
@@ -13,158 +12,195 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.iconxiala:before {
-	content: '\e627';
+.icon__inform::before {
+	content: '\e603';
+	font-size: 18px;
 }
 
-.iconcsdn1:before {
+.icon__add:before {
+	content: '\e612';
+	margin-right: 5px;
+}
+
+.icon__setting:before {
 	content: '\e60b';
+	margin-right: 10px;
 }
 
-.iconwechat1:before {
-	content: '\e64f';
+.icon__exit:before {
+	content: '\e7ed';
+	margin-right: 10px;
 }
 
-.icongithub1:before {
-	content: '\e6b7';
+.icon__down:before {
+	content: '\e63f';
 }
 
-.icongongsijianjie:before {
+.icon__up:before {
+	content: '\e64d';
+}
+
+.icon__bio:before {
 	content: '\e6df';
 }
 
-.icongender:before {
+.icon__gender:before {
 	content: '\e63e';
 }
 
-.iconnicheng:before {
+.icon__name:before {
 	content: '\e60a';
 }
 
-.icondizhi:before {
+.icon__address:before {
 	content: '\e610';
 }
 
-.icongangwei:before {
+.icon__occupation:before {
 	content: '\e661';
 }
 
-.iconjianjie:before {
-	content: '\e78b';
-}
-
-.iconxuexiao:before {
-	content: '\e659';
-}
-
-.iconxuexiao1:before {
+.icon__school:before {
 	content: '\e61e';
 }
 
-.iconicon7:before {
+.icon__profile:before {
 	content: '\e663';
 }
 
-.iconanquan:before {
+.icon__security:before {
 	content: '\e626';
 }
 
-.icondingzhi:before {
+.icon__custom:before {
 	content: '\e605';
 }
 
-.iconjinggao1:before {
+.icon__warn:before {
 	content: '\e635';
 }
 
-.iconhome:before {
+.icon__home:before {
 	content: '\e6b5';
 }
 
-.iconicon_function_shouqi:before {
-	content: '\e891';
-}
-
-.iconshouqi:before {
-	content: '\e616';
-}
-
-.iconlianjie:before {
-	content: '\e68e';
-}
-
-.iconlianjie1:before {
+.icon__link:before {
 	content: '\e61a';
 }
 
-.iconxiazai8:before {
-	content: '\e608';
-}
-
-.iconbiaoqian1:before {
-	content: '\e607';
-}
-
-.icontag01:before {
-	content: '\e747';
-}
-
-.iconbiaoqian:before {
-	content: '\e6eb';
-}
-
-.iconliulan:before {
+.icon__pageview:before {
 	content: '\e7d0';
 }
 
-.iconshijian:before {
+.icon__time:before {
 	content: '\e630';
 }
 
-.icondianzan:before {
+.icon__like:before {
 	content: '\e602';
 }
 
-.iconliuyan:before {
+.icon__comment:before {
 	content: '\e60d';
 }
 
-.iconicon-test:before {
+.icon__share:before {
 	content: '\e675';
 }
 
-.iconloading1:before {
+.icon__loading:before {
 	content: '\e6cd';
 }
 
-.iconbottom:before {
-	content: '\e65d';
-}
-
-.iconshouji:before {
+.icon__phone:before {
 	content: '\e615';
 }
 
-.iconyouxiang:before {
+.icon__email:before {
 	content: '\e648';
 }
 
-.iconmima1:before {
+.icon__password:before {
 	content: '\e644';
 }
 
-.iconsearch:before {
+.icon__search:before {
 	content: '\e609';
 }
+/* logo */
+.icon__qq:before {
+	content: '\e65c';
+	margin-right: 5px;
+	font-size: 30px;
+	color: #32a6d4;
+}
 
-.iconwechat:before {
+.icon__douyin:before {
+	content: '\e601';
+	margin-right: 5px;
+	font-size: 30px;
+	color: #1c0b1b;
+}
+
+.icon__weibo:before {
+	content: '\ea89';
+	margin-right: 5px;
+	font-size: 30px;
+	color: #e22c1f;
+}
+
+.icon__twitter:before {
+	content: '\e72e';
+	margin-right: 5px;
+	font-size: 30px;
+	color: #1da1f2;
+}
+
+.icon__xiaohongshu:before {
+	content: '\e66d';
+	margin-right: 5px;
+	font-size: 30px;
+	color: #ff2840;
+}
+
+.icon__facebook:before {
+	content: '\e608';
+	margin-right: 5px;
+	font-size: 30px;
+	color: #1278f3;
+}
+
+.icon__bilibili:before {
+	content: '\e627';
+	margin-right: 5px;
+	font-size: 30px;
+	color: #fb7299;
+}
+
+.icon__wechat:before {
 	content: '\e65b';
+	margin-right: 5px;
+	font-size: 16px;
+	color: #1ac064;
 }
 
-.iconcsdn:before {
+.icon__csdn:before {
 	content: '\e638';
+	margin-right: 5px;
+	font-size: 16px;
+	color: #ff4d4d;
 }
 
-.icongithub:before {
+.icon__github:before {
 	content: '\e600';
+	margin-right: 5px;
+	font-size: 16px;
+	color: #181617;
+}
+
+.icon__zhihu:before {
+	content: '\e629';
+	margin-right: 5px;
+	font-size: 16px;
+	color: #0084ff;
 }

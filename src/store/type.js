@@ -1,5 +1,2 @@
-export const UPDATE_USER = 'UPDATE_USER'; // 更新用户信息
-export const GET_EMAIL = 'GET_EMAIL'; // 获取邮箱号码
-
-
-export const GET_ARTICLES = "GET_ARTICLES"; // 获取文章
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO'; // 更新用户全部信息
+export const UPDATE_USER_BASICINFO = 'UPDATE_USER'; // 更新用户基本信息

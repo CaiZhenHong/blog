@@ -1,5 +1,5 @@
-import { get_user } from '@/services/user';
-import { UPDATE_USER } from '../type'
+import { get_user_info, put_user_basic } from '@/services/user';
+import { UPDATE_USER_INFO } from '../type'
 
 export default {
   namespaced: true,
@@ -10,28 +10,30 @@ export default {
     name: '',
     photo: '',
     logo: "",
-    articles: []
+    articles: [],
+    login: ""
   },
 
   mutations: {
-    [UPDATE_USER](state, data) {
-      let { links, info, name, photo, logo, articles } = data;
-      state.links = links;
-      state.info = info;
-      state.name = name;
-      state.photo = photo;
-      state.logo = logo;
-      state.articles = articles;
+    [UPDATE_USER_INFO](state, data) {
+      for (const key in data) {
+        state[key] = data[key]
+        console.log(data[key]);
+      }
     }
   },
 
 
 
   actions: {
-    getUser({ commit }) {
-      get_user('1229542068@qq.com').then((data) => {
-        commit(UPDATE_USER, data.data)
+    getUserInfo({ commit }, id) {
+      get_user_info(id).then((data) => {
+        commit(UPDATE_USER_INFO, data.data)
       });
+    },
+
+    updateBasicInfoActions({ state }) {
+      put_user_basic(state.info, state.photo, state.name)
     }
   },
 }
