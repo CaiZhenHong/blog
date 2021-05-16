@@ -74,7 +74,7 @@ export default {
             .then(() => {
               // 登录成功跳往个人信息页面
               ws.close();
-              $router.replace('/user/profile');
+              $router.replace('/setting');
             })
             .catch(() => {
               // 登录失败跳往登录页面手动登录
