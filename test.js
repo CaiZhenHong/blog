@@ -1,7 +1,6 @@
 
-let obj = { a: 1, b: 2, c: 3 }
-
-for (const o in obj) {
-  console.log(obj[o] = 123);
-  console.log(obj);
-}
+new Promise((resolve) => {
+  setTimeout(() => {
+    resolve('ok')
+  }, 2000)
+}).then(value => { console.log(value); }).then(value => { console.log("123"); })

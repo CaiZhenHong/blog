@@ -27,7 +27,8 @@
 
 <script>
 import { BaseLoader, BaseToast } from '@/components/base';
-import { post_user_login } from '@/services/user';
+import { createNamespacedHelpers } from 'vuex';
+const { mapActions } = createNamespacedHelpers('user');
 import WSocket from '@/utils/WSocket';
 
 export default {
@@ -53,6 +54,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('actionsLogin'),
     /**
      * 注册成功自动登录
      */
@@ -70,7 +72,7 @@ export default {
           console.log(email, password);
           // 检测到 websocket 发来注册成功信息，发起登录请求
 
-          post_user_login(email, password)
+          this.actionsLogin(email, password)
             .then(() => {
               // 登录成功跳往个人信息页面
               ws.close();
