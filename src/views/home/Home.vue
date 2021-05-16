@@ -25,24 +25,12 @@
 import HomeProfile from './profile/HomeProfile';
 import TopBar from '@/components/content/topBar/TopBar';
 import { HomeArticle } from '@/modules/home';
-import { createNamespacedHelpers } from 'vuex';
-const { mapActions } = createNamespacedHelpers('user');
 
 export default {
   components: {
     HomeProfile,
     HomeArticle,
     TopBar,
-  },
-
-  methods: {
-    ...mapActions(['getUserInfo']),
-  },
-
-  mounted: function () {
-    // 获取用户信息
-    let id = window.location.pathname;
-    this.getUserInfo(id);
   },
 };
 </script>

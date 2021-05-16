@@ -1,3 +1,4 @@
+import BaseNotice from './BaseNotice.vue'
 import BaseSelect from './BaseSelect.vue'
 import BaseShade from './BaseShade.vue';
 import BaseLink from './BaseLink.vue';
@@ -10,6 +11,15 @@ import BaseToast from './BaseToast.vue'
 
 
 export {
-  BaseButton, BaseInput, BaseLink, BaseLoader, BaseLogo, BasePopover, BaseShade, BaseToast, BaseSelect
+  BaseButton,
+  BaseInput,
+  BaseLink,
+  BaseLoader,
+  BaseLogo,
+  BasePopover,
+  BaseShade,
+  BaseToast,
+  BaseSelect,
+  BaseNotice
 }
 

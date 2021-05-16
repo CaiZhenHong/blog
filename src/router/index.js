@@ -11,12 +11,11 @@ const SignUpContainer = () => import('@/views/sign-up/Index.vue')
 const SignUpView = () => import('@/views/sign-up/children/SignUp.vue')
 const SignUpLoading = () => import("@/views/sign-up/children/Loading.vue")
 
-const User = () => import('@/views/user/User.vue')
-const UserCatlog = () => import("@/views/user/children/catalog/Catalog.vue")
-const UserSetting = () => import("@/views/user/children/setting/Setting.vue")
-const UserSettingBasicInfo = () => import("@/views/user/children/setting/children/BasicInfo.vue");
-const UserSettingIndividuation = () => import("@/views/user/children/setting/children/Individuation.vue");
-const UserSettingAccount = () => import("@/views/user/children/setting/children/Account.vue");
+const Setting = () => import('@/views/setting/Setting.vue');
+const SettingAccount = () => import('@/views/setting/children/Account.vue');
+const SettingBasicInfo = () => import('@/views/setting/children/BasicInfo.vue');
+const SettingIndividuation = () => import('@/views/setting/children/Individuation.vue');
+
 
 const routes = [
   {
@@ -28,6 +27,27 @@ const routes = [
     name: "login",
     path: '/login',
     component: Login
+  },
+  {
+    path: "/setting",
+    component: Setting,
+    children: [
+      {
+        path: "",
+        name: 'setting-basic-info',
+        component: SettingBasicInfo
+      },
+      {
+        path: "account",
+        name: 'setting-account',
+        component: SettingAccount
+      },
+      {
+        path: "individuation",
+        name: 'setting-individuation',
+        component: SettingIndividuation
+      }
+    ]
   },
 
   {
@@ -44,39 +64,6 @@ const routes = [
         name: 'sign-up-loading',
         props: true,
       }
-    ]
-  },
-
-  {
-    path: '/user',
-    component: User,
-    children: [
-      {
-        path: '',
-        component: UserCatlog
-      },
-      {
-        path: '',
-        component: UserSetting,
-        children: [
-          {
-            path: '',
-            name: "user-setting-basic-info",
-            component: UserSettingBasicInfo
-          },
-          {
-            path: "",
-            name: "user-setting-individuation",
-            component: UserSettingIndividuation
-          },
-          {
-            path: "",
-            name: "user-setting-account",
-            component: UserSettingAccount
-          }
-        ]
-      },
-
     ]
   },
 

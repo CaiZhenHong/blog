@@ -15,6 +15,8 @@
       <div class="name">{{ name }}</div>
       <!-- 昵称 END -->
 
+      <div class="bio">{{ bio }}</div>
+
       <!-- 外链 Start -->
       <div class="link-list" v-if="links !== 0">
         <div
@@ -34,15 +36,17 @@
 
       <div>
         <base-button class="msg-btn" v-if="!login">关注我</base-button>
-        <base-button class="msg-btn" v-else>编辑资料</base-button>
+        <base-button class="msg-btn" v-else to="/setting">编辑资料</base-button>
       </div>
 
       <hr v-if="info" class="line" />
 
       <!-- 个人信息 Start -->
       <div class="info-list" v-for="(value, key) of info" :key="key">
-        <div class="info-item">
-          <span :class="['info-content', key]">{{ value }}</span>
+        <div class="info-item iconfont">
+          <div class="info-icon" :class="key | iconFilter">
+            <span class="info-text">{{ value }}</span>
+          </div>
         </div>
       </div>
       <!-- 个人信息 End -->
@@ -51,6 +55,7 @@
 </template>
 
 <script>
+import filter from '@/mixins/filter';
 import { BaseButton } from '@/components/base';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState } = createNamespacedHelpers('user');
@@ -58,8 +63,27 @@ const { mapState } = createNamespacedHelpers('user');
 export default {
   components: { BaseButton },
 
+  mixins: [filter],
+
   computed: {
-    ...mapState(['links', 'info', 'name', 'photo', 'login']),
+    ...mapState([
+      'links',
+      'bio',
+      'occupation',
+      'city',
+      'edc',
+      'name',
+      'photo',
+      'login',
+    ]),
+
+    info: function () {
+      return {
+        occupation: this.occupation,
+        city: this.city,
+        edc: this.edc,
+      };
+    },
   },
 };
 </script>
@@ -78,6 +102,8 @@ export default {
 .msg-btn {
   width: 250px;
   height: 35px;
+  text-align: center;
+  line-height: 35px;
 }
 
 .photo {
@@ -95,6 +121,12 @@ export default {
 .line {
   @include line;
   margin: 40px 0 15px 0;
+}
+
+.bio {
+  font-size: 12px;
+  color: #808080;
+  margin-bottom: 40px;
 }
 
 .link-list {
@@ -122,13 +154,11 @@ export default {
   .info-item {
     margin-top: 10px;
     .info-icon {
-      font-size: 16px;
-      font-weight: 900;
+      font-size: 18px;
     }
-    .info-content {
-      margin-left: 8px;
-      font-size: 13px;
-      color: rgb(65, 65, 65);
+    .info-text {
+      font-size: 14px;
+      margin-left: 10px;
     }
   }
 }

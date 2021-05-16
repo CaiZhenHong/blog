@@ -26,7 +26,16 @@ const filter = {
         case "bio": {
           return 'icon__bio';
         }
-        default: return;
+        case "occupation": {
+          return 'icon__occupation';
+        }
+        case "city": {
+          return 'icon__address';
+        }
+        case "edc": {
+          return 'icon__school';
+        }
+        default: return "";
       }
     }
   }

@@ -33,12 +33,10 @@ export function get_user_info(id) {
 }
 
 // 更新用户基本信息
-export function put_user_basic(info, photo, name) {
+export function put_user_basic(data) {
     return server({
         method: "PUT",
         url: "put/user/basic",
-        data: {
-            info, photo, name
-        }
+        data
     })
 }

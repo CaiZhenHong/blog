@@ -6,7 +6,10 @@ export default {
 
   state: {
     links: null,
-    info: null,
+    bio: "",
+    occupation: "",
+    city: "",
+    edc: "",
     name: '',
     photo: '',
     logo: "",
@@ -18,7 +21,6 @@ export default {
     [UPDATE_USER_INFO](state, data) {
       for (const key in data) {
         state[key] = data[key]
-        console.log(data[key]);
       }
     }
   },
