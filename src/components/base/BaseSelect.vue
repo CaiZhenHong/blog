@@ -1,41 +1,56 @@
  <!--
- * @desc: 文章操作及信息
+ * @desc: 气泡弹出框
  * @author czh996.top
- * @Date: 2021年4月7日
- * @props: [Obejct] ations - 用于渲染操作列表的数据
- * @props: [Boolean] shareBtnShow - 控制分享按钮隐藏显示
- * @example
- *  <article-item-comment-button :actions="actions" :shareBtnShow="shareBtnShow"></article-item-comment-button>
+ * @Date: 2021年4月2日
+ * @slot: head 鼠标划入的监听对象
+ * @slot: body 鼠标移出划入的监听对象
  -->
 <template>
   <div class="base-select">
-    <div class="select" @click="selectHandle">
-      <div class="content" :style="{ color: color }"><slot></slot></div>
-      <div class="arrow iconfont icon__down"></div>
-    </div>
-    <div class="option" v-show="optionShow">
-      <slot name="option"></slot>
-    </div>
+    <input
+      type="text"
+      class="select iconfont"
+      :value="value"
+      @focus="focusHandle"
+      @blur="focusHandle"
+      @click="clickHandle"
+    />
+    <transition name="options">
+      <div class="options" v-show="visible">
+        <slot>123</slot>
+      </div>
+    </transition>
   </div>
-</template>
+</template> 
 
 <script>
 export default {
-  data: function () {
-    return {
-      optionShow: false,
-    };
-  },
+  name: 'BaseSelect',
 
   props: {
-    color: {
+    value: {
       type: String,
+      default: '',
     },
   },
 
+  data() {
+    return {
+      visible: false,
+    };
+  },
+
   methods: {
-    selectHandle: function () {
-      this.optionShow = !this.optionShow;
+    focusHandle: function (e) {
+      if (e.type === 'focus') {
+        e.preventDefault();
+      } else {
+        this.visible = false;
+      }
+    },
+
+    clickHandle: function () {
+      this.visible = !this.visible;
     },
   },
 };
@@ -45,24 +60,50 @@ export default {
 @import '@app';
 @import '@theme';
 
-.select {
-  display: flex;
-}
 .base-select {
-  position: relative;
-}
-.content {
   width: 100%;
   height: 100%;
+  position: relative;
+  text-align: inherit;
+  font-size: inherit;
 }
-.arrow {
-  margin-left: 10px;
-  font-size: 16px;
-
-  @include _hover($themec, $time: 0s);
-}
-.option {
+.select {
+  position: relative;
   width: 100%;
+  height: 100%;
+  border: none;
+  text-align: inherit;
+  text-indent: inherit;
+  font-size: inherit;
+  caret-color: #00000000;
+  cursor: pointer;
+  background-color: inherit;
+  background-image: url(/arrow-down.png);
+  background-size: 14px;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+
+.options {
   position: absolute;
+  left: 0;
+  letter-spacing: 1px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.options-enter,
+.options-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+.options-enter-to,
+.options-leave {
+  transform: translateY(0);
+  opacity: 1;
+}
+.options-enter-active,
+.options-leave-active {
+  transition: all 0.2s;
 }
 </style>

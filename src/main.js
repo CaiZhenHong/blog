@@ -5,6 +5,7 @@ import store from './store';
 import '@/assets/scss/reset.scss';
 import '@/assets/scss/iconfont.scss';
 
+
 Vue.config.productionTip = false;
 
 new Vue({

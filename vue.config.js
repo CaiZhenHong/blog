@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+
   configureWebpack: {
     resolve: {
       alias: {
@@ -9,6 +10,7 @@ module.exports = {
         '@theme': '@/assets/scss/theme.scss',
       }
     },
+
     devServer: {
       proxy: {
         '/api': {
@@ -20,7 +22,10 @@ module.exports = {
           secure: false,
         }
       }
-    }
+    },
 
-  }
+
+
+
+  },
 }

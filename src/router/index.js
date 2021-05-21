@@ -16,6 +16,8 @@ const SettingAccount = () => import('@/views/setting/children/Account.vue');
 const SettingBasicInfo = () => import('@/views/setting/children/BasicInfo.vue');
 const SettingIndividuation = () => import('@/views/setting/children/Individuation.vue');
 
+const Editor = () => import('@/views/editor/Editor.vue')
+
 
 const routes = [
   {
@@ -65,6 +67,11 @@ const routes = [
         props: true,
       }
     ]
+  },
+
+  {
+    path: "/editor",
+    component: Editor
   },
 
   {

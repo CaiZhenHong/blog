@@ -43,7 +43,9 @@
       >
         注册
       </base-button>
-      <base-button v-if="login" class="right__write">写文章</base-button>
+      <base-button v-if="login" class="right__write" to="/editor">
+        写文章
+      </base-button>
 
       <div class="iconfont right__inform" v-if="login">&#xe603;</div>
 
@@ -52,8 +54,13 @@
           <img class="right__profile" v-if="login" :src="photo" alt="" />
         </template>
         <template #body>
-          <div class="right__profile-item icon__profile">个人主页</div>
-          <div class="right__profile-item icon__setting">账户设置</div>
+          <base-link to="/setting">
+            <div class="right__profile-item icon__profile">个人主页</div>
+          </base-link>
+
+          <base-link to="/setting">
+            <div class="right__profile-item icon__setting">账户设置</div>
+          </base-link>
           <div class="right__profile-item icon__exit">退出登录</div>
         </template>
       </base-popover>
@@ -62,7 +69,13 @@
 </template>
 
 <script>
-import { BaseInput, BaseButton, BaseLogo, BasePopover } from '@components/base';
+import {
+  BaseInput,
+  BaseButton,
+  BaseLogo,
+  BasePopover,
+  BaseLink,
+} from '@components/base';
 
 import { createNamespacedHelpers } from 'vuex';
 const { mapState } = createNamespacedHelpers('user');
@@ -73,6 +86,7 @@ export default {
     BaseInput,
     BaseButton,
     BasePopover,
+    BaseLink,
   },
 
   data() {
@@ -139,7 +153,9 @@ export default {
 }
 .right__write {
   height: 35px;
+  line-height: 35px;
   width: 80px;
+  text-align: center;
 }
 .right__login-button,
 .right__sign-up-button {

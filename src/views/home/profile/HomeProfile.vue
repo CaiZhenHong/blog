@@ -15,7 +15,7 @@
       <div class="name">{{ name }}</div>
       <!-- 昵称 END -->
 
-      <div class="bio">{{ bio }}</div>
+      <div class="bio" v-if="bio">{{ bio }}</div>
 
       <!-- 外链 Start -->
       <div class="link-list" v-if="links !== 0">
@@ -39,11 +39,11 @@
         <base-button class="msg-btn" v-else to="/setting">编辑资料</base-button>
       </div>
 
-      <hr v-if="info" class="line" />
+      <hr v-if="occupation || city || edc" class="line" />
 
       <!-- 个人信息 Start -->
       <div class="info-list" v-for="(value, key) of info" :key="key">
-        <div class="info-item iconfont">
+        <div class="info-item iconfont" v-if="value">
           <div class="info-icon" :class="key | iconFilter">
             <span class="info-text">{{ value }}</span>
           </div>
