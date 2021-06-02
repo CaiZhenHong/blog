@@ -29,7 +29,7 @@ export default {
       return this.$store.state.msgBox.text;
     },
     flag: function () {
-      return Boolean(this.$store.state.msgBox.flag);
+      return this.$store.state.msgBox.flag;
     },
   },
 
