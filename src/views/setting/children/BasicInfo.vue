@@ -59,7 +59,7 @@ import { BaseInput, BaseButton, BaseLoader } from '@/components/base';
 import { put_user_basic } from '@/services/user';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapMutations } = createNamespacedHelpers('user');
-import { UPDATE_USER_INFO } from '@/store/type';
+import { UPDATE_USER_INFO, SHOW_MSG } from '@/store/type';
 
 export default {
   components: {
@@ -158,7 +158,7 @@ export default {
       put_user_basic(update).then(() => {
         this.loaderShow = false;
         this[UPDATE_USER_INFO](update);
-        this.noticeShow = true;
+        this.$store.commit(SHOW_MSG, { text: '修改信息成功', type: 'succeed' });
       });
     },
 
