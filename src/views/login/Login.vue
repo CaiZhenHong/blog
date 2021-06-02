@@ -68,8 +68,11 @@ import {
   BaseLink,
   BaseLoader,
 } from '@/components/base';
-import { post_user_login } from '@/services/user';
+
 import md5 from 'md5';
+import { ACTIONS_LOGIN } from '@/store/type';
+import { createNamespacedHelpers } from 'vuex';
+const { mapActions } = createNamespacedHelpers('user');
 
 export default {
   components: {
@@ -108,14 +111,17 @@ export default {
   },
 
   methods: {
+    ...mapActions([ACTIONS_LOGIN]),
+
     // 登录助手
     loginHandle: function () {
       // 没有遮罩时（允许登录）
       if (!this.shade) {
         this.loader = true; // 打开加载提示
-        post_user_login(this.email, md5(this.password)) // 发送登录请求
-          .then((data) => {
-            this.$router.push({ name: 'user_catalog', params: data }); // 跳转到个人信息中的文章目录，并传送给过去 获取到的数据
+
+        this[ACTIONS_LOGIN]({ email: this.email, password: md5(this.password) })
+          .then(() => {
+            this.$router.replace('/'); // 跳转到个人信息中的文章目录，并传送给过去 获取到的数据
           })
           .catch((msg) => {
             if (msg === '用户不存在') {
