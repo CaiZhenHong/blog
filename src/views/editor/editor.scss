@@ -1,0 +1,60 @@
+.view {
+	h1 {
+		font-size: 28px;
+		line-height: 36px;
+		margin: 26px 0 10px 0;
+	}
+	h2 {
+		font-size: 24px;
+		line-height: 32px;
+		margin: 21px 0 5px 0;
+	}
+	h3 {
+		font-size: 20px;
+		line-height: 28px;
+		margin: 16px 0 5px 0;
+	}
+	h4 {
+		font-size: 16px;
+		line-height: 24px;
+		margin: 10px 0 5px 0;
+	}
+	h5 {
+		font-size: 15px;
+		line-height: 24px;
+		margin: 8px 0 5px 0;
+	}
+	h6 {
+		font-size: 15px;
+		line-height: 24px;
+		margin: 8px 0 5px 0;
+	}
+
+	p {
+		line-height: 1.74;
+		font-size: 15px;
+		color: #404040;
+		letter-spacing: 0.008em;
+	}
+
+	pre,
+	code {
+		font-size: 16px;
+		font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+		font-weight: 400;
+		margin: 24px 0;
+	}
+
+	img {
+		position: relative;
+		display: inline-block;
+		font-size: 14px;
+		text-align: left;
+		border-radius: 3px 3px;
+		line-height: 24px;
+		text-indent: 0;
+		-webkit-user-select: none;
+		user-select: none;
+		margin: 24px 0;
+	}
+}

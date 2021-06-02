@@ -1,180 +1,130 @@
 <template>
-  <div>
-    <div class="top-bar">
-      <div class="article-info">
-        / 前端 / JavaScript / let、var、const 的区别
+  <div class="editor">
+    <div class="top-bar iconfont">
+      <div>
+        <base-link class="iconfont icon__left profile" to="/profile">
+          个人中心
+        </base-link>
       </div>
+      <base-input
+        class="title"
+        placeholder="请在此输入文章标题"
+        v-model="title"
+      ></base-input>
+      <base-button class="publish" :shade="shade" @click="showInfo"
+        >发布文章</base-button
+      >
 
-      <div class="public-article">
-        <base-button @click="submit">发布</base-button>
-      </div>
+      <base-popover>
+        <template #head>
+          <img class="right__profile" :src="photo" alt="" />
+        </template>
+        <template #body>
+          <base-link to="/setting">
+            <div class="right__profile-item icon__profile">个人主页</div>
+          </base-link>
+
+          <base-link to="/setting">
+            <div class="right__profile-item icon__setting">账户设置</div>
+          </base-link>
+          <div class="right__profile-item icon__exit">退出登录</div>
+        </template>
+      </base-popover>
     </div>
-    <div id="tool-bar" class="iconfont">
-      <!-- 居中方式 -->
-      <span class="ql-formats">
-        <div class="iconfont color">
-          <div class="ql-item"></div>
-          <base-select
-            class="focus-color ql-item iconfont title"
-            :value="headerValue"
-          >
-            <div class="title-select">
-              <div class="title-select-option" @click="headerClick(0)">
-                正文
-              </div>
-              <div
-                class="title-select-option"
-                v-for="(option, index) in 5"
-                :key="index"
-                @click="headerClick(index + 1)"
-              >
-                标题 {{ index + 1 }}
-              </div>
-            </div>
-          </base-select>
-        </div>
-      </span>
-
-      <span class="ql-formats">
-        <!-- 加粗 -->
-        <button class="ql-bold ql-item iconfont">&#xe61d;</button>
-        <!-- 斜体 -->
-        <button class="ql-italic ql-item iconfont">&#xe61f;</button>
-        <!-- 下划线 -->
-        <button class="ql-underline ql-item iconfont">&#xe620;</button>
-        <!-- 删除线 -->
-        <button class="ql-strike ql-item iconfont">&#xe622;</button>
-      </span>
-
-      <!-- 字体颜色 -->
-      <span class="ql-formats">
-        <div class="iconfont color">
-          <div class="focus-color ql-item">&#xe623;</div>
-          <div class="select-color ql-item">&#xe63f;</div>
-        </div>
-
-        <!-- 背景颜色 -->
-        <div class="iconfont color">
-          <div class="focus-color ql-item">&#xe624;</div>
-          <div class="select-color ql-item">&#xe63f;</div>
-        </div>
-      </span>
-
-      <!-- 居中方式 -->
-      <span class="ql-formats">
-        <div class="iconfont color">
-          <div class="focus-color ql-item">&#xe62e;</div>
-          <base-select class="select-color ql-item iconfont">
-            <div class="title-select">
-              <button class="title-select-option">居中对齐</button>
-              <div class="title-select-option">左对齐</div>
-              <div class="title-select-option">右对齐</div>
-              <div class="title-select-option">两端对齐</div>
-            </div>
-          </base-select>
-        </div>
-      </span>
-
-      <!-- 无序列表 -->
-      <span class="ql-formats">
-        <button class="ql-list ql-item iconfont" value="ordered">
-          &#xe637;
-        </button>
-
-        <!-- 有序列表 -->
-        <button class="ql-item iconfont" value="bullet">&#xe636;</button>
-
-        <!-- 增加缩进 -->
-        <div class="iconfont color">
-          <div class="focus-color ql-item">&#xe62b;</div>
-          <div class="select-color ql-item">&#xe63f;</div>
-        </div>
-      </span>
-      <span class="ql-formats">
-        <!-- 代码 -->
-        <div class="ql-item iconfont">&#xe621;</div>
-        <!-- 图片 -->
-        <div class="ql-item iconfont">&#xe63c;</div>
-        <!-- 链接 -->
-        <div class="ql-item iconfont">&#xe619;</div>
-        <!-- 视频 -->
-        <div class="ql-item iconfont">&#xe63d;</div>
-      </span>
+    <div class="content">
+      <textarea
+        class="edit"
+        v-model="content"
+        placeholder="在此输入正文"
+      ></textarea>
+      <div class="view" v-html="view" v-highlight></div>
     </div>
-    <div id="editor" @click="editorClick"></div>
+    <editor-info
+      v-if="infoVisible"
+      @publish="pub"
+      @cancel="cancel"
+    ></editor-info>
   </div>
 </template>
 
 <script>
-import 'quill/dist/quill.core';
+import {
+  BaseInput,
+  BaseButton,
+  BaseLink,
+  BasePopover,
+} from '@/components/base';
+import marked from 'marked';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/xcode.css';
-import { BaseButton, BaseSelect } from '@/components/base';
-import Quill from 'quill';
+import EditorInfo from './Info';
 import { post_article } from '@/services/article';
+import { SHOW_MSG } from '@/store/type';
 
 export default {
   components: {
+    BaseInput,
     BaseButton,
-    BaseSelect,
+    BaseLink,
+    BasePopover,
+    EditorInfo,
   },
 
   data: function () {
     return {
-      quill: null,
-      headerValue: '正文',
+      content: '',
+      view: '',
+      title: '',
+      infoVisible: false,
     };
   },
 
+  computed: {
+    photo: function () {
+      return window.localStorage.getItem('photo');
+    },
+
+    shade: function () {
+      return !(Boolean(this.content.trim()) && Boolean(this.title.trim()));
+    },
+  },
+
   methods: {
-    initEditor: function () {
-      hljs.configure({
-        // optionally configure hljs
-        languages: ['javascript', 'ruby', 'python'],
-      });
-
-      this.quill = new Quill('#editor', {
-        //  theme: 'snow',
-        modules: {
-          toolbar: {
-            container: '#tool-bar',
-          },
-        },
-      });
+    showInfo: function () {
+      this.infoVisible = true;
     },
 
-    submit: function () {
-      let content = this.quill.getContents();
-      post_article({
-        title: 'let,const,var 的区别',
-        classI: '前端',
-        classII: 'JavaScript',
-        content,
-      }).then((v) => {
-        console.log(v);
-      });
-    },
-
-    headerClick: function (index) {
-      this.quill.format('header', index);
-
-      this.headerValue = index === 0 ? `正文` : `标题 ${index}`;
-    },
-
-    editorClick: function () {
-      let { header } = this.quill.getFormat();
-      if (header) {
-        this.headerValue = `标题 ${header}`;
-      } else {
-        this.headerValue = `正文`;
+    pub: function (info) {
+      info.content = this.content;
+      info.title = this.title;
+      if (!info.description) {
+        info.description = this.content.replace(/\s/, '').substring(0, 200);
       }
+      post_article(info)
+        .then(() => {
+          this.$store.commit(SHOW_MSG, {
+            text: '文章发布成功',
+            type: 'succeed',
+          });
+          this.$router.replace('/profile');
+        })
+        .catch(() => {
+          this.$store.commit(SHOW_MSG, { text: '文章发布失败', type: 'error' });
+        });
+    },
+
+    cancel: function () {
+      this.infoVisible = false;
+    },
+  },
+
+  watch: {
+    content: function (v) {
+      this.view = marked(v);
     },
   },
 
   mounted: function () {
-    this.$nextTick(() => {
-      this.initEditor();
-    });
+    hljs.highlightAll();
   },
 };
 </script>
@@ -184,101 +134,109 @@ export default {
 @import '@theme';
 
 .editor {
-  background: $bg;
-}
-.top-bar {
-  padding: 0 40px;
-  height: 50px;
-  background: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .article-info {
-    font-size: 14px;
-  }
-  .public-article {
-    height: 30px;
-    width: 70px;
-  }
-}
-
-.ql-formats {
-  @include _flex(rvc);
-  line-height: 32px;
-  height: 100%;
-  padding: 0 14px;
-  border-right: 1px solid $bdc;
-}
-.ql-item {
-  height: 32px;
-  width: 32px;
-
-  font-size: 12px;
-  color: #595959;
-
-  background: none;
-  @include _hover($background: #f1f1f1, $time: 0.1s);
-}
-
-.color {
-  display: flex;
-
-  margin-left: 5px;
-  .focus-color {
-    width: 22px;
-  }
-  .select-color {
-    width: 14px;
-  }
-  .title {
-    width: 80px;
-    padding-right: 10px;
-    padding-left: 10px;
-    text-align: left;
-  }
-  .title-select {
-    width: 80px;
-    @include _box();
-    box-shadow: 0 0 10px 0 $bdc;
-  }
-  .title-select-option {
-    text-align: center;
-    @include _hover($background: #f1f1f1, $time: 0.1s);
-  }
-}
-</style>
-
-
-<style lang="scss">
-@import '@app';
-@import '@theme';
-
-#tool-bar {
-  text-align: center;
-  height: 40px;
-  @include _flex(rvc);
-  justify-content: center;
-  border-top: 1px solid $bdc;
-  border-bottom: 1px solid $bdc;
-}
-
-.ql-container {
-  box-sizing: border-box;
-  width: 870px;
-  height: 1230px;
-  margin: 0 auto;
-  margin-top: 20px;
-  padding: 20px 40px;
-  @include _box();
-  box-shadow: 0 0 6px 0 rgb(218, 218, 218);
-}
-.ql-editor {
   width: 100%;
   height: 100%;
-  outline: none;
+
+  display: flex;
+  flex-direction: column;
 }
 
-.ql-clipboard {
-  display: none;
+.top-bar {
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 70px;
+
+  padding: 0 80px;
+
+  margin-bottom: 40px;
+  border-bottom: 1px solid $bdc;
+
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+
+  .profile {
+    font-size: 16px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    @include _hover(#000);
+  }
+
+  .title {
+    flex: 1;
+    height: 40px;
+    margin: 0 50px;
+  }
+
+  .publish {
+    font-size: 16px;
+    height: 40px;
+    width: 80px;
+    margin-right: 40px;
+  }
+
+  .right__profile {
+    vertical-align: middle;
+    cursor: pointer;
+    width: 35px;
+    border: 1px solid $bdc;
+    border-radius: 50%;
+    margin-right: 80px;
+  }
+  .right__profile-item {
+    color: #808080;
+    padding: 15px 30px;
+    @include _hover($background: #dbdada79, $time: 0s);
+  }
+  .icon__profile:before {
+    content: '\e663';
+    margin-right: 8px;
+  }
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+
+  flex: 1;
+
+  border-top: 1px solid $bdc;
+
+  display: flex;
+
+  overflow: auto;
+  .edit {
+    flex: 1;
+    padding: 24px;
+
+    font-size: 18px;
+
+    font-family: 'Chinese Quote', 'Segoe UI', Roboto, 'PingFang SC',
+      'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
+      sans-serif;
+
+    outline: none;
+    border: none;
+
+    overflow: auto;
+
+    background: #00000000;
+
+    resize: none;
+  }
+
+  .view {
+    flex: 1;
+    height: 100%;
+    padding: 24px;
+
+    background: #fff;
+    border-left: 1px solid $bdc;
+
+    overflow: auto;
+  }
 }
 </style>
