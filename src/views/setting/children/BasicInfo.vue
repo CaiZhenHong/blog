@@ -51,20 +51,11 @@
         </base-button>
       </div>
     </div>
-
-    <base-notice :show="noticeShow" @hidden="hidden">
-      <div class="icon__succeed">信息修改成功</div>
-    </base-notice>
   </div>
 </template>
 
 <script>
-import {
-  BaseInput,
-  BaseButton,
-  BaseLoader,
-  BaseNotice,
-} from '@/components/base';
+import { BaseInput, BaseButton, BaseLoader } from '@/components/base';
 import { put_user_basic } from '@/services/user';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapMutations } = createNamespacedHelpers('user');
@@ -75,13 +66,11 @@ export default {
     BaseInput,
     BaseButton,
     BaseLoader,
-    BaseNotice,
   },
 
   data: function () {
     return {
       loaderShow: false,
-      noticeShow: false,
 
       value: {
         name: '',
@@ -184,9 +173,6 @@ export default {
       read.onload = function (e) {
         self.value.photo = e.target.result;
       };
-    },
-    hidden: function (value) {
-      this.noticeShow = value;
     },
   },
 };
