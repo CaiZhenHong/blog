@@ -229,6 +229,7 @@ export default {
   margin-left: 75px;
   width: 200px;
   height: 200px;
+  border: 1px solid $bdc;
   .photo-shade {
     top: 0;
     width: 200px;
@@ -237,8 +238,10 @@ export default {
     position: absolute;
   }
   .photo {
+    margin: 0;
     width: 200px;
-    border: 1px solid $bdc;
+    height: 200px;
+
     vertical-align: middle;
   }
   .photo-input {

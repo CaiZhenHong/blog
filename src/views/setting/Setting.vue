@@ -20,7 +20,7 @@
             <li
               :class="[
                 'tab-item iconfont',
-                { 'tab-item_active': $route.name === to.name },
+                { 'tab-item_active': $route.path === to },
               ]"
               v-html="`${icon}&emsp;${name}`"
             ></li>
@@ -42,23 +42,26 @@
 <script>
 import { BaseLink } from '@/components/base';
 import TopBar from '@/components/content/topBar/TopBar';
+import { createNamespacedHelpers } from 'vuex';
+const { mapActions, mapState } = createNamespacedHelpers('user');
+import { ACTIONS_GET_USER_INFO } from '@/store/type';
 
 export default {
   data: function () {
     return {
       tab: [
         {
-          to: { name: 'setting-basic-info' },
+          to: '/setting/basic',
           name: '基本信息',
           icon: '&#xe663;',
         },
         {
-          to: { name: 'setting-individuation' },
+          to: '/setting/individuation',
           name: '个性化',
           icon: '&#xe605;',
         },
         {
-          to: { name: 'setting-account' },
+          to: '/setting/account',
           name: '账号与密码',
           icon: '&#xe626;',
         },
@@ -69,6 +72,20 @@ export default {
   components: {
     BaseLink,
     TopBar,
+  },
+
+  computed: {
+    ...mapState(['name']),
+  },
+
+  methods: {
+    ...mapActions([ACTIONS_GET_USER_INFO]),
+  },
+
+  created: function () {
+    if (!this.name) {
+      this[ACTIONS_GET_USER_INFO](window.localStorage.getItem('emailNum'));
+    }
   },
 };
 </script>
