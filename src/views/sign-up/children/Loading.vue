@@ -29,6 +29,7 @@
 import { BaseLoader, BaseToast } from '@/components/base';
 import { createNamespacedHelpers } from 'vuex';
 const { mapActions } = createNamespacedHelpers('user');
+import { ACTIONS_LOGIN } from '@/store/type';
 import WSocket from '@/utils/WSocket';
 
 export default {
@@ -43,18 +44,12 @@ export default {
   // 从路由中获取值
   props: ['email', 'password'],
 
-  // 组件路由守卫，检查是否来自于注册页面，否则将跳往注册页面
-  beforeRouteEnter: function (to, from, next) {
-    to;
-    from.path === '/sign-up' ? next() : next('/sign-up');
-  },
-
   created: function () {
     this.login();
   },
 
   methods: {
-    ...mapActions('actionsLogin'),
+    ...mapActions([ACTIONS_LOGIN]),
     /**
      * 注册成功自动登录
      */
@@ -69,14 +64,13 @@ export default {
           // 打开吐司
           __this.toast = true;
 
-          console.log(email, password);
           // 检测到 websocket 发来注册成功信息，发起登录请求
 
-          this.actionsLogin(email, password)
+          this[ACTIONS_LOGIN]({ email, password })
             .then(() => {
               // 登录成功跳往个人信息页面
               ws.close();
-              $router.replace('/setting');
+              $router.replace('/setting/basic');
             })
             .catch(() => {
               // 登录失败跳往登录页面手动登录
