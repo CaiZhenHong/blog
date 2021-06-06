@@ -56,7 +56,7 @@ import {
 } from '@/components/base';
 import marked from 'marked';
 import hljs from 'highlight.js';
-import EditorInfo from './Info';
+import EditorInfo from './info/Info';
 import { post_article } from '@/services/article';
 import { SHOW_MSG } from '@/store/type';
 
