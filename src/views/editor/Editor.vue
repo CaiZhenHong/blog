@@ -55,6 +55,7 @@ import {
   BasePopover,
 } from '@/components/base';
 import marked from 'marked';
+import DOMPurify from 'dompurify';
 import hljs from 'highlight.js';
 import EditorInfo from './info/Info';
 import { post_article } from '@/services/article';
@@ -94,10 +95,12 @@ export default {
     },
 
     pub: function (info) {
-      info.content = this.content;
+      info.content = DOMPurify.sanitize(this.content);
       info.title = this.title;
       if (!info.description) {
-        info.description = this.content.replace(/\s/, '').substring(0, 200);
+        info.description = DOMPurify.sanitize(this.content)
+          .replace(/\s/, '')
+          .substring(0, 200);
       }
       post_article(info)
         .then(() => {
