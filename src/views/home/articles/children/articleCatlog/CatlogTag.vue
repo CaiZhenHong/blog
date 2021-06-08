@@ -31,7 +31,7 @@
         >
           <div class="name">{{ title }}</div>
           <div class="line"></div>
-          <div class="time">{{ time }}</div>
+          <div class="time">{{ time.substring(0, 10) }}</div>
         </div>
       </div>
     </div>
