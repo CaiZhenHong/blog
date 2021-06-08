@@ -152,7 +152,7 @@ export default {
     overflow: hidden;
     word-break: break-all;
 
-    height: 80px;
+    height: 70px;
     line-height: 1.7;
     letter-spacing: 1px;
     font-size: 14px;
