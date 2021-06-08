@@ -96,7 +96,7 @@ export default {
   computed: {
     // @return 遮罩层是否显示
     shade: function () {
-      return this.email
+      return this.email && this.password
         ? Boolean(this.emailError + this.passwordError) || this.loader
         : true;
     },
