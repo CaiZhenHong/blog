@@ -15,6 +15,9 @@ const service = axios.create({
 // 请求拦截器，暂时未使用
 service.interceptors.request.use(
     config => {
+        if (config.method !== 'GET') {
+            config.headers.Authorization = window.localStorage.getItem('token')
+        }
         return config;
     },
     error => {

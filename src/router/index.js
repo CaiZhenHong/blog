@@ -2,9 +2,15 @@ import Vue from 'vue';
 
 import VueRouter from 'vue-router';
 
+import store from '@/store'
+
 Vue.use(VueRouter);
 
 const Home = () => import('@/views/home/Home.vue');
+const HomeArticleNew = () => import("@/views/home/articles/children/ArticlesNew.vue")
+const HomeArticleCatlog = () => import("@/views/home/articles/children/articleCatlog/ArticleCatlog.vue")
+
+
 const Login = () => import('@/views/login/Login.vue')
 
 const SignUpContainer = () => import('@/views/sign-up/Index.vue')
@@ -18,13 +24,27 @@ const SettingIndividuation = () => import('@/views/setting/children/Individuatio
 
 const Editor = () => import('@/views/editor/Editor.vue')
 
+const Profile = () => import('@/views/profile/Profile.vue')
+
 
 const routes = [
   {
     name: 'home',
     path: '/',
-    component: Home
+    component: Home,
+    redirect: "/new",
+    children: [
+      {
+        path: 'new',
+        component: HomeArticleNew,
+      },
+      {
+        path: 'catlog',
+        component: HomeArticleCatlog
+      }
+    ]
   },
+
   {
     name: "login",
     path: '/login',
@@ -33,20 +53,25 @@ const routes = [
   {
     path: "/setting",
     component: Setting,
+    beforeEnter: function (to, from, next) {
+      to; from;
+      if (store.state.user.token) {
+        next()
+      } else {
+        next('/login')
+      }
+    },
     children: [
       {
-        path: "",
-        name: 'setting-basic-info',
+        path: "basic",
         component: SettingBasicInfo
       },
       {
         path: "account",
-        name: 'setting-account',
         component: SettingAccount
       },
       {
         path: "individuation",
-        name: 'setting-individuation',
         component: SettingIndividuation
       }
     ]
@@ -65,6 +90,14 @@ const routes = [
         component: SignUpLoading,
         name: 'sign-up-loading',
         props: true,
+        beforeEnter: function (to, from, next) {
+          to; from;
+          if (from.path === '/sign-up') {
+            next()
+          } else {
+            next('/login')
+          }
+        },
       }
     ]
   },
@@ -73,10 +106,25 @@ const routes = [
     path: "/editor",
     component: Editor
   },
+  {
+    path: '/profile',
+    component: Profile
+  },
 
   {
     path: '/:email',
-    component: Home
+    component: Home,
+    redirect: "/:email/new",
+    children: [
+      {
+        path: 'new',
+        component: HomeArticleNew,
+      },
+      {
+        path: 'catlog',
+        component: HomeArticleCatlog
+      }
+    ]
   },
 ];
 

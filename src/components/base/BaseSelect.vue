@@ -14,10 +14,18 @@
       @focus="focusHandle"
       @blur="focusHandle"
       @click="clickHandle"
+      readonly
     />
     <transition name="options">
       <div class="options" v-show="visible">
-        <slot>123</slot>
+        <div
+          class="option"
+          @click="selectOption(option)"
+          v-for="(option, index) in options"
+          :key="index"
+        >
+          {{ option }}
+        </div>
       </div>
     </transition>
   </div>
@@ -29,14 +37,19 @@ export default {
 
   props: {
     value: {
-      type: String,
+      type: [String, Number],
       default: '',
+    },
+
+    options: {
+      type: Array,
     },
   },
 
   data() {
     return {
       visible: false,
+      emitting: false,
     };
   },
 
@@ -45,12 +58,20 @@ export default {
       if (e.type === 'focus') {
         e.preventDefault();
       } else {
-        this.visible = false;
+        if (!this.emitting) {
+          this.visible = false;
+        }
       }
     },
 
     clickHandle: function () {
       this.visible = !this.visible;
+    },
+
+    selectOption: function (option) {
+      this.emitting = true;
+      this.$emit('input', option);
+      this.emitting = false;
     },
   },
 };
@@ -65,6 +86,7 @@ export default {
   height: 100%;
   position: relative;
   text-align: inherit;
+
   font-size: inherit;
 }
 .select {
@@ -75,7 +97,7 @@ export default {
   text-align: inherit;
   text-indent: inherit;
   font-size: inherit;
-  caret-color: #00000000;
+
   cursor: pointer;
   background-color: inherit;
   background-image: url(/arrow-down.png);
@@ -86,10 +108,33 @@ export default {
 
 .options {
   position: absolute;
-  left: 0;
   letter-spacing: 1px;
   z-index: 1000;
   cursor: pointer;
+
+  border: 1px solid #c0c0c0;
+  width: 100%;
+  background: #fff;
+  padding: 0 10px;
+  box-sizing: content-box;
+  left: -11px;
+  border-top-color: #e7e5e5;
+  transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  &:hover {
+    border-color: #9c9c9c;
+    border-top-color: #e7e5e5;
+  }
+}
+
+.option {
+  width: 100%;
+  margin-left: -10px;
+  padding: 0 10px;
+  box-sizing: content-box;
+  @include _hover($background: $themec, $color: #fff);
+  height: 32px;
+  line-height: 32px;
+  padding-left: 10px;
 }
 
 .options-enter,

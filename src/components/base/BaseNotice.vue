@@ -43,15 +43,15 @@ export default {
 @import '@theme';
 
 .base-notice {
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   position: fixed;
   top: 0;
   left: 50%;
-  font-size: 16px;
+  font-size: 14px;
   transform: translate(-50%, 80px);
 }
 .base-notice__content {
-  padding: 15px 30px;
+  padding: 10px 20px;
   box-shadow: 1px 1px 10px 0 #c9c9c9;
   @include _box();
 }

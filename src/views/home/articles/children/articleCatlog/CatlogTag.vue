@@ -55,7 +55,7 @@ export default {
     tags: {
       type: Array,
       default: function () {
-        return [''];
+        return [];
       },
     },
     tag1: {
@@ -64,10 +64,8 @@ export default {
   },
 
   watch: {
-    tags: function (tags) {
-      this.catlogData = tags.map((tag2) => {
-        return { tag2, articles: [], isloading: false };
-      });
+    tags: function () {
+      this.init();
     },
   },
 
@@ -87,6 +85,16 @@ export default {
         });
       }
     },
+
+    init: function () {
+      this.catlogData = this.tags.map((tag2) => {
+        return { tag2, articles: [], isloading: false };
+      });
+    },
+  },
+
+  mounted: function () {
+    this.init();
   },
 };
 </script>

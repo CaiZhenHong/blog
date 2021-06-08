@@ -1,8 +1,8 @@
 @font-face {
 	font-family: 'iconfont'; /* Project id 2332256 */
-	src: url('//at.alicdn.com/t/font_2332256_xm5ne7ezpu.woff2?t=1621605261449') format('woff2'),
-		url('//at.alicdn.com/t/font_2332256_xm5ne7ezpu.woff?t=1621605261449') format('woff'),
-		url('//at.alicdn.com/t/font_2332256_xm5ne7ezpu.ttf?t=1621605261449') format('truetype');
+	src: url('//at.alicdn.com/t/font_2332256_igike3p68qr.woff2?t=1622859865897') format('woff2'),
+		url('//at.alicdn.com/t/font_2332256_igike3p68qr.woff?t=1622859865897') format('woff'),
+		url('//at.alicdn.com/t/font_2332256_igike3p68qr.ttf?t=1622859865897') format('truetype');
 }
 .iconfont {
 	font-family: 'iconfont' !important;
@@ -12,11 +12,16 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon__left::before {
+	content: '\e79a';
+	font-size: 14px;
+	margin-right: 10px;
+}
 .icon__succeed::before {
-	content: '\e61c';
+	content: '\e66e';
 	color: #6bc839;
-	font-size: 18px;
-	margin-right: 15px;
+	font-size: 15px;
+	margin-right: 10px;
 }
 
 .icon__inform::before {
@@ -101,6 +106,8 @@
 
 .icon__time:before {
 	content: '\e630';
+	font-size: 15px;
+	margin-right: 3px;
 }
 
 .icon__like:before {

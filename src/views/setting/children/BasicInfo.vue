@@ -57,6 +57,7 @@
 <script>
 import { BaseInput, BaseButton, BaseLoader } from '@/components/base';
 import { put_user_basic } from '@/services/user';
+
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapMutations } = createNamespacedHelpers('user');
 import { UPDATE_USER_INFO, SHOW_MSG } from '@/store/type';

@@ -7,3 +7,19 @@ export function post_article(data) {
     data
   })
 }
+
+export function get_articles_new(params) {
+  return service({
+    method: 'GET',
+    url: '/get/articles/new',
+    params
+  })
+}
+
+export function get_articles_catlog(params) {
+  return service({
+    method: 'GET',
+    url: '/get/articles/catlog',
+    params
+  })
+}

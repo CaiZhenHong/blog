@@ -4,12 +4,12 @@
  * @Date: 2021年4月3日
  -->
 <template>
-  <div class="top-bar iconfont" v-if="logo">
+  <div class="top-bar iconfont">
     <div class="left">
       <!-- 标志 Start -->
       <base-logo>
-        <template #left>{{ logo.left }}</template>
-        <template #right>{{ logo.right }}</template>
+        <template #left>{{ topLogo.left }}</template>
+        <template #right>{{ topLogo.right }}</template>
       </base-logo>
       <!-- 标志 End -->
 
@@ -28,7 +28,7 @@
     <div class="right">
       <!-- 登录按钮 -->
       <base-button
-        v-if="!login"
+        v-if="!token"
         class="right__login-button"
         to="/login"
         type="grey"
@@ -36,29 +36,29 @@
       >
       <!-- 注册按钮 -->
       <base-button
-        v-if="!login"
+        v-if="!token"
         class="right__sign-up-button"
         to="/sign-up"
         type="theme"
       >
         注册
       </base-button>
-      <base-button v-if="login" class="right__write" to="/editor">
+      <base-button v-if="token" class="right__write" to="/editor">
         写文章
       </base-button>
 
-      <div class="iconfont right__inform" v-if="login">&#xe603;</div>
+      <div class="iconfont right__inform" v-if="token">&#xe603;</div>
 
       <base-popover>
         <template #head>
-          <img class="right__profile" v-if="login" :src="photo" alt="" />
+          <img class="right__profile" v-if="token" :src="topPhoto" alt="" />
         </template>
         <template #body>
-          <base-link to="/setting">
+          <base-link to="/profile">
             <div class="right__profile-item icon__profile">个人主页</div>
           </base-link>
 
-          <base-link to="/setting">
+          <base-link to="/setting/basic">
             <div class="right__profile-item icon__setting">账户设置</div>
           </base-link>
           <div class="right__profile-item icon__exit">退出登录</div>
@@ -96,7 +96,17 @@ export default {
   },
 
   computed: {
-    ...mapState(['logo', 'articles', 'login', 'photo']),
+    ...mapState(['logo', 'token', 'photo']),
+
+    topLogo: function () {
+      return this.token
+        ? JSON.parse(window.localStorage.getItem('logo'))
+        : this.logo;
+    },
+
+    topPhoto: function () {
+      return this.token ? window.localStorage.getItem('photo') : this.photo;
+    },
   },
 };
 </script>

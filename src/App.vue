@@ -9,6 +9,9 @@
 
 <script>
 import { BaseNotice } from '@/components/base';
+/* import pako from 'pako';
+let gzip = pako.gzip(window.localStorage.getItem('photo'), { to: 'string' });
+console.log(gzip); */
 
 export default {
   components: {

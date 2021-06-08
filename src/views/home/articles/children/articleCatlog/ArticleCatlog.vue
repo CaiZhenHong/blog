@@ -1,6 +1,6 @@
 <template>
   <div class="articles-catlog">
-    <div class="catlog" v-if="tags1">
+    <div class="catlog" v-if="tags1.length">
       <div class="content">
         <div class="title">{{ tags1[currentItem] }}</div>
         <div class="catlog-content">

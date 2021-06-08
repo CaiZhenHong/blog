@@ -33,6 +33,7 @@
       @input="inputHandle"
       @focus="focusHandle = true"
       @blur="focusHandle = false"
+      autocomplete
     />
 
     <!-- 后置盒子 -->

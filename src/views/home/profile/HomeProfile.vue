@@ -5,7 +5,7 @@
  -->
 
 <template>
-  <div v-if="name">
+  <div>
     <div class="profile">
       <!-- 头像 START -->
       <img :src="photo" alt="photo" title="photo" class="photo" />
@@ -35,8 +35,10 @@
       <!-- 外链 End -->
 
       <div>
-        <base-button class="msg-btn" v-if="!login">关注我</base-button>
-        <base-button class="msg-btn" v-else to="/setting">编辑资料</base-button>
+        <base-button class="msg-btn" v-if="editProfile" to="/setting/basic">
+          编辑资料
+        </base-button>
+        <base-button class="msg-btn" v-else>关注我</base-button>
       </div>
 
       <hr v-if="occupation || city || edc" class="line" />
@@ -74,7 +76,7 @@ export default {
       'edc',
       'name',
       'photo',
-      'login',
+      'token',
     ]),
 
     info: function () {
@@ -83,6 +85,14 @@ export default {
         city: this.city,
         edc: this.edc,
       };
+    },
+
+    editProfile: function () {
+      return this.$store.state.user.token
+        ? this.$route.params.email
+          ? false
+          : true
+        : false;
     },
   },
 };

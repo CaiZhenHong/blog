@@ -14,7 +14,7 @@
         <home-profile></home-profile>
       </div>
       <div class="middle">
-        <home-article></home-article>
+        <home-articles></home-articles>
       </div>
       <div class="right"></div>
     </div>
@@ -23,14 +23,47 @@
 
 <script>
 import HomeProfile from './profile/HomeProfile';
+import HomeArticles from './articles/Articles';
+
 import TopBar from '@/components/content/topBar/TopBar';
-import { HomeArticle } from '@/modules/home';
+import { createNamespacedHelpers } from 'vuex';
+import { ACTIONS_GET_USER_INFO, UPDATE_USER_INFO } from '@/store/type';
+const { mapActions, mapMutations, mapState } = createNamespacedHelpers('user');
 
 export default {
   components: {
     HomeProfile,
-    HomeArticle,
+    HomeArticles,
     TopBar,
+  },
+
+  computed: { ...mapState(['token']) },
+
+  methods: {
+    ...mapActions([ACTIONS_GET_USER_INFO]),
+
+    ...mapMutations([UPDATE_USER_INFO]),
+
+    getUserInfo: function () {
+      let email = this.$route.params.email;
+
+      if (!email) {
+        email = window.localStorage.getItem('emailNum');
+      }
+      if (!this.token && !email) {
+        email = '1229542068@qq.com';
+      }
+
+      this[UPDATE_USER_INFO]({ email });
+
+      if (!this.$store.state.user.name) {
+        this[ACTIONS_GET_USER_INFO](email);
+      }
+    },
+  },
+
+  created: function () {
+    this.getUserInfo();
   },
 };
 </script>
@@ -51,10 +84,14 @@ export default {
   max-width: 1400px;
   margin: 10px auto;
 }
-.left,
-.right {
+.left {
   width: 325px;
 }
+
+.right {
+  width: 200px;
+}
+
 .middle {
   flex: 1;
   padding: 0 10px;

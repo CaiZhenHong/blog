@@ -17,23 +17,18 @@
 
     <div class="msg">注册链接已发送至您的邮箱，请注意查收</div>
     <base-loader class="loader">等待您的验证 ...</base-loader>
-
-    <base-toast type="load" v-if="toast">
-      <template #icon><base-loader :text="false"></base-loader></template>
-      <template #text>注册成功 登录中 ...</template>
-    </base-toast>
   </div>
 </template>
 
 <script>
-import { BaseLoader, BaseToast } from '@/components/base';
+import { BaseLoader } from '@/components/base';
 import { createNamespacedHelpers } from 'vuex';
 const { mapActions } = createNamespacedHelpers('user');
 import { ACTIONS_LOGIN } from '@/store/type';
 import WSocket from '@/utils/WSocket';
 
 export default {
-  components: { BaseLoader, BaseToast },
+  components: { BaseLoader },
 
   data: function () {
     return {
@@ -57,13 +52,8 @@ export default {
       let { email, password, $router } = this;
       let ws = new WSocket(`wss://api.czh996.top/send-email?${email}`);
 
-      let __this = this;
-
       ws.onmessage((data) => {
         if (data === 'create user succeed') {
-          // 打开吐司
-          __this.toast = true;
-
           // 检测到 websocket 发来注册成功信息，发起登录请求
 
           this[ACTIONS_LOGIN]({ email, password })
@@ -77,9 +67,7 @@ export default {
               ws.close();
               $router.replace('/login');
             })
-            .then(() => {
-              __this.toast = false;
-            });
+            .then(() => {});
         }
       });
     },
