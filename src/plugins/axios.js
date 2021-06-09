@@ -6,7 +6,7 @@ import Vue from "vue";
 
 Vue.use(VueAxios, axios);
 
-const BASEURL = process.env.NODE_ENV === 'development' ? '/api' : 'https:api.czh996.top';
+const BASEURL = process.env.NODE_ENV === 'development' ? '/api' : 'https://api.czh996.top';
 
 const service = axios.create({
     timeout: 6000 * 10, // 请求超时时间 6s
