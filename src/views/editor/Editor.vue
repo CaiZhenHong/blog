@@ -36,6 +36,7 @@
         class="edit"
         v-model="content"
         placeholder="在此输入正文"
+        spellcheck="false"
       ></textarea>
       <div class="view" v-html="view" v-highlight></div>
     </div>
@@ -56,7 +57,7 @@ import {
 } from '@/components/base';
 import marked from 'marked';
 import DOMPurify from 'dompurify';
-import hljs from 'highlight.js';
+
 import EditorInfo from './info/Info';
 import { post_article } from '@/services/article';
 import { SHOW_MSG } from '@/store/type';
@@ -124,10 +125,6 @@ export default {
     content: function (v) {
       this.view = marked(v);
     },
-  },
-
-  mounted: function () {
-    hljs.highlightAll();
   },
 };
 </script>
