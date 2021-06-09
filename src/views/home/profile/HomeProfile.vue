@@ -38,7 +38,7 @@
         <base-button class="msg-btn" v-if="editProfile" to="/setting/basic">
           编辑资料
         </base-button>
-        <base-button class="msg-btn" v-else>关注我</base-button>
+        <base-button class="msg-btn" v-else @click="follow">关注我</base-button>
       </div>
 
       <hr v-if="occupation || city || edc" class="line" />
@@ -93,6 +93,13 @@ export default {
           ? false
           : true
         : false;
+    },
+  },
+
+  methods: {
+    follow: function () {
+      alert('该功能正在开发中...');
+      // TODO
     },
   },
 };
