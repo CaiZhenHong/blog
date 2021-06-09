@@ -26,10 +26,19 @@
       <div>
         <div
           class="article"
-          v-for="({ title, time }, index) in articles"
+          v-for="({ title, time, _id }, index) in articles"
           :key="index"
         >
-          <div class="name">{{ title }}</div>
+          <div class="name">
+            <base-link
+              :to="{
+                path: '/article',
+                query: { email: $store.state.user.email, id: _id },
+              }"
+            >
+              {{ title }}
+            </base-link>
+          </div>
           <div class="line"></div>
           <div class="time">{{ time.substring(0, 10) }}</div>
         </div>

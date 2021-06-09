@@ -26,6 +26,8 @@ const Editor = () => import('@/views/editor/Editor.vue')
 
 const Profile = () => import('@/views/profile/Profile.vue')
 
+const Article = () => import("@/views/ariticle/Article.vue")
+
 
 const routes = [
   {
@@ -109,6 +111,10 @@ const routes = [
   {
     path: '/profile',
     component: Profile
+  },
+  {
+    path: '/article',
+    component: Article
   },
 
   {

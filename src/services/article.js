@@ -23,3 +23,12 @@ export function get_articles_catlog(params) {
     params
   })
 }
+
+export function get_article(params) {
+  return service({
+    method: 'GET',
+    url: '/get/article',
+    params
+  })
+}
+

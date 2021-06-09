@@ -4,7 +4,16 @@
       <div
         class="article-new-item"
         v-for="(
-          { title, description, cover, time, pageview, comment_count, tag2 },
+          {
+            title,
+            description,
+            cover,
+            time,
+            pageview,
+            comment_count,
+            tag2,
+            _id,
+          },
           index
         ) in articles"
         :key="index"
@@ -15,9 +24,27 @@
             <div class="comment-count">{{ comment_count }}</div>
           </div>
           <div class="content">
-            <div class="title">{{ title }}</div>
+            <div class="title">
+              <base-link to="/article">
+                <base-link
+                  :to="{
+                    path: '/article',
+                    query: { email: $store.state.user.email, id: _id },
+                  }"
+                >
+                  {{ title }}
+                </base-link></base-link
+              >
+            </div>
             <div class="description">
-              {{ description | xss }}
+              <base-link
+                :to="{
+                  path: '/article',
+                  query: { email: $store.state.user.email, id: _id },
+                }"
+              >
+                {{ description | xss }}
+              </base-link>
             </div>
           </div>
           <div class="cover" v-if="cover">
