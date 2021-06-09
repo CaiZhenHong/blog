@@ -100,7 +100,7 @@ export default {
 
   cursor: pointer;
   background-color: inherit;
-  background-image: url(/arrow-down.png);
+  background-image: url('/arrow-down.png');
   background-size: 14px;
   background-repeat: no-repeat;
   background-position: center right;
