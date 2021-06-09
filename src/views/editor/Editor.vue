@@ -1,8 +1,8 @@
 <template>
   <div class="editor">
     <div class="top-bar iconfont">
-      <div @click="todoTips">
-        <base-link class="iconfont icon__left profile" to="/new">
+      <div>
+        <base-link class="iconfont icon__left profile" to="/profile">
           个人中心
         </base-link>
       </div>
@@ -117,16 +117,6 @@ export default {
 
     cancel: function () {
       this.infoVisible = false;
-    },
-
-    todoTips: function () {
-      alert(`
-      该功能正在开发中...
-      `);
-      alert(`
-      您将跳往主页
-      `);
-      // TODO
     },
   },
 
