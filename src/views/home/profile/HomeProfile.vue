@@ -21,15 +21,17 @@
       <div class="link-list" v-if="links !== 0">
         <div
           class="link-item"
-          v-for="({ icon, name, color }, key) in links"
+          v-for="({ icon, name, color, link }, key) in links"
           :key="key"
         >
-          <div
-            class="link-icon iconfont"
-            v-html="icon"
-            :style="{ color: color }"
-          ></div>
-          <div class="link-name">{{ name }}</div>
+          <a :href="link" target="_blank">
+            <div
+              class="link-icon iconfont"
+              v-html="icon"
+              :style="{ color: color }"
+            ></div>
+            <div class="link-name">{{ name }}</div>
+          </a>
         </div>
       </div>
       <!-- 外链 End -->
