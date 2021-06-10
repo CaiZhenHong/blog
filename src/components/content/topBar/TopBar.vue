@@ -61,7 +61,9 @@
           <base-link to="/setting/basic">
             <div class="right__profile-item icon__setting">账户设置</div>
           </base-link>
-          <div class="right__profile-item icon__exit">退出登录</div>
+          <div class="right__profile-item icon__exit" @click="logOut">
+            退出登录
+          </div>
         </template>
       </base-popover>
     </div>
@@ -69,25 +71,13 @@
 </template>
 
 <script>
-import {
-  BaseInput,
-  BaseButton,
-  BaseLogo,
-  BasePopover,
-  BaseLink,
-} from '@components/base';
-
+import { delete_user_logout } from '@/services/user';
+import { SHOW_MSG } from '@/store/type';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState } = createNamespacedHelpers('user');
 
 export default {
-  components: {
-    BaseLogo,
-    BaseInput,
-    BaseButton,
-    BasePopover,
-    BaseLink,
-  },
+  components: {},
 
   data() {
     return {
@@ -106,6 +96,18 @@ export default {
 
     topPhoto: function () {
       return this.token ? window.localStorage.getItem('photo') : this.photo;
+    },
+  },
+
+  methods: {
+    logOut: function () {
+      delete_user_logout().then(() => {
+        this.$store.commit(SHOW_MSG, { text: '退出登录成功', type: 'succeed' });
+        window.localStorage.clear();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      });
     },
   },
 };

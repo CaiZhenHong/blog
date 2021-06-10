@@ -22,6 +22,13 @@ export function post_user_login(email, password) {
         data: { email, password }
     })
 }
+// 登出
+export function delete_user_logout() {
+    return server({
+        method: "DELETE",
+        url: '/delete/user/logout',
+    })
+}
 
 // 获取用户信息
 export function get_user_info(id) {
