@@ -2,6 +2,7 @@
 node_modules
 /dist
 utlis.js*
+/upload.js
 
 
 # local env files

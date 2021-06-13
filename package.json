@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "cos-nodejs-sdk-v5": "^2.9.18",
     "dompurify": "^2.2.9",
     "marked": "^2.0.6",
     "md5": "^2.3.0",

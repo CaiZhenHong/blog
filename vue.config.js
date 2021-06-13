@@ -1,4 +1,7 @@
 const path = require('path');
+const CodeDeployment = require('./upload')
+
+const isProduct = process.env.NODE_ENV === 'product' ? true : false
 
 module.exports = {
 
@@ -24,9 +27,11 @@ module.exports = {
       }
     },
 
+    plugins: [new CodeDeployment()],
   },
 
+  productionSourceMap: false,
 
+  publicPath: isProduct ? 'https://public-1304087712.cos.ap-guangzhou.myqcloud.com/' : '',
 
-  productionSourceMap: false
 }
