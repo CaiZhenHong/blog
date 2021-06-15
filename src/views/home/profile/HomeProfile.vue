@@ -126,6 +126,7 @@ export default {
 }
 
 .photo {
+  box-sizing: border-box;
   width: 160px;
   height: 160px;
   margin: 40px 0;

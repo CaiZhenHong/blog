@@ -47,3 +47,10 @@ export function put_user_basic(data) {
         data
     })
 }
+
+export function get_cos_credential() {
+    return server({
+        method: "GET",
+        url: '/get/cos/credential',
+    })
+}

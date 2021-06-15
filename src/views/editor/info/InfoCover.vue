@@ -5,22 +5,26 @@
 <template>
   <div class="cover">
     <div class="name">添加封面：</div>
-    <input
-      type="file"
-      name=""
-      style="display: none"
-      @change="upload"
-      ref="uploadCover"
-    />
-    <div class="iconfont cover-add" @click="uploadCover">
-      <img class="cover-img" v-if="cover" :src="cover" alt="" />
-      &#xe612;
-    </div>
+
+    <image-upload
+      imageRef="EDITOR_INFO_COVER"
+      size="160,100"
+      @change="getImageUrl"
+    >
+      <div class="iconfont cover-add">
+        <img class="cover-img" v-if="cover" :src="cover" alt="" />
+        &#xe612;
+      </div>
+    </image-upload>
   </div>
 </template>
 
 <script>
+import ImageUpload from '@/components/content/imageUpload/ImageUpload.vue';
+
 export default {
+  components: { ImageUpload },
+
   data: function () {
     return {
       cover: '',
@@ -28,19 +32,8 @@ export default {
   },
 
   methods: {
-    uploadCover: function () {
-      this.$refs.uploadCover.click();
-    },
-
-    upload: function (e) {
-      let self = this;
-      let file = e.target.files[0];
-      let read = new FileReader();
-      read.readAsDataURL(file);
-      read.onload = function (e) {
-        self.cover = e.target.result;
-        self.$emit('input', e.target.result);
-      };
+    getImageUrl: function (url) {
+      this.cover = url;
     },
   },
 };

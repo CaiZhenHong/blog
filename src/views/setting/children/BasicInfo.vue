@@ -37,36 +37,29 @@
 
     <div class="right">
       <img class="photo" :src="value.photo" alt="" />
-      <div class="photo-shade">
-        <base-button class="photo-up" type="grey" @click="uploadImg">
-          <input
-            class="photo-input"
-            ref="uploadImg"
-            type="file"
-            @change="upload"
-            name=""
-            id=""
-          />
-          上传照片
-        </base-button>
-      </div>
+      <image-upload
+        imageRef="PROFILE_PHOTO_REF"
+        size="240,240"
+        @change="getImageUrl"
+      >
+        <base-button class="photo-up" type="grey"> 上传图片 </base-button>
+      </image-upload>
     </div>
   </div>
 </template>
 
 <script>
-import { BaseInput, BaseButton, BaseLoader } from '@/components/base';
 import { put_user_basic } from '@/services/user';
 
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapMutations } = createNamespacedHelpers('user');
 import { UPDATE_USER_INFO, SHOW_MSG } from '@/store/type';
 
+import ImageUpload from '@/components/content/imageUpload/ImageUpload.vue';
+
 export default {
   components: {
-    BaseInput,
-    BaseButton,
-    BaseLoader,
+    ImageUpload,
   },
 
   data: function () {
@@ -146,6 +139,10 @@ export default {
   methods: {
     ...mapMutations([UPDATE_USER_INFO]),
 
+    getImageUrl: function (url) {
+      this.value.photo = url;
+    },
+
     updateBasicInfo: function () {
       let update = {};
 
@@ -161,19 +158,6 @@ export default {
         this[UPDATE_USER_INFO](update);
         this.$store.commit(SHOW_MSG, { text: '修改信息成功', type: 'succeed' });
       });
-    },
-
-    uploadImg: function () {
-      this.$refs.uploadImg.click();
-    },
-    upload: function (e) {
-      let self = this;
-      let file = e.target.files[0];
-      let read = new FileReader();
-      read.readAsDataURL(file);
-      read.onload = function (e) {
-        self.value.photo = e.target.result;
-      };
     },
   },
 };
@@ -226,6 +210,7 @@ export default {
   }
   .photo {
     margin: 0;
+    box-sizing: border-box;
     width: 200px;
     height: 200px;
 

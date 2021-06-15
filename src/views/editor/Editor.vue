@@ -31,6 +31,17 @@
         </template>
       </base-popover>
     </div>
+
+    <div class="iconfont tools">
+      <image-upload
+        class="tools-item"
+        size="800"
+        imageRef="EDITOR_IMAGE_REF"
+        @change="getImageUrl"
+        >&#xe63c;</image-upload
+      >
+    </div>
+
     <div class="content">
       <textarea
         class="edit"
@@ -49,12 +60,6 @@
 </template>
 
 <script>
-import {
-  BaseInput,
-  BaseButton,
-  BaseLink,
-  BasePopover,
-} from '@/components/base';
 import marked from 'marked';
 import DOMPurify from 'dompurify';
 
@@ -62,13 +67,12 @@ import EditorInfo from './info/Info';
 import { post_article } from '@/services/article';
 import { SHOW_MSG } from '@/store/type';
 
+import ImageUpload from '@/components/content/imageUpload/ImageUpload.vue';
+
 export default {
   components: {
-    BaseInput,
-    BaseButton,
-    BaseLink,
-    BasePopover,
     EditorInfo,
+    ImageUpload,
   },
 
   data: function () {
@@ -93,6 +97,10 @@ export default {
   methods: {
     showInfo: function () {
       this.infoVisible = true;
+    },
+
+    getImageUrl: function (url) {
+      this.content += `\n![在此输入alt](${url})`;
     },
 
     pub: function (info) {
@@ -149,7 +157,6 @@ export default {
 
   padding: 0 80px;
 
-  margin-bottom: 40px;
   border-bottom: 1px solid $bdc;
 
   background: #fff;
@@ -194,6 +201,23 @@ export default {
   .icon__profile:before {
     content: '\e663';
     margin-right: 8px;
+  }
+}
+
+.tools {
+  display: flex;
+  margin: 10px 0;
+  padding: 0 50px;
+  border-top: 1px solid $bdc;
+  border-bottom: 1px solid $bdc;
+  height: 35px;
+  line-height: 35px;
+  background-color: #ffffff65;
+  box-shadow: 0 0 4px 0 $bdc;
+  .tools-item {
+    width: 50px;
+    text-align: center;
+    @include _hover($background: rgba(196, 194, 194, 0.63));
   }
 }
 
