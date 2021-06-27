@@ -19,7 +19,8 @@ module.exports = {
 
   resolve: {
     alias: {
-      'vue': 'vue/dist/vue.runtime.common.dev'
+      'vue': 'vue/dist/vue.runtime.common.dev',
+      "@": path.resolve(dirname, 'src')
     }
   },
 
@@ -34,7 +35,9 @@ module.exports = {
 
   module: {
     rules: [
-      { test: /\.vue$/, loader: 'vue-loader' }
+      { test: /\.vue$/, loader: 'vue-loader' },
+      { test: /\.s?css$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+      { test: /\.(png|jpg|gif)$/, use: [{ loader: 'url-loader', options: { limit: 8 * 1024, esModule: false } }] },
     ]
   },
 
