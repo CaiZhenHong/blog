@@ -22,7 +22,8 @@ module.exports = {
     alias: {
       'vue': 'vue/dist/vue.runtime.common.dev',
       "@": path.resolve(dirname, 'src')
-    }
+    },
+    mainFiles: ["index", "default"]
   },
 
   devtool: 'source-map',

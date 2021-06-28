@@ -4,7 +4,7 @@
  * @author caizhenhong
  */
 
-const port = 8080;
+const port = 8081;
 const path = require('path');
 const dirname = path.resolve(__dirname, '../');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -20,8 +20,10 @@ module.exports = {
   resolve: {
     alias: {
       'vue': 'vue/dist/vue.runtime.common.dev',
-      "@": path.resolve(dirname, 'src')
-    }
+      "@": path.resolve(dirname, 'src'),
+      "@theme": path.resolve(dirname, 'src/assets/style/theme.scss')
+    },
+    mainFiles: ["index.js",]
   },
 
   devtool: 'inline-source-map',

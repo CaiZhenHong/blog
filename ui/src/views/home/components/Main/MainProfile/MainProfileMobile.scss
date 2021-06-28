@@ -1,0 +1,32 @@
+@media screen and (max-width: 700px) {
+	.profile {
+		flex-direction: column;
+		.photo {
+			width: 80px;
+			height: 80px;
+			top: 0px;
+			margin-left: 0;
+			align-self: center;
+		}
+		.info {
+			order: 2;
+			margin-left: 0;
+			top: 0px;
+			align-self: center;
+			.more-button,
+			.info-gender {
+				display: none;
+			}
+		}
+		.focus-me {
+			order: 1;
+			flex-flow: 1;
+			margin-right: 0;
+			top: 0px;
+			align-self: center;
+		}
+	}
+	.cover {
+		display: none;
+	}
+}

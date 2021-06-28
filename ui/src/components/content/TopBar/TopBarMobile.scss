@@ -1,0 +1,25 @@
+@media screen and (max-width: 700px) {
+	.inner {
+		padding: 0 20px;
+	}
+	.mb-left {
+		display: block;
+		width: 32px;
+		height: 32px;
+		background: red;
+	}
+	.mb-logo {
+		display: block;
+	}
+	.mb-right {
+		display: block;
+		width: 32px;
+		height: 32px;
+		background: red;
+	}
+
+	.left,
+	.right {
+		display: none;
+	}
+}
