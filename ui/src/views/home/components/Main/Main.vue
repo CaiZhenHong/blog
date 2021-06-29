@@ -8,15 +8,17 @@
 <template>
   <div class="main">
     <main-profile class="main-profile"></main-profile>
-    <div class="content"></div>
+    <main-content class="content"></main-content>
   </div>
 </template>
 
 <script>
 import MainProfile from './MainProfile/MainProfile.vue';
+import MainContent from './MainContent/MainContent.vue';
 export default {
   components: {
     MainProfile,
+    MainContent,
   },
 };
 </script>
@@ -32,15 +34,12 @@ export default {
 }
 .main-profile {
   width: 100%;
-  height: 400px;
+  height: 40rem;
   background: blue;
-  @media screen and (max-width: 700px) {
-    height: 150px;
-  }
 }
 .content {
   flex: 1;
-  height: 100%;
+
   background: blue;
   margin-top: 15px;
 }

@@ -15,10 +15,14 @@
           <div class="info-name">宫本勇次又带刀</div>
           <div class="info-job">学生</div>
         </div>
-        <div class="info-gender"></div>
-        <div class="more-button"></div>
+        <div class="other-info">
+          <div class="info-gender">男</div>
+          <div class="more-button">更多</div>
+        </div>
+
+        <div class="focus-me mb">关注我</div>
       </div>
-      <div class="focus-me">123</div>
+      <div class="focus-me">关注我</div>
     </div>
   </div>
 </template>
@@ -30,5 +34,4 @@ export default {};
 <style lang="scss" scoped>
 @import '@theme';
 @import './MainProfile.scss';
-@import './MainProfileMobile.scss';
 </style>
