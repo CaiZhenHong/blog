@@ -23,7 +23,7 @@ module.exports = {
       'vue': 'vue/dist/vue.runtime.common.dev',
       "@": path.resolve(dirname, 'src')
     },
-    mainFiles: ["index", "default"]
+    mainFiles: ["index", "default", 'Index.vue']
   },
 
   devtool: 'source-map',

@@ -29,10 +29,12 @@ module.exports = {
   devtool: 'inline-source-map',
 
   devServer: {
+    host: '0.0.0.0',
     contentBase: path.resolve(dirname, 'dist'),
     port: port,
     overlay: { warnings: true, errors: true },
-    stats: 'errors-only'
+    stats: 'errors-only',
+    historyApiFallback: true
   },
 
   module: {
@@ -40,6 +42,7 @@ module.exports = {
       { test: /\.vue$/, loader: 'vue-loader' },
       { test: /\.s?css$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
       { test: /\.(png|jpg|gif)$/, use: [{ loader: 'url-loader', options: { limit: 8 * 1024, esModule: false } }] },
+      { test: /\.(woff)$/, loader: 'file-loader' }
     ]
   },
 

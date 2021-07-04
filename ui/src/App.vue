@@ -1,17 +1,11 @@
 <template>
   <div class="app">
-    <blog-home></blog-home>
+    <router-view />
   </div>
 </template>
 
 <script>
-import BlogHome from '@/views/home/Home.vue';
-
-export default {
-  components: {
-    BlogHome,
-  },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>

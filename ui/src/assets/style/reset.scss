@@ -14,13 +14,9 @@ html {
 	height: 100%;
 	width: 100%;
 	box-sizing: border-box;
-	font-size: 10px;
-}
-
-@media screen and (max-width: 700px) {
-	html {
-		font-size: 5px;
-	}
+	font-family: Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC,
+		Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 /* Sections
@@ -34,7 +30,6 @@ body {
 	margin: 0;
 	height: 100%;
 	width: 100%;
-	box-sizing: border-box;
 }
 
 /**
@@ -43,6 +38,13 @@ body {
 
 main {
 	display: block;
+}
+
+ul,
+li {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
 }
 
 /**
@@ -75,7 +77,6 @@ hr {
  */
 
 pre {
-	font-family: monospace, monospace; /* 1 */
 	font-size: 1em; /* 2 */
 }
 
@@ -88,6 +89,8 @@ pre {
 
 a {
 	background-color: transparent;
+	text-decoration: none;
+	color: inherit;
 }
 
 /**
@@ -118,7 +121,6 @@ strong {
 code,
 kbd,
 samp {
-	font-family: monospace, monospace; /* 1 */
 	font-size: 1em; /* 2 */
 }
 
@@ -160,6 +162,9 @@ sup {
 
 img {
 	border-style: none;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
 }
 
 /* Forms
@@ -175,8 +180,11 @@ input,
 optgroup,
 select,
 textarea,
-div {
-	font-family: inherit; /* 1 */
+div,
+dl,
+dd,
+dt,
+h2 {
 	font-size: 100%; /* 1 */
 	line-height: 1.15; /* 1 */
 	margin: 0; /* 2 */
