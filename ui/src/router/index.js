@@ -3,10 +3,10 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-import Home from '@/views/home/Home.vue';
-import HomeNew from '@/views/home/children/HomeNew/HomeNew.vue';
-import HomeCatlog from '@/views/home/children/HomeCatlog/HomeCatlog.vue';
-import HomeCategories from '@/views/home/children/HomeCategories/HomeCategories.vue';
+const Home = () => import('@/views/home/Home.vue');
+const HomeNew = () => import('@/views/home/children/HomeNew/HomeNew.vue');
+const HomeCatlog = () => import('@/views/home/children/HomeCatlog/HomeCatlog.vue');
+const HomeCategories = () => import('@/views/home/children/HomeCategories/HomeCategories.vue');
 
 
 const routes = [
@@ -31,4 +31,4 @@ const routes = [
   },
 ]
 
-export default new Router({ routes, mode: 'history' })
+export default new Router({ routes, mode: 'history', base: '/ui/dist/' })

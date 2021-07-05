@@ -1,30 +1,18 @@
 /**
- * @description 开发环境搭建
+ * @description 开发环境配置
  * @date 2021年6月27日
  * @author caizhenhong
  */
 
 const port = 8081;
 const path = require('path');
+const webpackCommonConfig = require('./webpack.common.js')
 const dirname = path.resolve(__dirname, '../');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader')
+const { merge } = require('webpack-merge')
 
-module.exports = {
+module.exports = merge({
   mode: 'development',
-
-  entry: path.resolve(dirname, 'src/main.js'),
-
-  resolve: {
-    alias: {
-      'vue': 'vue/dist/vue.runtime.common.dev',
-      "@": path.resolve(dirname, 'src'),
-      "@theme": path.resolve(dirname, 'src/assets/style/theme.scss')
-    },
-    mainFiles: ["index.js",]
-  },
 
   devtool: 'inline-source-map',
 
@@ -37,24 +25,12 @@ module.exports = {
     historyApiFallback: true
   },
 
-  module: {
-    rules: [
-      { test: /\.vue$/, loader: 'vue-loader' },
-      { test: /\.s?css$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
-      { test: /\.(png|jpg|gif)$/, use: [{ loader: 'url-loader', options: { limit: 8 * 1024, esModule: false } }] },
-      { test: /\.(woff)$/, loader: 'file-loader' }
-    ]
-  },
-
   plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: path.resolve(dirname, 'public/index.html') }),
     new FriendlyErrorsWebpackPlugin({ compilationSuccessInfo: { messages: [`Project running in \x1B[36m http://localhost:${port}\n\n`] } }),
-    new VueLoaderPlugin()
   ],
 
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(dirname, 'dist')
+    path: path.resolve(dirname, 'dist'),
   }
-}
+}, webpackCommonConfig)
