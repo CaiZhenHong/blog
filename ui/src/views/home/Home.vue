@@ -1,17 +1,22 @@
 <!--
-    @desc 模板 
-    @props
-    @emit   
-    @date
+    @desc 主页
+    @routePath '/'
     @author caizhenhong
  -->
 <template>
   <div class="home">
+    <!-- 顶部栏组件 Start -->
     <home-header class="header"></home-header>
-    <home-profile class="profile" />
+    <!-- 顶部栏组件 End -->
 
+    <!-- 个人信息组件 -->
+    <home-profile class="profile" />
+    <!-- 个人信息组件 -->
+
+    <!-- 以下为主要内容 -->
     <main class="main">
       <div class="left">
+        <!-- tab栏 Start  -->
         <ul class="tab-list" v-show="!/catlog/.test($route.path)">
           <li
             :class="['tab-item', { 'tab-item-active': $route.path === path }]"
@@ -21,30 +26,35 @@
             <router-link :to="path">{{ name }}</router-link>
           </li>
         </ul>
+        <!-- tab 栏 End -->
+
+        <!-- 子路由 start -->
         <keep-alive include="HomeCatlog,HomeNew">
           <router-view class="children-view" />
         </keep-alive>
+        <!-- 子路由 End-->
       </div>
-
-      <home-record class="home-record"></home-record>
+      <home-link class="home-link"></home-link>
     </main>
 
+    <!-- 底部栏 Start -->
     <footer class="footer" id="HOME_FOOTER">
       ©2020 MYBLOG. All Rights Reserved.
     </footer>
+    <!-- 底部栏 End -->
   </div>
 </template>
 
 <script>
 import HomeHeader from '@/components/Header/Header.vue';
 import HomeProfile from './HomeProfile/HomeProfile.vue';
-import HomeRecord from './HomeRecord/HomeRecord.vue';
+import HomeLink from './HomeLink/HomeLink.vue';
 
 export default {
   components: {
     HomeHeader,
     HomeProfile,
-    HomeRecord,
+    HomeLink,
   },
 
   data() {
@@ -114,15 +124,13 @@ export default {
       }
     }
 
-    .home-record {
+    .home-link {
       position: sticky !important;
       top: 20px;
       margin-left: 40px;
       width: 250px;
       height: 740px;
-      border-radius: 8px;
-      border: 1px solid $border-color;
-      box-shadow: 0 0 5px 0 $border-color;
+
       background: #fff;
       @media screen and (max-width: 700px) {
         display: none;
