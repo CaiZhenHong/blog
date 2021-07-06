@@ -7,16 +7,21 @@
  -->
 <template>
   <div class="c_main-profile">
-    <div class="cover"></div>
+    <div
+      class="cover"
+      :style="{
+        backgroundImage: 'url(' + cover + ')',
+      }"
+    ></div>
 
     <div class="profile">
       <div class="photo-warp">
-        <img src="@/assets/image/test.png" alt="" class="photo" />
+        <img :src="profile.photo" alt="" class="photo" />
       </div>
       <div class="info">
         <div class="basic-info">
-          <div class="info-name">宫本勇次又带刀</div>
-          <div class="info-job">学生</div>
+          <div class="info-name">{{ profile.name }}</div>
+          <div class="info-job">{{ profile.job }}</div>
         </div>
         <div class="other-info">
           <div class="iconfont info-gender">&#xe658;</div>
@@ -29,7 +34,24 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    profile: {
+      type: Object,
+      default() {
+        return null;
+      },
+    },
+  },
+
+  data() {
+    return {
+      cover: this.profile.cover,
+    };
+  },
+
+  computed: {},
+};
 </script>
 
 <style lang="scss" scoped>

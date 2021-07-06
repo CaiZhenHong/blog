@@ -4,13 +4,10 @@
  -->
 <template>
   <div class="home-link">
-    <ul class="link my-link">
-      <li class="icon__github my-link-item"></li>
-      <li class="icon__zhihu my-link-item"></li>
-      <li class="icon__qq my-link-item"></li>
-      <li class="icon__weibo my-link-item"></li>
-      <li class="icon__facebook my-link-item"></li>
-      <li class="icon__xiaohongshu my-link-item"></li>
+    <ul class="link my-link" v-if="myLinks.length">
+      <a v-for="({ icon, url }, index) in myLinks" :key="index" :href="url">
+        <li :class="[icon, 'my-link-item']"></li>
+      </a>
     </ul>
 
     <div class="link recommend-link">
@@ -27,6 +24,14 @@
 
 <script>
 export default {
+  props: {
+    myLinks: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
   created() {},
 };
 </script>
@@ -46,23 +51,28 @@ export default {
 }
 
 .my-link {
-  height: 15%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   .my-link-item {
-    box-sizing: border-box;
-    margin: 0 10px;
-    border: 1px solid $border-color;
     width: 35px;
     height: 35px;
+    margin: 10px 9px;
+    border: 1px solid $border-color;
     line-height: 35px;
     text-align: center;
     border-radius: 2px;
     cursor: pointer;
+
     &:hover {
-      transform: translateY(-5px);
+      &::before {
+        transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+        color: $theme-color;
+        background: #fff;
+      }
+      transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+      border-color: $theme-color;
     }
   }
 }

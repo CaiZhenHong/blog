@@ -10,7 +10,7 @@
     <!-- 顶部栏组件 End -->
 
     <!-- 个人信息组件 -->
-    <home-profile class="profile" />
+    <home-profile class="profile" :profile="profile" />
     <!-- 个人信息组件 -->
 
     <!-- 以下为主要内容 -->
@@ -34,7 +34,7 @@
         </keep-alive>
         <!-- 子路由 End-->
       </div>
-      <home-link class="home-link"></home-link>
+      <home-link class="home-link" :myLinks="myLinks"></home-link>
     </main>
 
     <!-- 底部栏 Start -->
@@ -49,6 +49,7 @@
 import HomeHeader from '@/components/Header/Header.vue';
 import HomeProfile from './HomeProfile/HomeProfile.vue';
 import HomeLink from './HomeLink/HomeLink.vue';
+import { getUserInfo } from '@/api/user';
 
 export default {
   components: {
@@ -69,7 +70,19 @@ export default {
           path: '/categories',
         },
       ],
+
+      myLinks: [],
+      profile: {},
     };
+  },
+
+  methods: {},
+
+  created() {
+    getUserInfo().then(({ profile, links }) => {
+      this.myLinks = links;
+      this.profile = profile;
+    });
   },
 };
 </script>
