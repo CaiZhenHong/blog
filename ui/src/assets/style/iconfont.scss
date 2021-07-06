@@ -4,6 +4,7 @@
 		url('//at.alicdn.com/t/font_2332256_12nn4208xv8.woff?t=1625237268097') format('woff'),
 		url('//at.alicdn.com/t/font_2332256_12nn4208xv8.ttf?t=1625237268097') format('truetype');
 }
+
 .iconfont {
 	font-family: 'iconfont';
 	font-size: 16px;
@@ -141,99 +142,75 @@
 	content: '\e609';
 }
 /* logo */
-.icon__qq:before {
+@mixin setIconColor($color) {
 	display: block;
+	color: $color;
+	background: transparentize($color, 0.85);
+	box-shadow: 0 0 3px 0 transparentize($color, 0.85);
+	font-size: 24px;
+}
+.icon__qq:before {
 	font-family: iconfont;
 	content: '\e65c';
-	font-size: 28px;
-	color: #32a6d4;
+	@include setIconColor(#32a6d4);
 }
 
 .icon__douyin:before {
-	display: block;
 	font-family: iconfont;
 	content: '\e601';
-	font-size: 28px;
-	color: #1c0b1b;
+	@include setIconColor(#1c0b1b);
 }
 
 .icon__weibo:before {
-	display: block;
 	font-family: iconfont;
 	content: '\ea89';
-	font-size: 28px;
-	color: #e22c1f;
+	@include setIconColor(#e22c1f);
 }
 
 .icon__twitter:before {
-	display: block;
 	font-family: iconfont;
 	content: '\e72e';
-	font-size: 28px;
-	color: #1da1f2;
+	@include setIconColor(#1da1f2);
 }
 
 .icon__xiaohongshu:before {
-	display: block;
 	font-family: iconfont;
 	content: '\e66d';
-	font-size: 28px;
-	color: #ff2840;
+	@include setIconColor(#ff2840);
 }
 
 .icon__facebook:before {
-	display: block;
 	font-family: iconfont;
 	content: '\e608';
-	font-size: 28px;
-	color: #1278f3;
+	@include setIconColor(#1278f3);
 }
 
 .icon__bilibili:before {
-	display: block;
 	font-family: iconfont;
 	content: '\e627';
-	font-size: 28px;
-	color: #fb7299;
+	@include setIconColor(#fb7299);
 }
 
 .icon__wechat:before {
-	display: block;
 	font-family: iconfont;
 	content: '\e65b';
-	font-size: 28px;
-	color: #1ac064;
+	@include setIconColor(#1ac064);
 }
 
 .icon__csdn:before {
-	display: block;
 	font-family: iconfont;
 	content: '\e638';
-	font-size: 28px;
-	color: #ff4d4d;
+	@include setIconColor(#ff4d4d);
 }
 
 .icon__github:before {
-	display: block;
 	font-family: iconfont;
 	content: '\e600';
-	font-size: 28px;
-	$color: #181617;
-	color: $color;
-	background: transparentize($color, 0.85);
-	box-shadow: 0 0 1px 0 transparentize($color, 0.85);
+	@include setIconColor(#181617);
 }
 
 .icon__zhihu:before {
-	display: block;
 	font-family: iconfont;
 	content: '\e629';
-	font-size: 28px;
-	color: #0084ff;
-	background: transparentize($color, 0.85);
-	box-shadow: 0 0 1px 0 transparentize($color, 0.85);
-}
-
-@function getIconBackGroundColor() {
-	@return 1;
+	@include setIconColor(#0084ff);
 }

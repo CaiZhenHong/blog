@@ -60,6 +60,10 @@ export default {
     line-height: 35px;
     text-align: center;
     border-radius: 2px;
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-5px);
+    }
   }
 }
 
