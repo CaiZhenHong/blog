@@ -4,11 +4,19 @@
  -->
 <template>
   <div class="home-link">
-    <ul class="link my-link" v-if="myLinks.length">
-      <a v-for="({ icon, url }, index) in myLinks" :key="index" :href="url">
-        <li :class="[icon, 'my-link-item']"></li>
-      </a>
-    </ul>
+    <div class="link my-link" v-if="myLinks.length">
+      <div class="title">我的链接</div>
+      <ul class="content">
+        <a
+          target="_blank"
+          v-for="({ icon, url }, index) in myLinks"
+          :key="index"
+          :href="url"
+        >
+          <li :class="[icon, 'my-link-item']"></li>
+        </a>
+      </ul>
+    </div>
 
     <div class="link recommend-link">
       <div class="title">留言</div>
@@ -40,39 +48,47 @@ export default {
 @import '@theme';
 
 .link {
-  padding: 12px;
   border-radius: 3px;
   border: 1px solid $border-color;
   box-shadow: 0 0 3px 0 $border-color;
   .title {
-    font-size: 14px;
+    padding: 10px 14px;
+    font-size: 13px;
     color: #333;
+    border-bottom: 1px solid $border-color;
+  }
+  .content {
+    padding: 12px;
+    padding-top: 0;
   }
 }
 
 .my-link {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  .my-link-item {
-    width: 35px;
-    height: 35px;
-    margin: 10px 9px;
-    border: 1px solid $border-color;
-    line-height: 35px;
-    text-align: center;
-    border-radius: 2px;
-    cursor: pointer;
+  .content {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    .my-link-item {
+      width: 35px;
+      height: 35px;
+      margin: 10px 9px;
+      border: 1px solid $border-color;
+      line-height: 35px;
+      text-align: center;
+      border-radius: 2px;
+      cursor: pointer;
 
-    &:hover {
-      &::before {
+      &:hover {
+        &::before {
+          transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+          color: $theme-color;
+          background: #fff;
+        }
         transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-        color: $theme-color;
-        background: #fff;
+        border-color: $theme-color;
       }
-      transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-      border-color: $theme-color;
     }
   }
 }

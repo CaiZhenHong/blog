@@ -7,12 +7,9 @@
  -->
 <template>
   <div class="c_main-profile">
-    <div
-      class="cover"
-      :style="{
-        backgroundImage: 'url(' + cover + ')',
-      }"
-    ></div>
+    <div class="cover-warp">
+      <img :src="profile.cover" class="cover" />
+    </div>
 
     <div class="profile">
       <div class="photo-warp">
@@ -45,12 +42,8 @@ export default {
   },
 
   data() {
-    return {
-      cover: this.profile.cover,
-    };
+    return {};
   },
-
-  computed: {},
 };
 </script>
 
