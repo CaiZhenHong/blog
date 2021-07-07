@@ -16,6 +16,12 @@ module.exports = merge({
 
   devtool: 'inline-source-map',
 
+  resolve: {
+    alias: {
+      'vue': 'vue/dist/vue.runtime.common.dev',
+    },
+  },
+
   devServer: {
     host: '0.0.0.0',
     contentBase: path.resolve(dirname, 'dist'),

@@ -17,7 +17,6 @@ module.exports = {
 
   resolve: {
     alias: {
-      'vue': 'vue/dist/vue.runtime.common.dev',
       "@": path.resolve(dirname, 'src'),
       "@theme": path.resolve(dirname, 'src/assets/style/theme.scss')
     },
