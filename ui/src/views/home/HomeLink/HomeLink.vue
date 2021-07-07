@@ -6,16 +6,7 @@
   <div class="home-link">
     <div class="link my-link" v-if="myLinks.length">
       <div class="title">我的链接</div>
-      <ul class="content">
-        <a
-          target="_blank"
-          v-for="({ icon, url }, index) in myLinks"
-          :key="index"
-          :href="url"
-        >
-          <li :class="[icon, 'my-link-item']"></li>
-        </a>
-      </ul>
+      <my-link-content class="content" :myLinks="myLinks" />
     </div>
 
     <div class="link recommend-link">
@@ -31,7 +22,12 @@
 </template>
 
 <script>
+import MyLinkContent from './MyLinkContent.vue';
 export default {
+  components: {
+    MyLinkContent,
+  },
+
   props: {
     myLinks: {
       type: Array,
@@ -70,26 +66,6 @@ export default {
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
-    .my-link-item {
-      width: 35px;
-      height: 35px;
-      margin: 10px 9px;
-      border: 1px solid $border-color;
-      line-height: 35px;
-      text-align: center;
-      border-radius: 2px;
-      cursor: pointer;
-
-      &:hover {
-        &::before {
-          transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-          color: $theme-color;
-          background: #fff;
-        }
-        transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-        border-color: $theme-color;
-      }
-    }
   }
 }
 

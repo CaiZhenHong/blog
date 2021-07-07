@@ -93,9 +93,7 @@
 		}
 	}
 }
-.options {
-	display: none;
-}
+
 .option-button {
 	display: none;
 }
@@ -149,25 +147,5 @@
 		line-height: 30px;
 		text-align: center;
 		color: $theme-color;
-	}
-
-	.options {
-		display: block;
-		display: none;
-		z-index: 40;
-		position: fixed;
-		top: 55px;
-		right: 0;
-		width: 200px;
-		height: 100%;
-		.un-login {
-			.bar {
-				height: 30px;
-			}
-			.log-in {
-				height: 30px;
-				width: 50px;
-			}
-		}
 	}
 }

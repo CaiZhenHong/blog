@@ -6,7 +6,13 @@
 <template>
   <div class="home">
     <!-- 顶部栏组件 Start -->
-    <home-header class="header"></home-header>
+    <home-header class="header" @click="controlSideBar">
+      <transition name="fade">
+        <side-bar v-if="sideBarShow">
+          <home-link class="home-link" :myLinks="myLinks"></home-link>
+        </side-bar>
+      </transition>
+    </home-header>
     <!-- 顶部栏组件 End -->
 
     <!-- 个人信息组件 -->
@@ -56,6 +62,7 @@ export default {
     HomeHeader,
     HomeProfile,
     HomeLink,
+    SideBar: () => import('@/components/SideBar/SideBar.vue'),
   },
 
   data() {
@@ -70,13 +77,17 @@ export default {
           path: '/categories',
         },
       ],
-
+      sideBarShow: false,
       myLinks: [],
       profile: {},
     };
   },
 
-  methods: {},
+  methods: {
+    controlSideBar(v) {
+      this.sideBarShow = v;
+    },
+  },
 
   created() {
     getUserInfo().then(({ profile, links }) => {
@@ -95,16 +106,24 @@ export default {
   height: 100%;
   background: #fff;
   .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
     width: 100%;
     height: 55px;
   }
   .profile {
     max-width: 1000px;
     height: 400px;
-    margin: 20px auto 0 auto;
+    margin: 75px auto 0 auto;
     @media screen and (max-width: 710px) {
       height: 280px;
-      margin: 0;
+      margin-top: 55px;
+      @media screen and (max-width: 500px) {
+        height: 230px;
+      }
     }
   }
   .main {
@@ -164,6 +183,21 @@ export default {
     line-height: 40px;
     font-size: 14px;
     border-top: 1px solid $border-color;
+  }
+}
+.fade-enter-active {
+  animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.fade-leave-active {
+  animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both reverse;
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 </style>

@@ -6,9 +6,6 @@
       <div class="left">
         <div class="left-inner">
           <h1 class="logo">myblog</h1>
-          <div class="input-slot">
-            <slot></slot>
-          </div>
         </div>
       </div>
 
@@ -24,25 +21,40 @@
         </div>
       </div>
 
-      <div class="iconfont option-button">&#xe60f;</div>
+      <div
+        class="iconfont option-button"
+        @click="optionsControl"
+        v-html="optionIcon"
+      ></div>
 
-      <div class="options">
-        <div class="un-login" v-if="true">
-          <div class="bar">x</div>
-          <div class="input-slot">
-            <slot></slot>
-          </div>
-          <div class="log-in"></div>
-        </div>
-
-        <div class="login" v-else></div>
+      <div class="option-button">
+        <slot></slot>
       </div>
     </div>
   </header>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      optionShow: false,
+    };
+  },
+
+  computed: {
+    optionIcon() {
+      return !this.optionShow ? '&#xe60f' : '&#xe611;';
+    },
+  },
+
+  methods: {
+    optionsControl() {
+      this.optionShow = !this.optionShow;
+      this.$emit('click', this.optionShow);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -19,7 +19,8 @@
     </div>
     <div class="actions">
       <div :class="['like', { 'like-active': data.liked }]" @click="clickLike">
-        {{ data.like | countFormat }}
+        <div class="item-name">{{ data.liked ? '已赞同' : '赞同' }}</div>
+        <div class="count">{{ data.like | countFormat }}</div>
       </div>
 
       <div class="comment">
@@ -115,14 +116,18 @@ export default {
     .like {
       height: 100%;
       width: 100px;
+      height: 30px;
       margin: 0;
       border-radius: 4px;
       line-height: 32px;
       color: $theme-color;
       background: #0070c52f;
       cursor: pointer;
-      &::before {
-        content: '赞同';
+      display: flex;
+      font-size: 13px;
+      align-items: center;
+      justify-content: center;
+      .item-name {
         margin-right: 5px;
       }
     }
@@ -206,17 +211,15 @@ export default {
         font-size: 12px;
         line-height: 22px;
         text-align: left;
+        width: fit-content;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
         &::before {
           display: none;
-        }
-        &::after {
-          content: '赞同';
-          margin-left: 5px;
         }
       }
       .comment {
         font-size: 12px;
-        margin: 0;
         &::before {
           display: none;
         }
