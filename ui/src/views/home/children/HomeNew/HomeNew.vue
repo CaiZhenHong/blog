@@ -10,17 +10,19 @@
       :key="index"
       :data="data"
     ></home-new-item>
+    <base-load-icon class="loading"></base-load-icon>
   </div>
 </template>
 
 <script>
 import HomeNewItem from './HomeNewItem.vue';
 import { getArticleNew } from '@/api/article';
+import BaseLoadIcon from '@/components/Base/BaseLoadIcon.vue';
 import * as util from '@/util';
 
 export default {
   name: 'HomeNew',
-  components: { HomeNewItem },
+  components: { HomeNewItem, BaseLoadIcon },
   data() {
     return {
       dataList: [],
@@ -74,5 +76,9 @@ export default {
   @media screen and (max-width: 700px) {
     padding: 10px 15px 0 15px;
   }
+}
+
+.loading {
+  margin: 20px 0;
 }
 </style>

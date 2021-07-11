@@ -31,4 +31,4 @@ const routes = [
   },
 ]
 
-export default new Router({ routes, mode: 'history', base: '/ui/dist/index.html/' })
+export default new Router({ routes, mode: 'history' })

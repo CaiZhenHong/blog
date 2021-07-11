@@ -43,6 +43,11 @@ export default {
 <style lang="scss" scoped>
 @import '@theme';
 
+.home-link {
+  display: flex;
+  flex-direction: column;
+}
+
 .link {
   border-radius: 3px;
   border: 1px solid $border-color;
@@ -70,12 +75,10 @@ export default {
 }
 
 .recommend-link {
-  height: 35%;
   margin-top: 12px;
 }
 
 .f-link {
-  height: 60%;
   margin-top: 12px;
 }
 </style>

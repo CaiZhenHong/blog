@@ -158,7 +158,7 @@ export default {
 
     .home-link {
       position: sticky !important;
-      top: 20px;
+      top: 60px;
       margin-left: 40px;
       width: 250px;
       height: 740px;
