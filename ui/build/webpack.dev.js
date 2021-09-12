@@ -23,12 +23,17 @@ module.exports = merge({
   },
 
   devServer: {
-    host: '0.0.0.0',
+    //host: '0.0.0.0',
     contentBase: path.resolve(dirname, 'dist'),
     port: port,
     overlay: { warnings: true, errors: true },
     stats: 'errors-only',
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/v1/api': {
+        target: 'http://68238318-280f-4368-87ae-a5da5ed3aac7.mock.pstmn.io', changeOrigin: true
+      }
+    }
   },
 
   plugins: [

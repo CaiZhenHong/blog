@@ -8,6 +8,7 @@
 <script>
 import HomeArticles from './HomeArticles.vue'
 import HomeProfile from './HomeProfile.vue'
+
 export default {
   components: { HomeArticles, HomeProfile }
 }

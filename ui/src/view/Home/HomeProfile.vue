@@ -3,8 +3,8 @@
     <div class="fit-width bg-white border radius flex flex-column flex-items-center">
       <div class="fit-width bg h130"></div>
       <img class="photo bg-white" src alt />
-      <div class="mt30 mb15 fw500 f18">小蔡同学</div>
-      <div class="blue f16">如出发，必到达</div>
+      <div class="mt30 mb15 fw500 f18">{{ user.name }}</div>
+      <div class="blue f16">{{ user.bio }}</div>
       <hr class="fit-width cut-line mt30 mb15" />
       <ul class="ml25 fit-width flex flex-items-start unselected">
         <li class="mr20" v-for="({ name, img }, index) in links" :key="index">
@@ -16,22 +16,22 @@
       <my-button class="f14 focus-me">关注我</my-button>
       <div iconfont class="fit-width pl25 mt30 f18 gray">
         &#xe603;
-        <span class="f14 ml5">广东深圳</span>
+        <span class="f14 ml5">{{ user.address }}</span>
       </div>
       <div iconfont class="fit-width pl25 mt20 mb20 gray">
         &#xe650;
-        <span class="f14 ml5">前端开发工程师</span>
+        <span class="f14 ml5">{{ user.job }}</span>
       </div>
     </div>
 
     <div class="fit-width mt20 bg-white border unselected">
       <ul class="article-info flex flex-between">
-        <li class="f12 flex flex-column flex-items-center flex-1" :class="{ border_l: index }" v-for="({ today, yestoday }, index) in count" :key="index">
+        <li class="f12 flex flex-column flex-items-center flex-1" :class="{ border_l: index }" v-for="({ today, yesterday }, index) in user.read_info" :key="index">
           <div>今日阅读数</div>
           <div class="f18 black mt15 mb15">{{ today }}</div>
           <div>
             <span>昨日数据</span>
-            <span class="f13 ml5 black">{{ yestoday }}</span>
+            <span class="f13 ml5 black">{{ yesterday }}</span>
           </div>
         </li>
       </ul>
@@ -50,6 +50,11 @@ export default {
         { name: '今日阅读数', today: 12, yestoday: 13 },
         { name: '今日赞同数', today: 2, yestoday: 25 }
       ]
+    }
+  },
+  computed: {
+    user: function () {
+      return this.$store.state.user
     }
   }
 }
