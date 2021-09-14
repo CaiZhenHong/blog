@@ -4,7 +4,7 @@
  * @author caizhenhong
  */
 
-const port = 8081;
+const { develop } = require('../../config').ui
 const path = require('path');
 const webpackCommonConfig = require('./webpack.common.js')
 const dirname = path.resolve(__dirname, '../');
@@ -25,14 +25,14 @@ module.exports = merge({
   devServer: {
     host: '0.0.0.0',
     contentBase: path.resolve(dirname, 'dist'),
-    port: port,
+    port: develop.port,
     overlay: { warnings: true, errors: true },
     stats: 'errors-only',
     historyApiFallback: true
   },
 
   plugins: [
-    new FriendlyErrorsWebpackPlugin({ compilationSuccessInfo: { messages: [`Project running in \x1B[36m http://localhost:${port}\n\n`] } }),
+    new FriendlyErrorsWebpackPlugin({ compilationSuccessInfo: { messages: [`Project running in \x1B[36m http://localhost:${develop.port}\n\n`] } }),
   ],
 
   output: {

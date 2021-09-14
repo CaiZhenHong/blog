@@ -3,14 +3,19 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const Home = () => import('@/views/home/Home.vue');
+/* const Home = () => import('@/views/home/Home.vue');
 const HomeNew = () => import('@/views/home/children/HomeNew/HomeNew.vue');
 const HomeCatlog = () => import('@/views/home/children/HomeCatlog/HomeCatlog.vue');
-const HomeCategories = () => import('@/views/home/children/HomeCategories/HomeCategories.vue');
+const HomeCategories = () => import('@/views/home/children/HomeCategories/HomeCategories.vue'); */
+const Home =() => import('@/view/home/Index.vue')
 
 
 const routes = [
   {
+    path: '/',
+    component: Home,
+  }
+/*   {
     path: '/',
     component: Home,
     redirect: '/new',
@@ -28,7 +33,7 @@ const routes = [
         component: HomeCategories
       }
     ]
-  },
+  }, */
 ]
 
 export default new Router({ routes, mode: 'history' })
