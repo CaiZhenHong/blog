@@ -1,10 +1,13 @@
 <template>
-  <div class="page">profile</div>
+  <div>文章目录</div>
 </template>
 
 <script>
-export default {};
+export default {
+
+}
 </script>
 
 <style>
+
 </style>

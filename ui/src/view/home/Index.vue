@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="w1200 center">
     <HomeProfile />
-    <div>
-      <HomeArticle />
-      <HomeLink />
+    <div class="flex">
+      <HomeArticle class="flex-1" />
+      <HomeLink class="w280 ml20" />
     </div>
   </div>
 </template>
@@ -19,5 +19,4 @@ export default {
 </script>
 
 <style>
-
 </style>

@@ -47,7 +47,4 @@ export default {
   height: 36px;
   border-radius: 50%;
 }
-.center {
-  margin: 0 auto;
-}
 </style>
