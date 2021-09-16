@@ -1,8 +1,5 @@
-import service from '@/plugins/axios';
+import api from './request'
 
-export function getUserInfo() {
-  return service({
-    method: 'GET',
-    url: '/get/user/info',
-  })
+export const get_user = function (){
+  return api.get('user')
 }

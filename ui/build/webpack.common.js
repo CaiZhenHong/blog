@@ -23,9 +23,6 @@ module.exports = {
     mainFiles: ["index.js",]
   },
 
-
-
-
   module: {
     rules: [
       { test: /\.vue$/, loader: 'vue-loader' },

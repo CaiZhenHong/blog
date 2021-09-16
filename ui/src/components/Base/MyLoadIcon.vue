@@ -2,12 +2,13 @@
   <div class="load">
     <slot name="prefix"></slot>
     <div class="load-icon">&#xe6cd;</div>
-    <slot> <span class="icon-text">加载中...</span></slot>
+    <slot> <span class="icon-text">Loading . . .</span></slot>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+};
 </script>
 
 <style lang="scss" scoped>
@@ -18,16 +19,14 @@ export default {};
 
 .load-icon {
   display: inline-block;
-  font-size: 12px;
   font-family: 'iconfont';
-  color: #a8a8a8;
+  font-size: inherit;
   animation: icon-rotate 1.4s cubic-bezier(0.25, 0, 0.84, 1) infinite;
 }
 
 .icon-text {
   display: inline-block;
-  font-size: 12px;
-  color: #a8a8a8;
+  font-size: 13px;
   margin-left: 8px;
 }
 

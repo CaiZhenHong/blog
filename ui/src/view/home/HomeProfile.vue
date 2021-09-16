@@ -1,5 +1,12 @@
 <template>
-  <div class="page">profile</div>
+  <div class="page">
+    <img class="background" src="" alt="">
+    <div>
+      <img src="" alt="">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
 </template>
 
 <script>

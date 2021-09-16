@@ -28,7 +28,14 @@ module.exports = merge({
     port: develop.port,
     overlay: { warnings: true, errors: true },
     stats: 'errors-only',
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy:{  '/v1/api': { 
+      target: 'https://68238318-280f-4368-87ae-a5da5ed3aac7.mock.pstmn.io/' ,
+      changeOrigin: true,
+      pathRewrite: {
+          '^/v1/api': '/v1/api'
+      }
+    } }
   },
 
   plugins: [
