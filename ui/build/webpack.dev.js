@@ -30,7 +30,7 @@ module.exports = merge({
     stats: 'errors-only',
     historyApiFallback: true,
     proxy:{  '/v1/api': { 
-      target: 'https://68238318-280f-4368-87ae-a5da5ed3aac7.mock.pstmn.io/' ,
+      target: 'http://127.0.0.1:4523/mock/425759/' ,
       changeOrigin: true,
       pathRewrite: {
           '^/v1/api': '/v1/api'

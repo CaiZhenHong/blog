@@ -1,7 +1,7 @@
 <!-- @desc 公共组件 顶部栏 -->
 
 <template>
-  <header class="bdb bg-white">
+  <header class="bdb bg-white_1">
     <div class="w1200 center fit-height flex flex-between flex-items-center">
       <h1 button class="logo">myblog</h1>
 

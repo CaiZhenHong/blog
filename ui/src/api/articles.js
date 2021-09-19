@@ -9,5 +9,7 @@ export const get_articles_catlogue = function (){
 }
 
 export const put_article_info = function (){
-  return api.put('/article_info')
+  return api.put('/article/info', 1,{
+    delay: true
+  })
 }

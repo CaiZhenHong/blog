@@ -1,8 +1,8 @@
 <template>
-  <div class="page">
-    <div class="h50 bdb flex flex-items-center f14">
-      <div button :class="['ml20', 'item', { theme: inNewPage }]" @click="toNew">最近发布</div>
-      <div button :class="['ml20', 'item', { theme: !inNewPage }]" @click="toCatlogue">文章目录</div>
+  <div class="page unselected">
+    <div class="h50 bdb flex flex-items-center f13">
+      <div button :class="['ml20', 'item', { theme_1: inNewPage }]" @click="toNew">最近发布</div>
+      <div button :class="['ml20', 'item', { theme_1: !inNewPage }]" @click="toCatlogue">文章目录</div>
     </div>
     <keep-alive><router-view /></keep-alive>
   </div>
@@ -25,6 +25,6 @@ export default {
 
 <style lang="scss" scoped>
 .item {
-  &:hover{ color: #0070c5c2; }
+  &:hover{color: $theme_1;}
 }
 </style>

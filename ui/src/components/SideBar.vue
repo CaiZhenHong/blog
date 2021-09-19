@@ -27,15 +27,12 @@ export default {};
   width: 80%;
   height: 100%;
   background: #fff;
-  border: 1px solid $border-color;
-  box-shadow: 0 0 3px 0 $border-color;
 }
 
 .un-login {
   .log-in {
     margin-top: 20px;
     font-size: 14px;
-    background: $theme-color;
     color: #fff;
     height: 30px;
     line-height: 30px;

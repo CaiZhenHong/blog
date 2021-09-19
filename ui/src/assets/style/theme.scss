@@ -1,5 +1,28 @@
 /* 主题 */
-$theme-color: #0071c5;
-$border-color: #e6e6e6;
-$background: #fafafa;
-$top-bar-color: #fff;
+$theme_1: #0089ff;
+$black_1:#262626;
+$black_2:#595959;
+$black_3:#333333;
+$white_1:#fff;
+$gray_1:#8c8c8c;
+$gray_2:#fafafa;
+$gray_3:#dfdfdf;
+
+$color_list:(
+  theme_1:$theme_1,
+  black_1:$black_1,
+  black_2:$black_2,
+  white_1:$white_1,
+  gray_1:$gray_1,
+  gray_2:$gray_2,
+  gray_3:$gray_3,
+  black_3:$black_3
+);
+
+$position_list:(
+  top: 't',
+  right:'r',
+  bottom:'b',
+  left:'l',
+  all:''
+);

@@ -1,62 +1,64 @@
 <template>
-  <ul>
-      <li class="bdb page-padding black" v-for="({ title, content, cover, like_count, liked, comment_count, date, tag }, index) in articles" :key="index">
-          <div button class="f18 lh16 mt10 ml5">{{ title }}</div>
-          <div button class="flex mt20">
-              <img class="cover mr15" :src="cover" :alt="title">
-              <div class="flex-1 f15 lh17 elipses">{{ content }}</div>
-          </div>    
-          <div class="flex flex-items-center f14 actions">
-              <div button class="w100 h30 mr25 f13 bg-blue flex flex-items-center flex-center theme bdradius" :class="{liked}" @click="likeHandle(index)">
-                  <MyLoadIcon v-if="likeLoading"><span></span></MyLoadIcon>
-                  <span v-else>{{ liked? '已赞同' : '赞同'}}</span>
-                  <span v-else class="ml5">{{like_count}}</span>
+<div>
+  <ul v-show="articles">
+      <li v-for="({ title, content, comment_count, tag, date, cover, like_count, liked, liking },index) in articles" :key="index" class="h140 page-padding flex bdb">
+          <div class="w60">
+              <div button class="bd w40 h50 bg-gray_2 flex flex-column flex-items-center" @click="likeHandle(index)">
+                  <div iconfont class="icon_like flex-1 f18 flex fcenter theme_1" :class="{icon_liked: liked, liking}"></div>
+                  <div class="f12 flex-1 flex fcenter black_1">{{like_count|countFormat}}</div>
               </div>
-              <div button class="mr25 flex flex-items-center hover"><span iconfont class="mr5">&#xe60d;</span>{{comment_count}} 条评论</div>
-              <div button class="mr25 hover"><span iconfont class="mr5">&#xe675;</span>分享</div>
-              <div button class="mr25 hover">{{tag}}</div>
-              <div class="mr25">发布于 {{ date | dateFormat }}</div>
+          </div> 
+          <div class="flex-1">
+              <div button class="f18 lh15 black_1 blod">{{title}}</div>
+              <div button class="f14 mt12 h65 black_3 lh15 ellipsis">{{content}}</div>
+              <div class="mt16 f14 flex gray_1">
+                  <div button iconfont class="mr25 black_2 icon_comment flex">{{comment_count|countFormat}} 条评论</div>
+                  <div class="mr25">发布于 <span button class="black_2">{{tag}}</span></div>
+                  <div iconfont class="icon_time">{{date|dateFormat}} 发布</div>
+              </div>
           </div>
+          <img class="w160 h100 ml25 pointer" :src="cover" alt="">
       </li>
-      <MyLoadIcon class="theme mt25 mb24" />
   </ul>
+  <MyLoadIcon v-show="!articles" class="mt25 mb24" />
+</div>
 </template>
 
 <script>
 import { get_articles_new, put_article_info } from '@/api'
 
 export default {
-    data(){ return{ articles: [], likeLoading: false } },
+    data:function(){return { articles:null }},
+
     methods: {
-        likeHandle:function (index){
-            let liked = !this.articles[index].liked
-            this.likeLoading = true
-            put_article_info({ liked }).then(({ data }) => {
-                this.articles[index].liked = liked
-                this.likeLoading = false
+        likeHandle: function(index){
+            const article = this.articles[index]
+            article .liking = true
+            const setLike = function(){
+                    article.liking = false
+                    article.liked = !article.liked
+                    article.liked ? article.like_count++ : article.like_count--
+                }
+            put_article_info().then((data) => {
+                data.time > 150 ? setLike():(setTimeout(setLike,100))
             })
         }
     },
-    beforeCreate(){
-        get_articles_new().then(({ data }) => { this.articles = data })
+
+    beforeCreate:function(){
+        get_articles_new().then((data) => { 
+            data = data.map(item => { item.liking = false; return item })
+            this.articles = data
+         })
     }
 }
 </script>
 
-<style lang="scss" scoped>
-.liked {
-    background-color: #0071c5;
-    color: #ffffff;
+<style lang="scss">
+.icon_like {
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.cover {
-    width: 190px;
-    height: 105px;
-    border-radius: 10px;
+.liking {
+    transform: scale(0);
 }
-.actions {
-    padding: 10px 0;
-    color: #8590a6;
-    letter-spacing: 0.5px;
-}
-.hover{ &:hover{ color: #0071c5; } }
 </style>

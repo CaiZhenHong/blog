@@ -26,7 +26,14 @@ module.exports = {
   module: {
     rules: [
       { test: /\.vue$/, loader: 'vue-loader' },
-      { test: /\.s?css$/, use: [{ loader: MiniCssExtractPlugin.loader, options: { publicPath: '../' } }, 'css-loader', 'sass-loader'] },
+      { test: /\.s?css$/, 
+        use: [
+          { loader: MiniCssExtractPlugin.loader, options: { publicPath: '../' } }, 
+          'css-loader', 
+          'sass-loader',
+          { loader: 'sass-resources-loader', options:{ resources: path.resolve(dirname, 'src/assets/style/theme.scss') } }
+        ] 
+      },
       {
         test: /\.(png|jpg|gif)$/, type: 'asset',
         parser: {
