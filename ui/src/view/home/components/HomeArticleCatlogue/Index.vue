@@ -1,6 +1,6 @@
 <template>
-<div>
-  <ul v-show="!particularsPage" class="flex flex-wrap">
+<div class="fit-height">
+  <ul v-show="!particularsPage" class="flex flex-wrap fit-height">
     <li class="half-width" v-for="({ title, date, preface }, index) in catlogues" :key="index" @click="showParticularsPage(title)">
       <div button class="page flex flex-column flex-between">
         <div class="f14 black_1 blod">{{title}}</div>

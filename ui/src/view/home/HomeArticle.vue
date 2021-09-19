@@ -4,7 +4,7 @@
       <div button :class="['ml20', 'item', { theme_1: inNewPage }]" @click="toNew">最近发布</div>
       <div button :class="['ml20', 'item', { theme_1: !inNewPage }]" @click="toCatlogue">文章目录</div>
     </div>
-    <keep-alive><router-view /></keep-alive>
+    <keep-alive><router-view class="fit-height" /></keep-alive>
   </div>
 </template>
 
