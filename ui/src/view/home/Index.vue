@@ -1,8 +1,8 @@
 <template>
-  <div class="w1024 center fit-height">
+  <div class="w1024 center">
     <HomeProfile class="mt20" />
-    <div class="flex fit-height">
-      <HomeArticle class="flex-1 mt20 fit-height" />
+    <div class="flex">
+      <HomeArticle class="flex-1 mt20" />
       <HomeLink class="w280 ml25 mt20" />
     </div>
   </div>

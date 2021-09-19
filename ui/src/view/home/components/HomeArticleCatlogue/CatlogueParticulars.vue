@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="h600">
     <div class="h40 bdb f13 flex flex-start flex-items-center pl20"><div iconfont button class="icon_arrow black_3" @click="toOutlinePage">返回目录</div></div>
     <div class="pt24 pb80 pl48 pr48" v-if="catlogue">
       <div class="fcenter bloder f22 mb50 mt50">{{title}}</div>
       <div>
-        <ul class="ml10 fit-height" v-for="({ title, aritlces, hidden }, index) in catlogue" :key="index">
+        <ul class="ml10" v-for="({ title, aritlces, hidden }, index) in catlogue" :key="index">
           <div button class="f15 blod lh20 mt12 black_3 flex flex-items-center"  @click="articleHiddenHandle(index)">
             <div iconfont class="mr10 arrow f12" :class="{hidden}">&#xe600;</div>{{title}}
           </div>
