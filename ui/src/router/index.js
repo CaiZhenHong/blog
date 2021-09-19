@@ -8,7 +8,7 @@ const HomeNew = () => import('@/views/home/children/HomeNew/HomeNew.vue');
 const HomeCatlog = () => import('@/views/home/children/HomeCatlog/HomeCatlog.vue');
 const HomeCategories = () => import('@/views/home/children/HomeCategories/HomeCategories.vue'); */
 const Home =() => import('@/view/home/Index.vue')
-const HomeArticleCatlogue = () => import('@/view/home/components/HomeArticleCatlogue.vue')
+const HomeArticleCatlogue = () => import('@/view/home/components/HomeArticleCatlogue/Index.vue')
 const HomeArticleNew = () => import('@/view/home/components/HomeArticleNew.vue')
 
 

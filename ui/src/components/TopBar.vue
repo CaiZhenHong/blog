@@ -9,10 +9,10 @@
         <div class="flex flex-items-center">
           <my-button primary v-if="login" @click="WriteArticle">写文章</my-button>
           <my-button primary v-else @click="loginHandle">登录</my-button>
-          <div button class="f14 ml20 theme" v-if="!login">切换语言</div>
+          <div button class="f14 ml20 theme_1" v-if="!login">切换语言</div>
         </div>
         <div class="flex flex-items-center" v-if="login">
-          <div button class="iconfont notice theme ml20">&#xe603;</div>
+          <div iconfont button class="notice theme_1 ml20">&#xe603;</div>
           <img button class="profile ml20 bd" src="@/assets/image/test.png" />
         </div>
       </div>
