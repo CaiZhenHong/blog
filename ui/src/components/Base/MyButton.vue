@@ -19,11 +19,11 @@ export default {
   box-sizing: border-box; 
   padding: 6px 10px;
   border-radius: 2px;
-  border: 1px solid #0089ff;
+  border: 1px solid $theme_1;
 }
 .primary {
   color: #fff;
-  background: #0089ff;
+  background: $theme_1;
 }
 .large {
   padding: 7px 20px;

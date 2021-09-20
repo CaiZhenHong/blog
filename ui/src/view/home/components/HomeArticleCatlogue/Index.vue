@@ -10,6 +10,8 @@
     </li>
   </ul>
 
+  <MyLoadIcon v-show="!catlogues" class="mt25 mb24" />
+
   <CatlogueParticulars @back='particularsPage =! particularsPage' v-show="particularsPage" :title='catlogueTitle'/>
 </div>
 </template>
@@ -21,7 +23,7 @@ import CatlogueParticulars from './CatlogueParticulars.vue'
 export default {
     components: { CatlogueParticulars },
 
-    data:function(){return { catlogues: {}, particularsPage: false, catlogueTitle: ''}},
+    data:function(){return { catlogues: null, particularsPage: false, catlogueTitle: ''}},
 
     methods: {
         showParticularsPage: function(title){

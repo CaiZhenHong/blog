@@ -20,7 +20,7 @@
         </ul>
       </div>
     </div>
-  <MyLoadIcon v-show="!title" class="mt25 mb24" />
+  <MyLoadIcon v-show="!catlogue" class="center mt190" />
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
       title: { type: String }
     },  
 
-    data: function(){ return { catlogue: {} } },
+    data: function(){ return { catlogue: null } },
 
     methods:{
       toOutlinePage: function(){

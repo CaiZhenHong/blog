@@ -3,7 +3,7 @@
 <template>
   <header class="bdb bg-white_1">
     <div class="w1200 center fit-height flex flex-between flex-items-center">
-      <h1 button class="logo">myblog</h1>
+      <h1 button class="logo fit-height">myblog</h1>
 
       <div class="flex">
         <div class="flex flex-items-center">
@@ -36,10 +36,9 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
-  width: 185px;
-  height: 40px;
+  width: 104px;
   background: url('@/assets/image/icon/logo-theme.png') no-repeat left;
-  background-size: 200px 40px;
+  background-size: 100%;
   font-size: 0;
 }
 .profile {
