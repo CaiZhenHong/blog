@@ -5,7 +5,7 @@
     <div class="w1200 center fit-height flex flex-between flex-items-center">
       <div class="fit-height flex">
         <h1 button class="logo fit-height">myblog</h1>
-        <div class="w400 flex flex-items-center ml40"><my-input icon='&#xe60a;' width='200' focusWidth='300'></my-input></div>
+        <div class="w400 flex flex-items-center ml40"><my-input icon='&#xe60a;' placeholder='搜索' width='200' focusWidth='300'></my-input></div>
       </div>
       <div class="flex">
         <div class="flex flex-items-center">
