@@ -3,8 +3,10 @@
 <template>
   <header class="bdb bg-white_1">
     <div class="w1200 center fit-height flex flex-between flex-items-center">
-      <h1 button class="logo fit-height">myblog</h1>
-
+      <div class="fit-height flex">
+        <h1 button class="logo fit-height">myblog</h1>
+        <div class="w400 flex flex-items-center ml40"><my-input icon='&#xe60a;' width='200' focusWidth='300'></my-input></div>
+      </div>
       <div class="flex">
         <div class="flex flex-items-center">
           <my-button primary v-if="login" @click="WriteArticle">写文章</my-button>
@@ -45,5 +47,15 @@ export default {
   width: 36px;
   height: 36px;
   border-radius: 50%;
+}
+.search {
+  width: 200px;
+  &:focus { width: 300px; }
+}
+.search-icon {
+  width: 35px;
+  border-right: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 </style>
