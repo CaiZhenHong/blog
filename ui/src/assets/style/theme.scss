@@ -7,6 +7,9 @@ $white_1:#fff;
 $gray_1:#8c8c8c;
 $gray_2:#fafafa;
 $gray_3:#dfdfdf;
+$gray_4: #f9f9fa;
+$blue_1: #8590a6;
+$blue_2: #6385a6;
 
 $color_list:(
   theme_1:$theme_1,
@@ -16,7 +19,10 @@ $color_list:(
   gray_1:$gray_1,
   gray_2:$gray_2,
   gray_3:$gray_3,
-  black_3:$black_3
+  black_3:$black_3,
+  gray_4:$gray_4,
+  blue_1:$blue_1,
+  blue_2:$blue_2
 );
 
 $position_list:(

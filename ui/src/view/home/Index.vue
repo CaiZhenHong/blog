@@ -3,18 +3,22 @@
     <HomeProfile class="mt20" />
     <div class="flex">
       <HomeArticle class="flex-1 mt20" />
-      <HomeLink class="w280 ml25 mt20" />
+      <div class="w280 ml25 mt20" >
+        <HomeLink class="mb20" />
+        <HomeReadInfo />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import HomeLink from './HomeLink.vue'
+import HomeReadInfo from './HomeReadInfo.vue'
 import HomeProfile from './HomeProfile.vue'
 import HomeArticle from './HomeArticle.vue'
 
 export default {
-  components:{ HomeLink, HomeProfile, HomeArticle }
+  components:{ HomeLink, HomeProfile, HomeArticle, HomeReadInfo }
 }
 </script>
 

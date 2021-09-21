@@ -18,3 +18,7 @@ export const put_article_info = function (){
   })
 }
 
+// 获取昨日今日阅读数据
+export const get_articles_info = function() {
+  return api.get('/articles/info')
+}

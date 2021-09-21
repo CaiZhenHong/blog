@@ -7,8 +7,8 @@ const initData = function() {
   const inited = localStorage.getItem('lang')
   if(!inited){
     localStorage.lang = 'zh'
+    store.dispatch('user/getUserInfo')
   }
-  store.dispatch('user/getUserInfo')
 }
 
 // 注册全局组件
