@@ -1,11 +1,13 @@
 {
-  "name": "ui",
+  "name": "myblog",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "webpack serve --config ./build/webpack.dev.js",
-    "build": "webpack --config  ./build/webpack.prod.js"
+    "dev": "webpack serve --config ./ui/build/webpack.dev.js",
+    "serve": "./node_modules/.bin/nodemon ./server/bin/www",
+    "build": "webpack --config  ./ui/build/webpack.prod.js",
+    "start": "pm2 start ./server/bin/www"
   },
   "author": "caizhenhong",
   "license": "ISC",
@@ -25,13 +27,25 @@
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "nodemon": "^1.8.1"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "vue": "^2.6.14",
     "vue-axios": "^3.2.4",
     "vue-router": "^3.5.2",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "co": "^4.6.0",
+    "debug": "^2.6.3",
+    "jade": "~1.11.0",
+    "koa": "^1.4.0",
+    "koa-bodyparser": "^2.5.0",
+    "koa-json": "^1.1.3",
+    "koa-logger": "^1.3.1",
+    "koa-onerror": "^1.3.1",
+    "koa-router": "^5.4.0",
+    "koa-static": "^1.5.2",
+    "koa-views": "^3.1.0"
   }
 }

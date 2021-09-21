@@ -7,7 +7,9 @@ module.exports = {
   },
 
   server:{
-    develop:{},
+    develop:{
+      port:3001
+    },
     product:{}
   }
 }
