@@ -3,7 +3,7 @@
     <HomeProfile class="mt20" />
     <div class="flex">
       <HomeArticle class="flex-1 mt20" />
-      <div class="w280 ml25 mt20" >
+      <div class="w280 ml25 mt20 unselected" >
         <HomeLink class="mb20" />
         <HomeReadInfo />
       </div>

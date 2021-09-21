@@ -1,12 +1,23 @@
 @font-face {
 	font-family: 'iconfont';  /* Project id 2824017 */
-	src: url('//at.alicdn.com/t/font_2824017_yhhhkj4wxf.woff2?t=1632118537705') format('woff2'),
-		 url('//at.alicdn.com/t/font_2824017_yhhhkj4wxf.woff?t=1632118537705') format('woff'),
-		 url('//at.alicdn.com/t/font_2824017_yhhhkj4wxf.ttf?t=1632118537705') format('truetype');
+	src: url('//at.alicdn.com/t/font_2824017_ca5n1kdvyk.woff2?t=1632202274530') format('woff2'),
+		 url('//at.alicdn.com/t/font_2824017_ca5n1kdvyk.woff?t=1632202274530') format('woff'),
+		 url('//at.alicdn.com/t/font_2824017_ca5n1kdvyk.ttf?t=1632202274530') format('truetype');
   }
-
 [iconfont]{
 	font-family: 'iconfont';
+}
+
+@mixin setIconColor($color) {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 40px;
+	display: block;
+	color: $color;
+	background: transparentize($color, 0.85);
+	box-shadow: 0 0 3px 0 transparentize($color, 0.85);
+	font-size: 24px;
 }
 
 .icon_comment {
@@ -24,12 +35,15 @@
 .icon_like {&::before{content: '\e644';}}
 .icon_liked {&::before{content: '\e6e3';}}
 .icon_arrow {&::before{content: '\e600'; margin-right: 5px;}}
+.icon_wechat::before {content: '\e65b'; @include setIconColor(#3cb034);}
+.icon_zhihu::before {content: '\e629'; @include setIconColor(#0066ff);}
+.icon_csdn::before {content: '\e638'; @include setIconColor(#ff4d4d);}
+.icon_douyin::before {content: '\e601'; @include setIconColor(#1c0b1b);}
+.icon_xiaohongshu::before {content: '\e66d'; @include setIconColor(#ff2840);}
+.icon_twitter::before {content: '\e72e'; @include setIconColor(#2da9e3);}
+.icon_facebook::before {content: '\e608'; @include setIconColor(#3b5998);}
+.icon_weibo::before {content: '\ea89'; @include setIconColor(#ffe488);}
+.icon_bilibili::before {content: '\e627'; @include setIconColor(#fb7299);}
+.icon_qq::before {content: '\e65c'; @include setIconColor(#32a6d4);}
+.icon_github::before {content: '\e602'; @include setIconColor(#181617);}
 
-
-@mixin setIconColor($color) {
-	display: block;
-	color: $color;
-	background: transparentize($color, 0.85);
-	box-shadow: 0 0 3px 0 transparentize($color, 0.85);
-	font-size: 24px;
-}

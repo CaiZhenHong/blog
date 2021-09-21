@@ -23,7 +23,25 @@ const dateFormat = (date) => {
   return formatDate;
 }
 
+const iconFormat = icon => {
+  const names = {
+    "zhihu": "知乎",
+    "github": "GitHub",
+    "csdn": "CSDN",
+    "douyin": "抖音",
+    "xiaohongshu": "小红书",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "weibo": "微博",
+    "bilibili": "哔哩哔哩",
+    "wechat": "微信",
+    "qq": "QQ"
+  }
+  return names[icon]
+}
+
 export default {
   dateFormat,
-  countFormat
+  countFormat,
+  iconFormat
 }

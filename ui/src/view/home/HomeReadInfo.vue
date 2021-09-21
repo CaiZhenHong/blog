@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page">
-      <div class="f14 bdb pt10 pb10 pl20 pr20">文章信息</div>
+      <div class="f14 bdb pt10 pb10 pl20 pr20 black_2">文章信息</div>
       <div class="flex flex-between f12 bg-gray_4 pl15 article-info">
         <div class="fcenter flex-1 flex-column">
           <div class="blue_2">今日阅读数</div>
