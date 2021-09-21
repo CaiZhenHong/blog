@@ -25,8 +25,8 @@
 
 <script>
 export default {
-  data(){
-    return { login: true }
+  computed: {
+    login: function(){ return this.$store.state.user.login }
   },
 
   methods: {

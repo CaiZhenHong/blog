@@ -5,7 +5,8 @@ export default {
   namespaced: true,
 
   state: {
-    info: null
+    info: null,
+    login: true
   },
 
   mutations: {
@@ -21,6 +22,5 @@ export default {
       commit('updateUserInfo', data)
      })
     },
-
   },
 }
