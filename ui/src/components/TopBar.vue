@@ -11,7 +11,7 @@
         <div class="flex flex-items-center">
           <my-button primary v-if="login" @click="WriteArticle">写文章</my-button>
           <my-button primary v-else @click="loginHandle">登录</my-button>
-          <div button class="f14 ml20 theme_1" v-if="!login">切换语言</div>
+          <div button class="f14 ml20 flex theme_1" v-if="!login">切换语言 <span iconfont class="chang-lang-icon">&#xe600;</span></div>
         </div>
         <div class="flex flex-items-center" v-if="login">
           <div iconfont button class="notice theme_1 ml20">&#xe603;</div>
@@ -57,5 +57,11 @@ export default {
   border-right: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+}
+.chang-lang-icon{
+  display: inline-block;
+  transform: rotate(-90deg);
+  font-size: 12px;
+  margin-left: 5px;
 }
 </style>

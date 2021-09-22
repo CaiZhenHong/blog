@@ -6,7 +6,7 @@ export default {
 
   state: {
     info: JSON.parse(localStorage.getItem('user')),
-    login: true
+    login: false
   },
 
   mutations: {
