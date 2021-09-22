@@ -1,12 +1,16 @@
 <template>
   <div class="app">
-    <TopBar class="h55" />
     <router-view />
   </div>
 </template>
 
 <script>
-export default {};
+import Cookies from 'js-cookie'
+export default {
+  beforeCreate: function(){
+    console.log(Cookies.get('session'));
+  }
+};
 </script>
 
 <style lang="scss">

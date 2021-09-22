@@ -1,7 +1,7 @@
 
 const router = require('koa-router')({prefix:'/v1/api'});
-const { login } = require('../controllers/user')
+const { login } = require('../controllers/users')
 
-router.get('/', login);
+router.post('/login', login);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-import { get_user } from '@/api'
+import { get_user, login } from '@/api'
 
 export default {
 
@@ -6,13 +6,17 @@ export default {
 
   state: {
     info: JSON.parse(localStorage.getItem('user')),
-    login: false
+    login: localStorage.getItem('login'),
   },
 
   mutations: {
     updateUserInfo(state, payload){
       state.info = Object.assign({}, payload)
       localStorage.setItem('user', JSON.stringify(payload))
+    },
+    updateLoginInfo(state, payload){
+      state.login = payload
+      localStorage.setItem('login', JSON.stringify(payload))
     }
   },
 
@@ -22,5 +26,10 @@ export default {
       commit('updateUserInfo', data)
      })
     },
+    login({commit}, payload){
+      return login(payload).then(({code}) => {
+        commit('updateLoginInfo', !code)
+      })
+    }
   },
 }

@@ -53,7 +53,7 @@
   }
 }
 
-@for $i from 12 to 30 {
+@for $i from 12 to 33 {
   .f#{$i} {font-size:#{$i}px;}
 }
 
@@ -115,8 +115,17 @@
 .w60 {
   width: 60px;
 }
+.w32 {
+  width: 32px;
+}
+.w64 {
+  width: 64px;
+}
 .w400{
   width: 400px;
+}
+.w230 {
+  width: 230px;
 }
 .w300 {
   width: 300px;
@@ -127,6 +136,9 @@
 /* [height] START */
 .fit-height {
   height: 100%;
+}
+.h20{
+  height: 20px;
 }
 .h30 {
   height: 30px;
@@ -140,11 +152,17 @@
 .h35 {
   height: 35px;
 }
+.h32 {
+  height: 32px;
+}
 .h40 {
   height: 40px;
 }
 .h60 {
   height: 60px;
+}
+.h64 {
+  height: 64px;
 }
 .h65 {
   height: 65px;
@@ -160,6 +178,9 @@
 }
 .h160 {
   height: 160px;
+}
+.h550 {
+  height: 550px;
 }
 .h600{
   min-height: 750px;
@@ -209,7 +230,7 @@
 .mt100 {margin-top:100px}
 .mt110 {margin-top:110px}
 .mt120 {margin-top:120px}
-.mt150 {margin-top:1.5px}
+.mt150 {margin-top:150px}
 .mt190 {margin-top:190px}
 
 .mb10 {margin-bottom:10px}
@@ -274,6 +295,7 @@
 .pt45 {padding-top:45px}
 .pt50 {padding-top:50px}
 .pt60 {padding-top:60px}
+.pt100 {padding-top:100px}
 
 .pb5 {padding-bottom:5px}
 .pb6 {padding-bottom:6px}
@@ -311,6 +333,7 @@
 .pr20 {padding-right:20px}
 .pr25 {padding-right:25px}
 .pr30 {padding-right:30px}
+.pr35 {padding-right:35px}
 .pr40 {padding-right:40px}
 .pr48 {padding-right:48px}
 .pr50 {padding-right:50px}
@@ -325,10 +348,6 @@
 .lh18 {line-height: 1.8;}
 .lh19 {line-height: 1.9;}
 .lh20 {line-height: 2;}
-
-.f14 {
-  font-size: 14px;
-}
 
 .fw400 {font-weight: 400;}
 .fw500{font-weight: 500;}

@@ -1,5 +1,5 @@
-const user = require('./user')
+const users = require('./users')
 
 module.exports = function(app){
-  app.use(user.routes(), user.allowedMethods());
+  app.use(users.routes(), users.allowedMethods());
 }

@@ -4,14 +4,17 @@
   <header class="bdb bg-white_1">
     <div class="w1200 center fit-height flex flex-between flex-items-center">
       <div class="fit-height flex">
-        <h1 button class="logo fit-height">myblog</h1>
-        <div class="w400 flex flex-items-center ml40"><my-input icon='&#xe60a;' placeholder='搜索' width='200' focusWidth='300'></my-input></div>
+        <div button class="flex flex-items-center">
+          <h1 class="logo w32 h32">myblog</h1>
+          <div class="theme_1 ml10 f22 blod">MYBLOG</div>
+        </div>
+        <div class="w400 flex flex-items-center ml40"><my-input icon='&#xe60a;' placeholder='搜索' width='230' focusWidth='300'></my-input></div>
       </div>
       <div class="flex">
         <div class="flex flex-items-center">
           <my-button primary v-if="login" @click="WriteArticle">写文章</my-button>
           <my-button primary v-else @click="loginHandle">登录</my-button>
-          <div button class="f14 ml20 flex theme_1" v-if="!login">切换语言 <span iconfont class="chang-lang-icon">&#xe600;</span></div>
+          <div button class="f14 ml20 flex theme_1" v-if="!login">切换语言 <span iconfont class="f12 blod chang-lang-icon">&#xe600;</span></div>
         </div>
         <div class="flex flex-items-center" v-if="login">
           <div iconfont button class="notice theme_1 ml20">&#xe603;</div>
@@ -31,14 +34,13 @@ export default {
 
   methods: {
     WriteArticle(){},
-    loginHandle(){}
+    loginHandle(){ this.$router.push({name:'Login'}) }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .logo {
-  width: 104px;
   background: url('@/assets/image/icon/logo-theme.png') no-repeat left;
   background-size: 100%;
   font-size: 0;
@@ -47,10 +49,6 @@ export default {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-}
-.search {
-  width: 200px;
-  &:focus { width: 300px; }
 }
 .search-icon {
   width: 35px;
@@ -61,7 +59,6 @@ export default {
 .chang-lang-icon{
   display: inline-block;
   transform: rotate(-90deg);
-  font-size: 12px;
   margin-left: 5px;
 }
 </style>
