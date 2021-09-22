@@ -7,8 +7,13 @@ import article from './article'
 
 export default new Vuex.Store({
   state: {
+    toastInfo:{ msg:'', type:'error',flag:false }
   },
   mutations: {
+    updateToast: function(state,{msg,type}){
+      type = type?type:'error'
+      state.toastInfo = {msg,type,falg:!state.falg}
+    }
   },
   actions: {
   },

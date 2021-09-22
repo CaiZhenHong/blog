@@ -11,6 +11,8 @@ $gray_4: #f9f9fa;
 $blue_1: #8590a6;
 $blue_2: #6385a6;
 $red_1: #ff5d5d;
+$yellow_1: #ffa229;
+$green_1: #6dd43a;
 
 $color_list:(
   theme_1:$theme_1,
@@ -24,7 +26,9 @@ $color_list:(
   gray_4:$gray_4,
   blue_1:$blue_1,
   blue_2:$blue_2,
-  red_1:$red_1
+  red_1:$red_1,
+  yellow_1:$yellow_1,
+  green_1:$green_1,
 );
 
 $position_list:(

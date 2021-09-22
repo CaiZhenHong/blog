@@ -18,7 +18,7 @@ import HomeProfile from './HomeProfile.vue'
 import HomeArticle from './HomeArticle.vue'
 
 export default {
-  components:{ HomeLink, HomeProfile, HomeArticle, HomeReadInfo }
+  components:{ HomeLink, HomeProfile, HomeArticle, HomeReadInfo },
 }
 </script>
 
