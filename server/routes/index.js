@@ -1,15 +1,5 @@
-var router = require('koa-router')();
+const user = require('./user')
 
-router.get('/', function *(next) {
-  yield this.render('index', {
-    title: 'Hello World Koa!'
-  });
-});
-
-router.get('/foo', function *(next) {
-  yield this.render('index', {
-    title: 'Hello World foo!'
-  });
-});
-
-module.exports = router;
+module.exports = function(app){
+  app.use(user.routes(), user.allowedMethods());
+}
