@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Axios from 'axios'
 import VueAxios from 'vue-axios'
+import Toast from '../assets/js/toast'
 
 Vue.use(VueAxios, Axios)
 const axios = Axios.create({
   baseURL: 'v1/api',
-  timeout: 300000,
+  timeout: 10000,
   withCredentials: true,
   crossDomain:true
 })
@@ -21,6 +22,7 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
   return response.data;
 }, function (error) {
+  if(/timeout/g.test(error)) Toast({msg:'网络连接失败，请重试'})
   return Promise.reject(error);
 });
 

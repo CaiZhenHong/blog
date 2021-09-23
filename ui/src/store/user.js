@@ -1,4 +1,4 @@
-import { get_user, login } from '@/api'
+import { get_user, login, logout } from '@/api'
 
 export default {
 
@@ -17,6 +17,10 @@ export default {
     updateLoginInfo(state, payload){
       state.login = payload
       localStorage.setItem('login', JSON.stringify(payload))
+    },
+    updateLogoutInfo(state,payload){
+      state.login = payload
+      localStorage.setItem('login', JSON.stringify(payload))
     }
   },
 
@@ -29,6 +33,11 @@ export default {
     login({commit}, payload){
       return login(payload).then(({code}) => {
         commit('updateLoginInfo', !code)
+      })
+    },
+    logout({commit}){
+      return logout().then(({code}) => {
+        commit('updateLogoutInfo', Boolean(code))
       })
     }
   },

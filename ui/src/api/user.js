@@ -7,3 +7,7 @@ export const get_user = function (){
 export const login = function(data) {
   return api.post('/login', data)
 }
+
+export const logout = function(){
+  return api.delete('/logout')
+}

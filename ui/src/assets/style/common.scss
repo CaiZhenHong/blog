@@ -42,6 +42,7 @@
   .bg-#{$colorName} {
     background-color: #{$color};
   }
+  .hover-#{$colorName}{&:hover{background-color: #{$color};}}
 }
 
 @each $p, $pName in $position_list {

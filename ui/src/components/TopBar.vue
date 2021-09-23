@@ -1,7 +1,7 @@
 <!-- @desc 公共组件 顶部栏 -->
 
 <template>
-  <header class="bdb bg-white_1">
+  <header class="bdb bg-white_1 unselected">
     <div class="w1200 center fit-height flex flex-between flex-items-center">
       <div class="fit-height flex">
         <div button class="flex flex-items-center">
@@ -18,7 +18,15 @@
         </div>
         <div class="flex flex-items-center" v-if="login">
           <div iconfont button class="notice theme_1 ml20">&#xe603;</div>
-          <img button class="profile ml20 bd" src="@/assets/image/test.png" />
+          <my-pop class="ml20">
+            <img button class="profile bd" src="@/assets/image/test.png" slot="trigger" />
+            <ul>
+              <li class="pl20 pr20 pt10 pb10 mt10 f14 black_2 hover-gray_3" button v-for="({ text, icon }, index) in model" :key="index">
+                <span iconfont v-html="icon" class="gray_1 f16 mr5"></span>
+                {{text}}
+              </li>
+            </ul>
+          </my-pop>
         </div>
       </div>
 
@@ -28,6 +36,18 @@
 
 <script>
 export default {
+  data:function(){
+    return { 
+      model:[
+        { icon:'&#xe605;',text:'个人主页',routerName:'' },
+        { icon:'&#xe631;',text:'账户设置',routerName:'' },
+        { icon:'&#xe64b;',text:'English',routerName:'' },
+        { icon:'&#xe643; ',text:'提交建议',routerName:'' },
+        { icon:'&#xe60b;',text:'退出登录',routerName:'' },
+      ]
+     }
+  },
+  
   computed: {
     login: function(){ return this.$store.state.user.login }
   },
