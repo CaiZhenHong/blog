@@ -4,7 +4,7 @@
   <header class="bdb bg-white_1 unselected">
     <div class="w1200 center fit-height flex flex-between flex-items-center">
       <div class="fit-height flex">
-        <div button class="flex flex-items-center">
+        <div button class="flex flex-items-center" @click="toHome">
           <h1 class="logo w32 h32">myblog</h1>
           <div class="theme_1 ml10 f22 blod">MYBLOG</div>
         </div>
@@ -54,7 +54,8 @@ export default {
 
   methods: {
     WriteArticle(){},
-    loginHandle(){ this.$router.push({name:'Login'}) }
+    loginHandle(){ this.$router.push({name:'Login'}) },
+    toHome(){ this.$router.push({name:'HomeArticleNew'}) }
   }
 };
 </script>

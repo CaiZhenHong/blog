@@ -9,6 +9,8 @@ const HomeArticleNew = () => import('@/view/home/components/HomeArticleNew.vue')
 
 const Login = () => import('@/view/login/Login.vue')
 
+const Error404 = () => import('@/view/errorPage/error_404.vue')
+
 
 const routes = [
   {
@@ -20,6 +22,7 @@ const routes = [
     ]
   },
   { path: '/login', component: Login, name: 'Login' },
+  { path: '/404', component: Error404, name: '404' },
 /*   {
     path: '/',
     component: Home,
