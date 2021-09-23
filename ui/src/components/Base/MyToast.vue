@@ -1,10 +1,13 @@
 <template>
-  <div class="flex flex-center flex-items-start toast" :class="{ hidden:toastHidden }">
-      <div class="white_1 bd page-padding flex flex-items-center" :class="[`bg-${type.color}`]">
-          <span iconfont class="f22 mr10 mt2" v-html="type.icon"></span>
-          {{info.msg}}
-      </div>
-  </div>
+  <div class="toast">
+    <div class="flex flex-center flex-items-start toast-inner" :class="{ hidden:toastHidden }">
+        <div class="white_1 bd page-padding flex flex-items-center" :class="[`bg-${type.color}`]">
+            <span iconfont class="f22 mr10 mt2" v-html="type.icon"></span>
+            {{info.msg}}
+        </div>
+    </div>
+  </div>  
+
 </template>
 
 <script>
@@ -44,13 +47,15 @@ export default {
 <style lang="scss" scoped>
 .toast {
   position: fixed;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   top: 0;
-  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.toast-inner{
+    transition:  0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .page-padding {
-    padding: 12px 42px;
+    padding: 6px 42px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     letter-spacing: 1px;

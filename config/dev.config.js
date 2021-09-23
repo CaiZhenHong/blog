@@ -1,11 +1,17 @@
-export const ui = {
+const ui = {
     port: 3000
 }
 
-export const server = {
+const server = {
     port: 3001
 }
 
-export const db = {
-
+const db = {
+    userName: 'myblog',
+    password: 'caizhenhong',
+    port:'27017',
+    host: '42.192.40.103',
+    sqlName: 'myblog'
 }
+
+module.exports = {ui,server,db}

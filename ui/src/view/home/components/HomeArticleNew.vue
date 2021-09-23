@@ -46,7 +46,7 @@ export default {
     },
 
     beforeCreate:function(){
-        get_articles_new().then((data) => { 
+        get_articles_new().then(({data}) => { 
             data = data.map(item => { item.liking = false; return item })
             this.articles = data
          })

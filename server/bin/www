@@ -7,12 +7,9 @@
 var app = require('../app');
 var debug = require('debug')('demo:server');
 var http = require('http');
+const port = require('../../config/dev.config').server.port
+const db = require('../db')
 
-/**
- * Get port from environment and store in Express.
- */
-
-var port = normalizePort(process.env.PORT || '3001');
 // app.set('port', port);
 
 /**
@@ -21,6 +18,7 @@ var port = normalizePort(process.env.PORT || '3001');
 
 var server = http.createServer(app.callback());
 
+db()
 /**
  * Listen on provided port, on all network interfaces.
  */

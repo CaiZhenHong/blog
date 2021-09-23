@@ -25,7 +25,7 @@ axios.interceptors.response.use(function (response) {
   return response.data;
 }, function (error) {
   if(/timeout/g.test(error)) Toast({msg:'网络连接失败，请重试'})
-  if(error.response.status == 404) router.replace('404')
+ // if(error.response.status == 404) router.replace('404')
   return Promise.reject(error);
 });
 

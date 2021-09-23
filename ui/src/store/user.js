@@ -1,4 +1,6 @@
 import { get_user, login, logout } from '@/api'
+import Toast from '@/assets/js/toast'
+import router from '@/router'
 
 export default {
 
@@ -14,13 +16,14 @@ export default {
       state.info = Object.assign({}, payload)
       localStorage.setItem('user', JSON.stringify(payload))
     },
-    updateLoginInfo(state, payload){
-      state.login = payload
-      localStorage.setItem('login', JSON.stringify(payload))
+    updateLoginInfo(state){
+      state.login = true
+      localStorage.setItem('login', JSON.stringify(true))
     },
-    updateLogoutInfo(state,payload){
-      state.login = payload
-      localStorage.setItem('login', JSON.stringify(payload))
+    updateLogoutInfo(state){
+      state.login = false
+      localStorage.removeItem('login');
+      Toast({msg:'您已退出登录', type:'succeed'})
     }
   },
 
@@ -33,6 +36,10 @@ export default {
     login({commit}, payload){
       return login(payload).then(({code}) => {
         commit('updateLoginInfo', !code)
+        if(!code) {
+          router.back()
+          Toast({msg:'登录成功', type:'succeed'})
+        }
       })
     },
     logout({commit}){

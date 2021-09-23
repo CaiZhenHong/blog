@@ -14,13 +14,6 @@ app.use(require('koa-bodyparser')());
 app.use(json());
 app.use(logger());
 
-app.use(function *(next){
-  var start = new Date;
-  yield next;
-  var ms = new Date - start;
-  console.log('%s %s - %s', this.method, this.url, ms);
-});
-
 app.keys = ['some secret hurr'];
 
 const CONFIG = {
