@@ -2,10 +2,11 @@
   <div v-show="dialogShow" class="dialog fit-height fit-width fcenter">
       <div class="page">
           <div v-if="info.title" class="fcenter bdb"><div class="f16 pt10 pb10 black_3">{{info.title}}</div></div>
-          <div></div>
-          <div class="flex flex-between mb10 ml10 mr10 ml10">
+          <div v-if="info.content" class="page-padding f14">{{info.content}}</div>
+          <div v-if='content != undefined'><slot></slot></div>
+          <div class="flex flex-between mb10 ml15 mr15">
               <my-button v-show="info.confirmText" primary @click="confirmHandle">{{info.confirmText}}</my-button>
-              <my-button v-show="info.cancelText" class="theme_1" @click="cancelHandle">{{info.cancelText}}</my-button>
+              <my-button v-show="info.cancelText" class="theme_1 ml40" @click="cancelHandle">{{info.cancelText}}</my-button>
           </div>
       </div>
   </div>
@@ -17,9 +18,14 @@ export default {
         return {dialogShow: false}
     },
 
-    computed:{
-        info: function(){ return this.$store.state.dialogInfo }
+    props:{
+        content:{}
     },
+
+    computed:{
+        info: function(){ return this.$store.state.dialogInfo },
+    },
+
     methods:{
         confirmHandle: function(){
             this.info.confirm()
@@ -30,9 +36,9 @@ export default {
         }
     },
     watch: {
-        info: function(){
-            this.dialogShow = true
-        }
+        info: function(info){
+           !(this.content == undefined && !this.info.content) && (this.dialogShow = true)
+        },
     }
 }
 </script>
