@@ -24,6 +24,7 @@ export default {
       state.login = false
       localStorage.removeItem('login');
       Toast({msg:'您已退出登录', type:'succeed'})
+      router.replace({name:'HomeArticleNew'})
     }
   },
 

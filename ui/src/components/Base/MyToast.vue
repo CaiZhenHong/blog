@@ -13,7 +13,7 @@
 <script>
 export default {
     data:function(){
-        return { toastHidden: true }
+        return { toastHidden: true, time:null }
     },
 
     computed: {
@@ -38,7 +38,10 @@ export default {
     watch: {
         info: function(){
             this.toastHidden = false
-            setTimeout(()=>{ this.toastHidden = !this.toastHidden }, 3000)
+            if(!this.time){
+                this.time =setTimeout(()=>{ this.toastHidden = !this.toastHidden;this.time = null }, 3000)
+            }
+            
         }
     }
 }
