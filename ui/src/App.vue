@@ -2,6 +2,7 @@
   <div class="fit-width fit-height app">
     <router-view />
     <MyToast />
+    <MyDialog />
   </div>
 </template>
 

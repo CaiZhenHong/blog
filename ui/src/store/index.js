@@ -7,12 +7,16 @@ import article from './article'
 
 export default new Vuex.Store({
   state: {
-    toastInfo:{ msg:'', type:'error',flag:false }
+    toastInfo:{ msg:'', type:'error',flag:false },
+    dialogInfo:{flag:false }
   },
   mutations: {
     updateToast: function(state,{msg,type}){
       type = type?type:'error'
       state.toastInfo = {msg,type,falg:!state.falg}
+    },
+    updateDialog: function(state,payload){
+      state.dialogInfo = Object.assign({flag:!state.flag},payload)
     }
   },
   actions: {
