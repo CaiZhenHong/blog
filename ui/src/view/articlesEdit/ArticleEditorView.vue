@@ -1,19 +1,15 @@
 <template>
-  <div v-html="view" class="editorviews"></div>
+  <div v-html="viewMarked" class="editorviews"></div>
 </template>
 
 <script>
 import marked from 'marked'
 export default {
-    props:{
-        viewData: {type:String, default: ''},
-    },
-
-    computed: {
-      view: function(){
-        return marked(this.viewData)
-      }
+  computed: {
+    viewMarked: function(){
+      return marked(this.$store.state.article.content)
     }
+  },
 }
 </script>
 

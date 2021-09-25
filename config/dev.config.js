@@ -1,5 +1,5 @@
 const ui = {
-    port: 3000
+    port: 3002
 }
 
 const server = {
@@ -14,4 +14,9 @@ const db = {
     sqlName: 'myblog'
 }
 
-module.exports = {ui,server,db}
+const base = {
+    userName:'myblog',
+    password:'caizhenhong'
+}
+
+module.exports = {ui,server,db,base}

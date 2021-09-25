@@ -31,13 +31,14 @@ export default {
   actions: {
     getUserInfo({commit}){
      return get_user().then(({ data }) => {
-      commit('updateUserInfo', data)
+      commit('updateUserInfo', data.data)
+      return Promise.resolve(data.data)
      })
     },
     login({commit}, payload){
       return login(payload).then(({code}) => {
-        commit('updateLoginInfo', !code)
         if(!code) {
+          commit('updateLoginInfo', !code)
           router.back()
           Toast({msg:'登录成功', type:'succeed'})
         }

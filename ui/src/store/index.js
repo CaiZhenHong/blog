@@ -16,7 +16,7 @@ export default new Vuex.Store({
       state.toastInfo = {msg,type,falg:!state.falg}
     },
     updateDialog: function(state,payload){
-      state.dialogInfo = Object.assign({flag:!state.flag},payload)
+      state.dialogInfo = payload
     }
   },
   actions: {

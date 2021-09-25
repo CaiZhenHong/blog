@@ -1,9 +1,12 @@
 
 const router = require('koa-router')({prefix:'/v1/api'});
-const { getArticlestCatlogue, getCatllogueParticulars, getArticlesNew, putArticlesInfo, getArticleInfo } = require('../controllers/articles')
+const { getArticleCatlogue, getCatllogueParticulars, getArticlesNew, putArticlesInfo, getArticleInfo, putArticleCatlogue } = require('../controllers/articles')
 
 // 获取文章目录
-router.get('/articles_catlogue', getArticlestCatlogue);
+router.get('/articles_catlogue', getArticleCatlogue);
+
+
+router.put('/articles_catlogue', putArticleCatlogue);
 
 // 获取文章目录详情
 router.get('/articles_catlogue_particulars', getCatllogueParticulars);

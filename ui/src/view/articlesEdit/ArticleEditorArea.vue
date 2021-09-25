@@ -9,14 +9,14 @@ export default {
         return {content: ''}
     },
 
-    mounted: function(){
-        if(localStorage.getItem('draft')) this.content = localStorage.getItem('draft')
+    watch:{
+        content:function(content){
+            this.$store.commit('article/updateArticle',{content} )
+        },
     },
 
-    watch:{
-        content:function(value){
-            this.$emit('output', value)
-        }
+    mounted: function(){
+        this.content = this.$store.state.article.draft.content || ''
     }
 }
 </script>

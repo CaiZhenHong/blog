@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import store from '@/store'
+import router from '@/router'
 import filters from '@/util/filters'
 
 // 初始化应用数据
@@ -7,7 +8,11 @@ const initData = function() {
   const inited = localStorage.getItem('lang')
   if(!inited){
     localStorage.lang = 'zh'
-    store.dispatch('user/getUserInfo')
+    store.dispatch('user/getUserInfo').then(() => {
+      router.beforeEach((to, from, next) => {
+        next()
+      })
+    })
   }
 }
 

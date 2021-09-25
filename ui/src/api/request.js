@@ -3,6 +3,7 @@ import Axios from 'axios'
 import VueAxios from 'vue-axios'
 import Toast from '../assets/js/toast'
 import router from '@/router'
+import Dialog from '../assets/js/dialog'
 
 Vue.use(VueAxios, Axios)
 
@@ -22,6 +23,11 @@ axios.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
+  if(response.data.code) Dialog({
+    title:'提示',
+    content:response.data.msg, 
+    confirm: (close) => {close()}
+  })
   return response.data;
 }, function (error) {
   if(/timeout/g.test(error)) Toast({msg:'网络连接失败，请重试'})

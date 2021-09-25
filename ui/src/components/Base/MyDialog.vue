@@ -1,14 +1,15 @@
 <template>
   <div v-show="dialogShow" class="dialog fit-height fit-width fcenter">
-      <div class="page">
+      <transition name="fade">
+      <div class="page" v-show="dialogShow">
           <div v-if="info.title" class="fcenter bdb"><div class="f16 pt10 pb10 black_3">{{info.title}}</div></div>
           <div v-if="info.content" class="page-padding f14">{{info.content}}</div>
-          <div v-if='content != undefined'><slot></slot></div>
           <div class="flex flex-between mb10 ml15 mr15">
+              <my-button v-show="info.cancelText" class="theme_1 mr40" @click="cancelHandle">{{info.cancelText}}</my-button>
               <my-button v-show="info.confirmText" primary @click="confirmHandle">{{info.confirmText}}</my-button>
-              <my-button v-show="info.cancelText" class="theme_1 ml40" @click="cancelHandle">{{info.cancelText}}</my-button>
           </div>
       </div>
+      </transition>
   </div>
 </template>
 
@@ -18,28 +19,30 @@ export default {
         return {dialogShow: false}
     },
 
-    props:{
-        content:{}
-    },
-
     computed:{
         info: function(){ return this.$store.state.dialogInfo },
     },
 
     methods:{
+        close: function() {
+            this.dialogShow = false
+        },
+
         confirmHandle: function(){
-            this.info.confirm()
+            this.info.confirm(this.close)
+            console.log(this.info.confirm(this.close));
         },
         cancelHandle: function(){
-            this.dialogShow = false
+            this.close()
             this.info.cancel()
         }
     },
     watch: {
-        info: function(info){
-           !(this.content == undefined && !this.info.content) && (this.dialogShow = true)
+        info: function(){
+           this.info.content&& (this.dialogShow = true)
         },
-    }
+    },
+    
 }
 </script>
 
@@ -51,5 +54,12 @@ export default {
     top: 0;
     bottom: 0;
     background-color: rgba(228, 228, 228, 0.39);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  transform: scale(0);
 }
 </style>

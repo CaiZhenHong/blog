@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import { get_articles_catlogue } from '@/api'
 import CatlogueParticulars from './CatlogueParticulars.vue'
 
 export default {
@@ -32,8 +31,11 @@ export default {
         }
     },
 
-    beforeCreate(){
-        get_articles_catlogue().then(({ data }) => { this.catlogues = data })
+    mounted(){
+      this.$store.dispatch('article/getCatlogue').then((data) => {
+        console.log(data);
+        this.catlogues = data
+      })
     }
 }
 </script>

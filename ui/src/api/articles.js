@@ -8,6 +8,10 @@ export const get_articles_catlogue = function (){
   return api.get('/articles_catlogue')
 }
 
+export const put_articles_catlogue = function() {
+  return api.put('/articles_catlogue')
+}
+
 export const get_articles_catlogue_particulars = function (){
   return api.get('articles_catlogue_particulars')
 }
