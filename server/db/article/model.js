@@ -9,6 +9,7 @@ const articleSchema = new mongoose.Schema({
     content:{type:String},
     cover: {type:String},
     date: {type:String,default:new Date().getTime()},
+    preface:{type:String}
    });
 
 const articleModel = mongoose.model('articles', articleSchema);
