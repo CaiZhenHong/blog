@@ -19,19 +19,11 @@
 </template>
 
 <script>
-import { get_articles_info } from '@/api'
-
 export default {
-  data: function(){
-    return {like_count:{}, read_count: {}}
-  },
-
-  beforeCreate: function(){
-    get_articles_info().then(({data}) => {
-      const { like_count, read_count } = data
-      this.like_count = like_count
-      this.read_count = read_count
-    })
+  computed: {
+    info: function () { return this.$store.state.user.info },
+    like_count: function() { return this.info && this.info.like_count },
+    read_count: function() { return this.info && this.info.read_count }
   }
 }
 </script>

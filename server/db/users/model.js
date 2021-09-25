@@ -5,7 +5,9 @@ const schema = new mongoose.Schema({
     name: {type:String,default:'MyBlog'},
     job: {type:String,default:'前端开发工程师'},
     address: {type:String,default:'广东-深圳'},
-    links:{type:[{name:String,url:String}]}
+    links:{type:[{name:String,url:String}]},
+    like_count:{type:Object, default:{ today:0, yesterday:0 }},
+    read_count:{type:Object, default:{ today:0, yesterday:0 }},
    });
 
 const userModel = mongoose.model('users', schema);
