@@ -1,14 +1,14 @@
 <template>
     <div class="bd h35 f14 flex myinput" :class="[ `w${width}`, `h${height}`, {[`w${focusWidth}`]: focus}, {focus}, {verifyError} ]">
         <div iconfont class="fcenter icon fw500 blue_1" v-html="icon"></div>
-        <input class="fit-width fit-height black_3 input" :placeholder="placeholder" :type="type" @blur="focusHandle(false)" @focus="focusHandle(true)" v-model="inputValue" @input="sentValue">
+        <input class="fit-width fit-height black_3 input" :placeholder="placeholder" :disabled='isDisabled'  :type="type" @blur="focusHandle(false)" @focus="focusHandle(true)" v-model="inputValue" @input="sentValue">
     </div>
 </template>
 
 <script>
 export default {
     data:function(){
-        return { focus: false, inputValue: this.value}
+        return { focus: false, inputValue: this.value,}
     },
 
     props:{
@@ -19,7 +19,14 @@ export default {
         icon:{ type: String },
         type:{type: String, default: 'text'},
         verifyError:{type: Boolean, default:false},
-        value: {type: String, require: true}
+        value: {type: String, require: true},
+        disabled:{type:Boolean, default: false}
+    },
+
+    computed: {
+        isDisabled: function() {
+            return this.disabled === undefined?undefined:(this.disabled===false?undefined:true)
+        }
     },
 
     methods: {
