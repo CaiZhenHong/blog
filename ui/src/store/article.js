@@ -15,8 +15,8 @@ export default {
 
   mutations: {
     updateArticle: function(state, {content, title}) {
-      content && (state.content = content)
-      title && (state.title = title)
+      content!=undefined && (state.content = content)
+      title!=undefined && (state.title = title)
       state.saved = false
     },
 

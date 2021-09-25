@@ -1,7 +1,7 @@
 const errorModel = require('../../model/errorModel')
 const succeedModel = require('../../model/succeedModel')
-const {getArticles} = require('../../db/article/index')
+const {postArticle} = require('../../db/article/index')
 module.exports = async function(ctx, next){
-    let docs = await getArticles()
+    let docs = await postArticle(ctx.request.body)
     ctx.body = succeedModel(docs)
 }

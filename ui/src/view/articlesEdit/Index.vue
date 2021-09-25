@@ -4,7 +4,7 @@
       <TopBarLogo class="mr20"/>
       <input class="f28 bdl pl20 fit-height flex-1" type="text" placeholder="输入文章标题..." v-model="title">
       <my-button class="theme_1 mr30" @click="onSaveDraft">保存草稿</my-button>
-      <my-button primary class="mr30" @click="publishShow=!publishShow">发布</my-button>
+      <my-button primary class="mr30" @click="onPublish">发布</my-button>
       <div class="gray_1 f14 mr10">{{saved?'已保存':'未保存'}}</div>
       <TopBarProfile class="mr50" />
     </div>
@@ -34,6 +34,11 @@ export default {
       this.$store.commit('article/updateDraft')
       this.$store.state.article.saved = true
     },
+    onPublish: function () {
+      if(!this.title) return this.$toast({msg:'请输入标题',type:'warnning'},)
+      if(!this.$store.state.article.content) return this.$toast({msg:'内容不能为空',type:'warnning'})
+      this.publishShow=!this.publishShow
+    }
   },
 
   computed: {

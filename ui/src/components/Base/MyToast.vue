@@ -39,7 +39,7 @@ export default {
         info: function(){
             this.toastHidden = false
             if(!this.time){
-                this.time =setTimeout(()=>{ this.toastHidden = !this.toastHidden;this.time = null }, 3000)
+                this.time =setTimeout(()=>{ this.toastHidden = !this.toastHidden;this.time = null }, 2000)
             }
             
         }
@@ -55,7 +55,7 @@ export default {
   top: 0;
 }
 .toast-inner{
-    transition:  0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition:  0.3s ease-in-out;
 }
 .page-padding {
     padding: 6px 42px;
