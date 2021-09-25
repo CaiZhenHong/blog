@@ -2,12 +2,13 @@
   <div class="load">
     <slot name="prefix"></slot>
     <div class="load-icon">&#xe6cd;</div>
-    <slot> <span class="icon-text">Loading . . .</span></slot>
+    <slot v-if="nontext == undefined"> <span class="icon-text">Loading . . .</span></slot>
   </div>
 </template>
 
 <script>
 export default {
+  props:['nontext']
 };
 </script>
 
