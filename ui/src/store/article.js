@@ -36,7 +36,6 @@ export default {
 
   actions: {
     getCatlogue: function({commit, state}) {
-      if(state.catlogue.length) return Promise.resolve(state.catlogue)
       return get_articles_catlogue().then(({ data }) => {
         commit('updateCatlogue', data)
         return Promise.resolve(data)
