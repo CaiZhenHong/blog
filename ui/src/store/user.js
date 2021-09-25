@@ -1,6 +1,7 @@
 import { get_user, login, logout } from '@/api'
 import Toast from '@/assets/js/toast'
 import router from '@/router'
+import Cookie from  'js-cookie'
 
 export default {
 
@@ -8,7 +9,7 @@ export default {
 
   state: {
     info: '',
-    login: localStorage.getItem('login'),
+    login: Boolean(Cookie.get('session')),
   },
 
   mutations: {
@@ -21,7 +22,8 @@ export default {
     },
     updateLogoutInfo(state){
       state.login = false
-      localStorage.removeItem('login');
+      Cookie.remove('session')
+      Cookie.remove('seesion.sign')
       Toast({msg:'您已退出登录', type:'succeed'})
       router.replace({name:'HomeArticleNew'})
     }
