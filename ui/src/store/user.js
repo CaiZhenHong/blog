@@ -7,14 +7,13 @@ export default {
   namespaced: true,
 
   state: {
-    info: JSON.parse(localStorage.getItem('user')),
+    info: '',
     login: localStorage.getItem('login'),
   },
 
   mutations: {
     updateUserInfo(state, payload){
       state.info = Object.assign({}, payload)
-      localStorage.setItem('user', JSON.stringify(payload))
     },
     updateLoginInfo(state){
       state.login = true
@@ -29,12 +28,15 @@ export default {
   },
 
   actions: {
-    getUserInfo({commit}){
-     return get_user().then(({ data }) => {
-      commit('updateUserInfo', data.data)
-      return Promise.resolve(data.data)
-     })
+    // 获取用户个人资料
+    getUserInfo({commit, state}){
+      if(state.info) return Promise.resolve(state.info)
+      return get_user().then(({ data }) => {
+        commit('updateUserInfo', data)
+        return Promise.resolve(data)
+      })
     },
+
     login({commit}, payload){
       return login(payload).then(({code}) => {
         if(!code) {

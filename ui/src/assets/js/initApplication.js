@@ -8,11 +8,6 @@ const initData = function() {
   const inited = localStorage.getItem('lang')
   if(!inited){
     localStorage.lang = 'zh'
-    store.dispatch('user/getUserInfo').then(() => {
-      router.beforeEach((to, from, next) => {
-        next()
-      })
-    })
   }
 }
 

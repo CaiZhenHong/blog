@@ -19,10 +19,18 @@
 <script>
 
 export default {
+  data: function() {
+    return { user:'' }
+  },
   computed: {
-    user: function(){ return this.$store.state.user.info },
     login: function(){ return this.$store.state.user.login },
     buttonName: function(){ return this.login ? '编辑资料' : '订阅' }
+  },
+
+  mounted: function() {
+    this.$store.dispatch('user/getUserInfo').then( data => {
+      this.user = data
+    })
   }
 };
 </script>
