@@ -1,6 +1,6 @@
 <template>
 <div>
-  <ul v-show="articles">
+  <ul v-if="articles && articles.length">
       <li v-for="({ title, content, comment_count, tag, date, cover, like_count, liked, liking },index) in articles" :key="index" class="h140 page-padding flex bdb">
           <div class="w60">
               <div button class="bd w40 h50 bg-gray_2 flex flex-column flex-items-center" @click="likeHandle(index)">
@@ -20,6 +20,10 @@
           <img class="w160 h100 ml25 pointer" :src="cover" alt="">
       </li>
   </ul>
+  <div v-else class="fcenter flex-column pt100 mb20">
+      <div class="fit-width h100  empty"></div>
+      <div class="f16 gray_3">暂无内容</div>
+  </div>
   <MyLoadIcon v-show="!articles" class="mt25 mb24" />
 </div>
 </template>
