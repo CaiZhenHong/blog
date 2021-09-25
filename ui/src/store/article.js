@@ -1,5 +1,5 @@
 import toast from "@/assets/js/toast"
-import { get_articles_catlogue, put_articles_catlogue } from '@/api'
+import { get_articles_catlogue, post_articles_catlogue } from '@/api'
 
 export default {
 
@@ -44,7 +44,7 @@ export default {
     },
 
     putCatlogue: function({commit, state},newCatlogue ){
-      return put_articles_catlogue(newCatlogue).then(() => {
+      return post_articles_catlogue(newCatlogue).then(() => {
         commit('updateCatlogue', {title: newCatlogue})
         return Promise.resolve(state.catlogue)
       })

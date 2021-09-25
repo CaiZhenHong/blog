@@ -38,8 +38,7 @@ export default {
 
     mounted(){
       this.$store.dispatch('article/getCatlogue').then((data) => {
-        console.log(data);
-        this.catlogues = data
+        this.catlogues = JSON.parse(JSON.stringify(data))
       })
     }
 }

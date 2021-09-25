@@ -3,9 +3,10 @@
       <div class="page-padding">
         <div class="flex">
             <div class="f14 mt10 black_3">已有分类：</div>
-            <ul class="flex flex-wrap w350 flex-start ml15 mr15 blue_1">
+            <ul class="flex flex-wrap w350 flex-start ml15 mr15 blue_1" v-if="catlogues && catlogues.length">
                 <li :button='currentIndex==index?undefined:""' class="h30 pl20 pr20 bg-gray_4 mr20 mt10 fcenter catlogue-item f13" :class="{select:currentIndex==index}" v-for="({title}, index) in catlogues" :key="index" @click="currentIndex=index">{{title}}</li>
             </ul>
+            <div v-else class="f14 mt10 ml15 gray_1">暂无分类，请添加。</div>
         </div>
         <div class="mt60 flex flex-items-center">
             <div class="f14 black_3 mr15">添加分类：</div>
@@ -25,7 +26,7 @@
         </div>
         <div class="mt60 mb50 black_3 f14 flex">
             <div>文章摘要：</div>
-            <textarea class="bd pl10 pr10 pt10 pb10 bg-gray_2 f14 ml15 h100 w300" placeholder="用一句简短的话来概况你的项目吧~" ></textarea>
+            <textarea class="bd pl10 pr10 pt10 pb10 bg-gray_2 f14 ml15 h100 w300" placeholder="用一句简短的话来概况你的文章吧~" ></textarea>
         </div>
       </div>
     </my-dialog-c>
@@ -52,6 +53,12 @@ export default {
             close()
         },
         onAddCatlogue: function(){
+            const has = this.catlogues.findIndex(item => { return item.title == this.newCatlog } )
+            if(has != -1){
+                this.$toast({msg:'添加失败，您已有此分类'})
+                return 
+            }
+
             this.$store.dispatch('article/putCatlogue', this.newCatlog).then((data) => {
                 this.catlogues = data
                 this.newCatlog = ''
@@ -66,6 +73,7 @@ export default {
 
     mounted(){
       this.$store.dispatch('article/getCatlogue').then((data) => {
+          console.log(JSON.parse(JSON.stringify(data)));
         this.catlogues = data
       })
     }
