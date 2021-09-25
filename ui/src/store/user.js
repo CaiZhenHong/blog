@@ -23,7 +23,7 @@ export default {
     updateLogoutInfo(state){
       state.login = false
       Cookie.remove('session')
-      Cookie.remove('seesion.sign')
+      Cookie.remove('seesion.sig')
       Toast({msg:'您已退出登录', type:'succeed'})
       router.replace({name:'HomeArticleNew'})
     }
