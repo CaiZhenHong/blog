@@ -10,6 +10,11 @@
     </li>
   </ul>
 
+  <div v-if='!(catlogues && catlogues.length)' class="fcenter flex-column pt100 mb20">
+      <div class="fit-width h100  empty"></div>
+      <div class="f16 gray_3">暂无内容</div>
+  </div>
+
   <MyLoadIcon v-show="!catlogues" class="mt25 mb24" />
 
   <CatlogueParticulars @back='particularsPage =! particularsPage' v-show="particularsPage" :title='catlogueTitle'/>

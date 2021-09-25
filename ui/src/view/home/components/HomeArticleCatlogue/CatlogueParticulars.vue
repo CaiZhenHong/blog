@@ -20,6 +20,12 @@
         </ul>
       </div>
     </div>
+
+  <div v-if='!(catlogue && catlogue.length)' class="fcenter flex-column pt100 mb20">
+      <div class="fit-width h100  empty"></div>
+      <div class="f16 gray_3">暂无内容</div>
+  </div>
+  
   <MyLoadIcon v-show="!catlogue" class="center mt190" />
   </div>
 </template>

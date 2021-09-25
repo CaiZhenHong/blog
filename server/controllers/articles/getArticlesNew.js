@@ -3,5 +3,5 @@ const succeedModel = require('../../model/succeedModel')
 const {getArticles} = require('../../db/article/index')
 module.exports = async function(ctx, next){
     let docs = await getArticles()
-    ctx.body = succeedModel([])
+    ctx.body = succeedModel(docs)
 }
